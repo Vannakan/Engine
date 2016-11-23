@@ -1,0 +1,41 @@
+﻿TO DO
+
+Change Tile Map so that it reEngine tiles from the resource loader instead.
+
+Create a tile manager.
+
+Improve tiles
+
+Start to add lighting.
+
+Clean tiles and general classes up of variables and contracts that arent required
+
+decouple the engine a slight bit more, omptimize the engines functionality
+
+finish lighting
+
+
+improve collisions
+
+A* Pathfinding
+
+
+Physics
+
+
+
+Clean Engine
+
+Clean Tiles
+
+Clean Tile Manager
+
+Clean Tile Editor
+
+Refine Collisions
+
+Refine Entities
+
+Improve Resource Loader
+
+ 

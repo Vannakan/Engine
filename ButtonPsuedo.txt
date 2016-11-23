@@ -1,0 +1,19 @@
+﻿
+
+Button event manager traces through each of the buttons to see if they have been clicked.
+
+Find a way to assign buttons custom jobs.
+
+
+
+
+
+
+
+Button()
+{
+}
+
+
+
+

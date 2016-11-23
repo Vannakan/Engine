@@ -1,0 +1,31 @@
+Jamie - Behaviours Added :
+
+-
+-
+-
+-
+-
+-
+
+
+Keelan - ??? I dont know what ur doing tbh
+
+
+
+To create your own entity you need to look at the pEntity example. It's shit but it shows you 
+exactly how to create your entity using this current shit system.
+
+It'll change in a few days but it's still good enough to create entities and only require little change
+when the system is finished.
+
+entities MUST implement IEntity
+minds MUST implement IMind
+
+Camera controls are
+
+J = Left
+I = Up
+L = Right
+K = Down
+
+Camera doesnt have much use at the moment. Will do soon..
