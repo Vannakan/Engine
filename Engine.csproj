@@ -117,6 +117,7 @@
     <Compile Include="States\Engine\PopUpScreen.cs" />
     <Compile Include="States\Engine\SplashScreen.cs" />
     <Compile Include="Tilemaps\BlankTile.cs" />
+    <Compile Include="Tilemaps\CA.cs" />
     <Compile Include="Tilemaps\CollisionTile.cs" />
     <Compile Include="Tilemaps\DirectionTile.cs" />
     <Compile Include="Tilemaps\DrawTile.cs" />

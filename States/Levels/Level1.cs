@@ -15,6 +15,9 @@ using Engine.Managers.ASTAR;
 using Engine.Serialization;
 using System.Xml.Serialization;
 using System.IO;
+using ADS.Tilemaps;
+using Engine.Managers.CamManage;
+using Engine.Events.KeyboardEvent;
 
 namespace Engine
 {
@@ -23,11 +26,13 @@ namespace Engine
         #region Variables
         private TileMap Map;
         private PathFinder pathfinder;
+        private CA ca;
         #endregion
         #region Constructor, Initialization & Unload
         public Level1()
         {
             Map = new TileMap();
+            ca = new CA();
         }
 
         /// <summary>
@@ -37,6 +42,11 @@ namespace Engine
         /// /// </summary>
         public override void Initialize()
         {
+
+            KeyHandler.Instance.KeyDown += OnKeyDown;
+        
+        ca.Start();
+            CameraManager.Instance.getCam().Zoom = 0.05f;
             this.SoundTrack = "SoundTrack1";
             saveDataTest dd = new saveDataTest();
             XmlSerializer x = new XmlSerializer(dd.GetType());
@@ -91,6 +101,15 @@ namespace Engine
 
         }
 
+        public void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.key == Microsoft.Xna.Framework.Input.Keys.W)
+            {
+                ca.Start();
+            }
+        }
+
+
 
         public override void UnloadContent()
         {
@@ -106,7 +125,8 @@ namespace Engine
         public override void Draw(SpriteBatch spriteBatch)
         {
 
-            Map.Draw(spriteBatch);
+            // Map.Draw(spriteBatch);
+            ca.Draw(spriteBatch);
             base.Draw(spriteBatch);
         }
 
@@ -122,6 +142,7 @@ namespace Engine
         public override void Update(GameTime gameTime)
         {
 
+           
            // Console.WriteLine(Map.DrawTiles.Count);
 
             for (int i = 0; i < Map.DrawTiles.Count; i++)
@@ -148,4 +169,6 @@ namespace Engine
         }
         #endregion
     }
+
+ 
 }

@@ -22,6 +22,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using ADS.Tilemaps;
+
 namespace Engine
 {
     /// <summary>
@@ -39,7 +41,6 @@ namespace Engine
 
         public static Game1 Instance;
 
-     
 
         saveDataTest dd;
         public Game1()
@@ -56,6 +57,7 @@ namespace Engine
        //Initialize
         protected override void Initialize()
         {
+
             UpdateList = new List<IUpdateEngineComponent>();
 
             CameraManager.Instance.Initialize();
@@ -157,11 +159,11 @@ base.Update(gameTime);
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+
             GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
             spriteBatch.End();
             RenderManager.Instance.Draw();
-
 
             base.Draw(gameTime);
         }

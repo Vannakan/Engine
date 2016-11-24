@@ -29,8 +29,6 @@ namespace Engine
         //Fader
         Fader f;
 
-        Texture2D BackGround = ResourceLoader.Instance.GetTex("BackGroundSheet");
-        Vector2 BackGroundPosition = CameraManager.Instance.getWorldPosition(new Vector2(0, 0));
 
         #endregion
         #region Constructor & Initialization
@@ -81,8 +79,6 @@ namespace Engine
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(ResourceLoader.Instance.GetTex("AceIcon"), CameraManager.Instance.getWorldPosition(new Vector2(Game1.Instance.graphics.PreferredBackBufferWidth / 2, Game1.Instance.graphics.PreferredBackBufferHeight / 5)), Color.White);
-            spriteBatch.Draw(BackGround, BackGroundPosition, Color.Blue);
-            spriteBatch.Draw(BackGround, new Vector2(BackGroundPosition.X + BackGround.Bounds.Width, BackGroundPosition.Y), Color.Red);
             foreach(MenuItem item in MenuItems)
             {
                 item.Draw(spriteBatch);
@@ -107,14 +103,7 @@ namespace Engine
             CheckLimits();
             MenuSelection();
             timer++;
-          //  Console.WriteLine(timer);
-            if (timer < 100)
-                BackGroundPosition.X--;
-            if (timer > 200)
-                BackGroundPosition.X++;
-
-            if (timer > 300)
-                timer = 0;
+          
             
            
             base.Update(gameTime);

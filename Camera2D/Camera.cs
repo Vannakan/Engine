@@ -37,7 +37,7 @@ namespace Engine
         {
             get { return _zoom; }
             set { _zoom = value; if
-                (_zoom < 0.3f) _zoom = 0.3f;
+                (_zoom < 0.1f) _zoom = 0.1f;
 
             if (_zoom > 1f)
                 _zoom = 1f;
@@ -109,19 +109,35 @@ namespace Engine
             }
             if(InputManager.Instance.CheckHeldDown(Keys.L))
             {
-                _pos.X += 3;
+                if(Zoom >= 0.5f)
+                _pos.X += 4;
+
+                if (Zoom <= 0.5f)
+                    _pos.X += 14;
             }
             if (InputManager.Instance.CheckHeldDown(Keys.J))
             {
-                _pos.X -= 3;
+                if (Zoom >= 0.5f)
+                    _pos.X -= 4;
+
+                if (Zoom <= 0.5f)
+                    _pos.X -= 14;
             }
             if (InputManager.Instance.CheckHeldDown(Keys.I))
             {
-                _pos.Y -= 3;
+                if (Zoom >= 0.5f)
+                    _pos.Y -= 4;
+
+                if (Zoom <= 0.5f)
+                    _pos.Y -= 14;
             }
             if (InputManager.Instance.CheckHeldDown(Keys.K))
             {
-                _pos.Y += 3;
+                if (Zoom >= 0.5f)
+                    _pos.Y += 4;
+
+                if (Zoom <= 0.5f)
+                    _pos.Y += 14;
             }
         }
 
