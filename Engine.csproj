@@ -38,8 +38,6 @@
     <ApplicationIcon>AceIcon1</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BackUp\BackUpBaseScreen.cs" />
-    <Compile Include="BackUp\BackUpScreenManager.cs" />
     <Compile Include="Camera2D\Camera.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Entities\Entity.cs" />

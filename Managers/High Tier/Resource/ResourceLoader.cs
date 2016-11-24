@@ -142,6 +142,7 @@ namespace Engine
         public void LoadSong(string start,string name)
         {
             Song song = Content.Load<Song>(start+name);
+            if(!Music.ContainsKey(name))
             Music.Add(name, song);
         }
 
@@ -160,7 +161,7 @@ namespace Engine
        #region LoadInMethods
         public void LoadTiles()
         {
-            string[] filePaths = Directory.GetFiles("C:\\Users\\jacko\\OneDrive\\Uni\\Third Year\\Game Dev\\Engine\\Content\\Tiles");
+            string[] filePaths = Directory.GetFiles("Content\\Tiles");
 
             for (int i = 0; i < filePaths.Length; i++)
             {
@@ -171,18 +172,21 @@ namespace Engine
 
         public void LoadSound()
         {
-            string[] filePaths = Directory.GetFiles("C:\\Users\\jacko\\OneDrive\\Uni\\Third Year\\Game Dev\\Engine\\Content\\Sound");
+            string[] filePaths = Directory.GetFiles("Content\\Sound");
 
+            string safety = "";
             for (int i = 0; i < filePaths.Length; i++)
             {
+                
                 filePaths[i] = Path.GetFileNameWithoutExtension(filePaths[i]);
+                
                 LoadSong("Sound\\", filePaths[i]);
             }
         }
 
         public void LoadEntity()
         {
-            string[] filePaths = Directory.GetFiles("C:\\Users\\jacko\\OneDrive\\Uni\\Third Year\\Game Dev\\Engine\\Content\\Entity");
+            string[] filePaths = Directory.GetFiles("Content\\Entity");
 
             for (int i = 0; i < filePaths.Length; i++)
             {
@@ -194,7 +198,7 @@ namespace Engine
 
         public void LoadMisc()
         {
-            string[] filePaths = Directory.GetFiles("C:\\Users\\jacko\\OneDrive\\Uni\\Third Year\\Game Dev\\Engine\\Content\\Misc");
+            string[] filePaths = Directory.GetFiles("Content\\Misc");
 
             for (int i = 0; i < filePaths.Length; i++)
             {
@@ -205,8 +209,8 @@ namespace Engine
 
         public void LoadGUI()
         {
-            string[] filePaths = Directory.GetFiles("C:\\Users\\jacko\\OneDrive\\Uni\\Third Year\\Game Dev\\Engine\\Content\\GUI");
-            string[] filePaths1 = Directory.GetFiles("C:\\Users\\jacko\\OneDrive\\Uni\\Third Year\\Game Dev\\Engine\\Content\\Fonts");
+            string[] filePaths = Directory.GetFiles("Content\\GUI");
+            string[] filePaths1 = Directory.GetFiles("Content\\Fonts");
 
             for (int i = 0; i < filePaths.Length; i++)
             {
