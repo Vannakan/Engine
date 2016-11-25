@@ -80,7 +80,7 @@ namespace Engine
         int height = Game1.Instance.GraphicsDevice.Viewport.Height;
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(buttonTexture, screenCenter,null, Color.White,0f,textureCenter,1f,SpriteEffects.None,0.5f);
+          //  spriteBatch.Draw(buttonTexture, screenCenter,null, Color.White,0f,textureCenter,1f,SpriteEffects.None,0.5f);
             Color color = Color.Black;
             if (IsSelected)
             {

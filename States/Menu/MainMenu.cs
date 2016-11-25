@@ -78,7 +78,8 @@ namespace Engine
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(ResourceLoader.Instance.GetTex("AceIcon"), CameraManager.Instance.getWorldPosition(new Vector2(Game1.Instance.graphics.PreferredBackBufferWidth / 2, Game1.Instance.graphics.PreferredBackBufferHeight / 5)), Color.White);
+            spriteBatch.Draw(ResourceLoader.Instance.GetTex("MedicationBackground"), CameraManager.Instance.getWorldPosition(Vector2.Zero), Color.White);
+            spriteBatch.Draw(ResourceLoader.Instance.GetTex("MedicationLogo"), CameraManager.Instance.getWorldPosition(new Vector2(290 , Game1.Instance.graphics.PreferredBackBufferHeight / 5)), Color.White);
             foreach(MenuItem item in MenuItems)
             {
                 item.Draw(spriteBatch);

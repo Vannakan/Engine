@@ -102,6 +102,16 @@ namespace Engine
             ca.Start(fill,x,y);
         }
 
+       public void regenC()
+        {
+            if(ca != null)
+            {
+                ca.GenerateMap();
+            }
+        }
+
+        
+
         public void GenerateMap(int width, int height)
         {
             Map = new int[width,height];
@@ -229,7 +239,7 @@ namespace Engine
             {
                 ca.Draw(spriteBatch);
             }
-           /* if (!CA)
+            if (!CA)
             {
                 for (int i = 0; i < drawTiles.Count; i++)
                 {
@@ -252,21 +262,24 @@ namespace Engine
                     directionTiles[i].Draw(spriteBatch);
                 }
             }
-            */
-           
-                    for (int x = 0; x < width; x++)
+
+            if (CA)
+            {
+
+                for (int x = 0; x < width; x++)
+                {
+                    for (int y = 0; y < height; y++)
                     {
-                        for (int y = 0; y < height; y++)
-                        {
-                            if (Map[x, y] == 1)
-                                spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile1"), new Rectangle(x * 64, y * 64, 64, 64), Color.Maroon);
-                            if (Map[x, y] == 0)
-                                spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile1"), new Rectangle(x * 64, y * 64, 64, 64), Color.Red);
+                        if (Map[x, y] == 1)
+                            spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile1"), new Rectangle(x * 64, y * 64, 64, 64), Color.Maroon);
+                        if (Map[x, y] == 0)
+                            spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile1"), new Rectangle(x * 64, y * 64, 64, 64), Color.Red);
 
-
-                        }
 
                     }
+
+                }
+            }
                 
             
 

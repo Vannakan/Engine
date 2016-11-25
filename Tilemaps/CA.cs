@@ -27,13 +27,15 @@ namespace ADS.Tilemaps
 
         bool useRandomSeed = true;
 
+        bool entitySpawned = false;
+
        public  void Start(int fill, int x, int y)
         {
             fillPercent = fill;
             mapWidth = x;
             mapHeight = y;
             GenerateMap();
-            stupidTestMethod();
+         
         }
 
       public  void GenerateMap()
@@ -46,7 +48,14 @@ namespace ADS.Tilemaps
                 SmoothMap();
                
             }
-           // checkForSpot();
+
+            if (entitySpawned)
+            {
+                EntityManager.Instance.tempCamClear();
+                stupidTestMethod();
+            }
+            else stupidTestMethod();
+            // checkForSpot();
 
             Console.WriteLine("GENERATED");
         }
@@ -54,11 +63,9 @@ namespace ADS.Tilemaps
 
         public void stupidTestMethod()
         {
-            bool entityAdded = false;
-            Console.WriteLine("YOLO");
-
-
             
+                bool entityAdded = false;
+
                 for (int x = 0; x < mapWidth; x++)
                 {
                     for (int y = 0; y < mapHeight; y++)
@@ -67,10 +74,12 @@ namespace ADS.Tilemaps
                         {
                             EntityManager.Instance.createEntityCamDrawable<pEntity>(new Vector2(x * 64, y * 64), "player");
                             entityAdded = true;
+                            entitySpawned = true;
                             continue;
                         }
 
                     }
+
                 
             }
         }
@@ -172,8 +181,11 @@ namespace ADS.Tilemaps
                     {
                         if(map[x,y] == 1)
                         spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile6"), new Rectangle(x*64, y*64, 64, 64), Color.Maroon);
-                        if(map[x,y] == 0)
-                            spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile6"), new Rectangle(x*64, y*64, 64, 64), Color.Red);
+                        if (map[x, y] == 0)
+                        {
+                            
+                            spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile6"), new Rectangle(x * 64, y * 64, 64, 64), Color.Red);
+                        }
                         if (map[x, y] == 3)
                             spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile6"), new Rectangle(x * 64, y * 64, 64, 64), Color.Yellow);
 

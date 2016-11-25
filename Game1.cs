@@ -48,7 +48,7 @@ namespace Engine
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             Instance = this;
-            this.Window.Title = "Ace_Engine";
+            this.Window.Title = "Medication";
 
 
 

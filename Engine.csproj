@@ -122,6 +122,7 @@
     <Compile Include="Tilemaps\CollisionTile.cs" />
     <Compile Include="Tilemaps\DirectionTile.cs" />
     <Compile Include="Tilemaps\DrawTile.cs" />
+    <Compile Include="Tilemaps\Node.cs" />
     <Compile Include="Tilemaps\Tile.cs" />
     <Compile Include="Tilemaps\TileMap.cs" />
     <Compile Include="Tilemaps\TileType.cs" />
