@@ -66,6 +66,7 @@
     <Compile Include="Events\MouseEvent\MouseListener.cs" />
     <Compile Include="Events\MouseEvent\MouseHandler.cs" />
     <Compile Include="GUI\GuiManager.cs" />
+    <Compile Include="GUI\InputText.cs" />
     <Compile Include="IDrawable.cs" />
     <Compile Include="Managers\Low Tier\ASTAR\PathFinder.cs" />
     <Compile Include="Managers\Low Tier\ASTAR\SearchNode.cs" />
@@ -86,12 +87,12 @@
     <Compile Include="Managers\High Tier\State\Fader.cs" />
     <Compile Include="Managers\High Tier\State\sManagerArgs.cs" />
     <Compile Include="Serialization\saveDataTest.cs" />
-    <Compile Include="Service Locator\ClassA.cs" />
-    <Compile Include="Service Locator\IServiceLocator.cs" />
-    <Compile Include="Service Locator\IService.cs" />
-    <Compile Include="Service Locator\Service1.cs" />
-    <Compile Include="Service Locator\Service2.cs" />
-    <Compile Include="Service Locator\ServiceLocator.cs" />
+    <Compile Include="Textures\Service Locator\ClassA.cs" />
+    <Compile Include="Textures\Service Locator\IServiceLocator.cs" />
+    <Compile Include="Textures\Service Locator\IService.cs" />
+    <Compile Include="Textures\Service Locator\Service1.cs" />
+    <Compile Include="Textures\Service Locator\Service2.cs" />
+    <Compile Include="Textures\Service Locator\ServiceLocator.cs" />
     <Compile Include="States\Engine\BaseScreen.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Entities\IEntity.cs" />

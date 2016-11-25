@@ -8,11 +8,16 @@ using Microsoft.Xna.Framework.Graphics;
 using Engine.Managers.EntityRelated;
 using Engine.Entities;
 using Engine.Tilemaps;
+using ADS.Tilemaps;
 
 namespace Engine
 {
+    //Tilemap class
+    //Currently contains various methods for 
     public class TileMap
     {
+
+        CA ca;
 
         //TileMap to do
 
@@ -25,6 +30,14 @@ namespace Engine
         //Variable to hold all tiles 
         private List<CollisionTile> collisionTiles = new List<CollisionTile>();
 
+        private bool useRandomSeed;
+
+        private bool CA;
+
+        private string seed = "";
+
+        //Fill probability for cellular automata
+        private int fillPercent = 45;
 
         private List<DrawTile> propsLayer = new List<DrawTile>();
 
@@ -79,8 +92,19 @@ namespace Engine
         #endregion
 
         #region Constructor & Map Generation method
-        public TileMap()
+        public TileMap() { }
+        
+
+
+       public void GenerateC(int fill, int x, int y)
         {
+            ca = new CA();
+            ca.Start(fill,x,y);
+        }
+
+        public void GenerateMap(int width, int height)
+        {
+            Map = new int[width,height];
 
         }
 
@@ -90,7 +114,8 @@ namespace Engine
         public void GenerateEmpty(int size)
         {
             Map = new int[size, size];
-
+            width = Map.GetLength(1);
+            height = Map.GetLength(0);
 
             for (int x = 0; x < Map.GetLength(1); x++)
             {
@@ -200,28 +225,52 @@ namespace Engine
         #region Draw
         public void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < drawTiles.Count; i++ )
+            if(ca != null)
             {
-                drawTiles[i].Draw(spriteBatch);
+                ca.Draw(spriteBatch);
             }
-
-            for (int i = 0; i < Tiles.Count; i++)
+           /* if (!CA)
             {
-                Tiles[i].Draw(spriteBatch);
+                for (int i = 0; i < drawTiles.Count; i++)
+                {
+                    drawTiles[i].Draw(spriteBatch);
+                }
+
+                for (int i = 0; i < Tiles.Count; i++)
+                {
+                    Tiles[i].Draw(spriteBatch);
+                }
+
+
+                for (int i = 0; i < collisionTiles.Count; i++)
+                {
+                    collisionTiles[i].Draw(spriteBatch);
+                }
+
+                for (int i = 0; i < directionTiles.Count; i++)
+                {
+                    directionTiles[i].Draw(spriteBatch);
+                }
             }
-
-
-            for (int i = 0; i < collisionTiles.Count; i++)
-            {
-                collisionTiles[i].Draw(spriteBatch);
-            }
-
-            for (int i = 0; i < directionTiles.Count; i++)
-            {
-                directionTiles[i].Draw(spriteBatch);
-            }
-
+            */
            
+                    for (int x = 0; x < width; x++)
+                    {
+                        for (int y = 0; y < height; y++)
+                        {
+                            if (Map[x, y] == 1)
+                                spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile1"), new Rectangle(x * 64, y * 64, 64, 64), Color.Maroon);
+                            if (Map[x, y] == 0)
+                                spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile1"), new Rectangle(x * 64, y * 64, 64, 64), Color.Red);
+
+
+                        }
+
+                    }
+                
+            
+
+
         }
         #endregion
 

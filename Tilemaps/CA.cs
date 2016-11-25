@@ -7,26 +7,33 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Engine.Managers;
 using Engine;
+using Engine.Managers.EntityRelated;
+using Engine.Entities;
 
 namespace ADS.Tilemaps
 {
     //Cellular Automata generation class
     public class CA
     {
+        //Empty 2D map
         int[,] map;
+        //Probability Factor 
+        int fillPercent ;
 
-        int fillPercent = 45;
-
-        int mapWidth = 64;
-        int mapHeight = 64;
-
-        string seed = "JoshuaWilliamson";
+        int mapWidth;
+        int mapHeight;
+        //String to be converted to a hashcode
+        string seed = "JamieVerner";
 
         bool useRandomSeed = true;
 
-       public  void Start()
+       public  void Start(int fill, int x, int y)
         {
+            fillPercent = fill;
+            mapWidth = x;
+            mapHeight = y;
             GenerateMap();
+            stupidTestMethod();
         }
 
       public  void GenerateMap()
@@ -44,6 +51,29 @@ namespace ADS.Tilemaps
             Console.WriteLine("GENERATED");
         }
 
+
+        public void stupidTestMethod()
+        {
+            bool entityAdded = false;
+            Console.WriteLine("YOLO");
+
+
+            
+                for (int x = 0; x < mapWidth; x++)
+                {
+                    for (int y = 0; y < mapHeight; y++)
+                    {
+                        if (map[x, y] == 0 && entityAdded == false)
+                        {
+                            EntityManager.Instance.createEntityCamDrawable<pEntity>(new Vector2(x * 64, y * 64), "player");
+                            entityAdded = true;
+                            continue;
+                        }
+
+                    }
+                
+            }
+        }
         void checkForSpot()
         {
 
@@ -141,11 +171,11 @@ namespace ADS.Tilemaps
                     for (int y = 0; y < mapHeight; y++)
                     {
                         if(map[x,y] == 1)
-                        spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile1"), new Rectangle(x*64, y*64, 64, 64), Color.Maroon);
+                        spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile6"), new Rectangle(x*64, y*64, 64, 64), Color.Maroon);
                         if(map[x,y] == 0)
-                            spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile1"), new Rectangle(x*64, y*64, 64, 64), Color.Red);
+                            spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile6"), new Rectangle(x*64, y*64, 64, 64), Color.Red);
                         if (map[x, y] == 3)
-                            spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile1"), new Rectangle(x * 64, y * 64, 64, 64), Color.Yellow);
+                            spriteBatch.Draw(ResourceLoader.Instance.GetTex("Tile6"), new Rectangle(x * 64, y * 64, 64, 64), Color.Yellow);
 
 
                     }

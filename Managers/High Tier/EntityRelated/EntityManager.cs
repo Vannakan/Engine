@@ -79,7 +79,7 @@ namespace Engine.Managers.EntityRelated
          {
              cam.setEntity(a, "Follow");
          }
-         RenderManager.Instance.addCamDrawable(a as IDrawable);
+         RenderManager.Instance.addCamDrawEntity(a as IDrawable);
          return a;
      }
 
@@ -88,11 +88,18 @@ namespace Engine.Managers.EntityRelated
          IEntity a = new T();
          a.Initialize(Position, Texture);
         
-         RenderManager.Instance.addDrawable(a as IDrawable);
+         RenderManager.Instance.addCamDrawEntity(a as IDrawable);
          return a;
      }
 
-      public void clearList()
+        public void tempCamClear()
+        {
+            RenderManager.Instance.clearTempEntity();
+            BehaviourManager.Instance.clearList();
+
+        }
+
+        public void clearList()
      {
          eList.Clear();
          BehaviourManager.Instance.clearList();

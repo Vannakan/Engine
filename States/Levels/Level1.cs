@@ -18,6 +18,7 @@ using System.IO;
 using ADS.Tilemaps;
 using Engine.Managers.CamManage;
 using Engine.Events.KeyboardEvent;
+using Engine.Entities.TopDownShooter;
 
 namespace Engine
 {
@@ -27,12 +28,12 @@ namespace Engine
         private TileMap Map;
         private PathFinder pathfinder;
         private CA ca;
+
+        IEntity e;
         #endregion
         #region Constructor, Initialization & Unload
         public Level1()
         {
-            Map = new TileMap();
-            ca = new CA();
         }
 
         /// <summary>
@@ -43,50 +44,37 @@ namespace Engine
         public override void Initialize()
         {
 
+            Constants.colour = Color.Maroon;
+            CameraManager.Instance.getCam().Zoom = 1f;
+
             KeyHandler.Instance.KeyDown += OnKeyDown;
-        
-        ca.Start();
-            CameraManager.Instance.getCam().Zoom = 0.05f;
+            ca = new CA();
+         // ca.Start();
             this.SoundTrack = "SoundTrack1";
-            saveDataTest dd = new saveDataTest();
-            XmlSerializer x = new XmlSerializer(dd.GetType());
 
-                        using (FileStream fileStream = new FileStream(@"C:\Coding Stuff\Level1.xml", FileMode.Open))
-                        {
-                            dd = (saveDataTest)x.Deserialize(fileStream);
+            Map = new TileMap();
+            Map.GenerateC(48,64,64);
+
+            
+            //saveDataTest dd = new saveDataTest();
+            //XmlSerializer x = new XmlSerializer(dd.GetType());
+
+            //            using (FileStream fileStream = new FileStream(@"C:\Coding Stuff\Level1.xml", FileMode.Open))
+            //            {
+            //                dd = (saveDataTest)x.Deserialize(fileStream);
                            
-                        }
-                        int[,] return1 = new int[dd.Colums, dd.Rows];
+            //            }
+            //            int[,] return1 = new int[dd.Colums, dd.Rows];
 
-                        for (int i = 0; i < dd.Colums; i++ )
-                        {
-                            for(int j = 0; j<dd.Rows; j++)
-                            {
-                                return1[i,j] = dd.IntJagged[i][j];
-                            }
-                        }
+            //            for (int i = 0; i < dd.Colums; i++ )
+            //            {
+            //                for(int j = 0; j<dd.Rows; j++)
+            //                {
+            //                    return1[i,j] = dd.IntJagged[i][j];
+            //                }
+            //            }
 
-
-                            Map.Generate(return1, 64);
-
-
-            Map.GenerateLayer(new int[,]{
-                {1,1,1,0,0,0,0,0},
-                {1,1,1,1,1,1,1,0},
-                {0,0,0,0,0,0,1,0},
-                {1,1,1,1,1,1,1,0},
-                {1,0,0,0,0,0,0,0},
-                {1,1,1,0,0,0,1,1},
-                {0,0,1,0,0,0,1,0},
-                {1,1,1,0,0,0,1,0},
-                {1,0,0,0,0,0,1,0},
-                {1,0,0,0,0,0,1,0},
-                {1,1,1,1,1,1,1,0},
-
-
-              
-            }, 64);
-
+        
             //  pathfinder = new PathFinder(Map);
 
             //   List<Vector2> path = pathfinder.FindPath(new Point(0, 0), new Point(0,1));
@@ -95,7 +83,7 @@ namespace Engine
             //        System.Diagnostics.Debug.WriteLine(point);
             //     }
 
-            DetectionManger.Instance.setTileMap(Map);
+            //DetectionManger.Instance.setTileMap(Map);
 
             base.Initialize();
 
@@ -103,19 +91,29 @@ namespace Engine
 
         public void OnKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.key == Microsoft.Xna.Framework.Input.Keys.W)
+           
+
+            if(e.key == Microsoft.Xna.Framework.Input.Keys.E)
             {
-                ca.Start();
+                if (CameraManager.Instance.getCam().Zoom == 1f)
+                    CameraManager.Instance.getCam().Zoom = 0.1f;
+                else  if (CameraManager.Instance.getCam().Zoom == 0.1f)
+                        CameraManager.Instance.getCam().Zoom = 1f;
             }
+
+            if (e.key == Microsoft.Xna.Framework.Input.Keys.Q)
+                Map.GenerateC(45, 40, 40);
         }
 
 
 
-        public override void UnloadContent()
+        public override void Unload()
         {
-
-
-        }
+            EntityManager.Instance.tempCamClear();
+            Console.WriteLine("Unloading");
+            Constants.colour = Color.White;
+                
+                    }
         #endregion
         #region Update & Draw
         /// <summary>
@@ -125,8 +123,7 @@ namespace Engine
         public override void Draw(SpriteBatch spriteBatch)
         {
 
-            // Map.Draw(spriteBatch);
-            ca.Draw(spriteBatch);
+             Map.Draw(spriteBatch);
             base.Draw(spriteBatch);
         }
 
@@ -136,35 +133,17 @@ namespace Engine
         /// </summary>
         /// <param name="gameTime"></param>
         /// 
-        Vector2 hello = new Vector2(0, 0);
-        bool up = false;
+     
         
         public override void Update(GameTime gameTime)
         {
 
            
-           // Console.WriteLine(Map.DrawTiles.Count);
+      
+                
+            
 
-            for (int i = 0; i < Map.DrawTiles.Count; i++)
-            {
-                if (Map.DrawTiles[i].alpha >= 1)
-                    up = false;
-                else if (Map.DrawTiles[i].alpha < 0)
-                    up = true;
-
-
-                switch(up)
-                {
-                    case true:
-                        Map.DrawTiles[i].alpha += 0.05f;
-                        break;
-
-                    case false:
-                        Map.DrawTiles[i].alpha -= 0.05f;
-                        break;
-                }
-
-            }
+    
                 base.Update(gameTime);
         }
         #endregion

@@ -17,7 +17,7 @@ namespace Engine.Entities
     public class PlayerMind : Mind
     {
         GameTime GameTime;
-        int maxSpeed = 1;
+        int maxSpeed = 7;
         bool input = true;
         bool isColliding = false;
        public PlayerMind()
@@ -68,18 +68,18 @@ namespace Engine.Entities
             {
                 if (m.key == Keys.D)
                 {
-                    e.Position = new Vector2(e.Position.X + 2, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    e.Position = new Vector2(e.Position.X + maxSpeed, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                   //  velocity.X += Acceleration.X *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }
                 if (m.key == Keys.A)
                 {
-                    e.Position = new Vector2(e.Position.X - 2, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    e.Position = new Vector2(e.Position.X - maxSpeed, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                  //   velocity.X -= Acceleration.X * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                 }
                 if (m.key == Keys.S)
                 {
-                    e.Position = new Vector2(e.Position.X , e.Position.Y+2);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    e.Position = new Vector2(e.Position.X , e.Position.Y+maxSpeed);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                   //  velocity.Y += Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
@@ -87,7 +87,7 @@ namespace Engine.Entities
 
                 if (m.key == Keys.W)
                 {
-                    e.Position = new Vector2(e.Position.X , e.Position.Y - 2);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    e.Position = new Vector2(e.Position.X , e.Position.Y - maxSpeed);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                   //  velocity.Y -= Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }

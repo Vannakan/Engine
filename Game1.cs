@@ -51,13 +51,14 @@ namespace Engine
             this.Window.Title = "Ace_Engine";
 
 
+
         }
 
-       
-       //Initialize
+
+        //Initialize
         protected override void Initialize()
         {
-
+            
             UpdateList = new List<IUpdateEngineComponent>();
 
             CameraManager.Instance.Initialize();
@@ -98,8 +99,6 @@ namespace Engine
 
 
 
-           // EntityManager.Instance.createEntity<cShooterEntity>(new Vector2(200, 200), "player");
-
             base.Initialize();
         }
 
@@ -139,9 +138,11 @@ namespace Engine
         {
             //Not everything has been intergrated to the new input 
             InputManager.Instance.Update(gameTime);
-      
+            GraphicsDevice.Clear(Constants.colour);
 
-            foreach(IUpdateEngineComponent ee in UpdateList)
+
+
+            foreach (IUpdateEngineComponent ee in UpdateList)
             {
                 ee.Update(gameTime);
             }
@@ -160,9 +161,7 @@ base.Update(gameTime);
         protected override void Draw(GameTime gameTime)
         {
 
-            GraphicsDevice.Clear(Color.White);
-            spriteBatch.Begin();
-            spriteBatch.End();
+
             RenderManager.Instance.Draw();
 
             base.Draw(gameTime);

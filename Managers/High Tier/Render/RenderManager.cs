@@ -26,6 +26,8 @@ namespace Engine.Managers.Render
         //List containing items/entities which will be drawn with cam perams
         private List<IDrawable> CamDrawables = new List<IDrawable>();
 
+        private List<IDrawable> CamDrawEntities = new List<IDrawable>();
+
         //Singleton
         private static RenderManager instance;
 
@@ -69,10 +71,18 @@ namespace Engine.Managers.Render
 
         }
 
+        public void addCamDrawEntity(IDrawable d)
+        {
+            CamDrawEntities.Add(d);
+            Console.WriteLine("Added to CamDrawable List");
+
+        }
+
+
 
         //Change method name
         //Draws everything within the camera
-  public void DrawCameraRelatedArtefacts()
+        public void DrawCameraRelatedArtefacts()
         {
             spriteBatch.Begin(SpriteSortMode.Deferred,
                         BlendState.AlphaBlend,
@@ -84,9 +94,15 @@ namespace Engine.Managers.Render
             DrawComponents();
             DrawEntities();
             DrawCamDrawables();
+            DrawCamDrawEntities();
 
 
             spriteBatch.End();
+        }
+
+        public void clearTempEntity()
+        {
+            CamDrawEntities.Clear();
         }
 
         //Change method name
@@ -163,10 +179,16 @@ namespace Engine.Managers.Render
             }
         }
 
-       
+        public void DrawCamDrawEntities()
+        {
+            for (int i = 0; i < CamDrawEntities.Count; i++)
+            {
+                CamDrawEntities[i].Draw(spriteBatch);
+            }
+        }
 
 
-    
+
 
 
     }

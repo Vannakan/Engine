@@ -15,6 +15,7 @@ namespace Engine
         public static Vector2 ScreenCentre { get; set; }
         public static Camera cam { get; set; }
         public static int TileSize = 64;
+        public static Color colour = Color.White;
        
     }
 }
