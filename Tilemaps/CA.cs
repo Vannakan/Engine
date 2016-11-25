@@ -173,6 +173,8 @@ namespace ADS.Tilemaps
 
         public void Draw(SpriteBatch spriteBatch)
         {
+
+
             if (map != null)
             {
                 for (int x = 0; x < mapWidth; x++)

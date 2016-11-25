@@ -96,8 +96,8 @@ namespace Engine
             if(e.key == Microsoft.Xna.Framework.Input.Keys.E)
             {
                 if (CameraManager.Instance.getCam().Zoom == 1f)
-                    CameraManager.Instance.getCam().Zoom = 0.25f;
-                else  if (CameraManager.Instance.getCam().Zoom == 0.25f)
+                    CameraManager.Instance.getCam().Zoom = 0.1f;
+                else  if (CameraManager.Instance.getCam().Zoom == 0.1f)
                         CameraManager.Instance.getCam().Zoom = 1f;
             }
 

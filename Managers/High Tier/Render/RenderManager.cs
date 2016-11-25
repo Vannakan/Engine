@@ -100,6 +100,7 @@ namespace Engine.Managers.Render
             spriteBatch.End();
         }
 
+       
         public void clearTempEntity()
         {
             CamDrawEntities.Clear();
