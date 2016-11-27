@@ -40,7 +40,7 @@ namespace Engine
             saveDataTest dd = new saveDataTest();
             XmlSerializer x = new XmlSerializer(dd.GetType());
 
-            using (FileStream fileStream = new FileStream(@"C:\Coding Stuff\CustomLevel.xml", FileMode.Open))
+            using (FileStream fileStream = new FileStream("XmlLevels\\CustomLevel.xml", FileMode.Open))
             {
                 dd = (saveDataTest)x.Deserialize(fileStream);
 

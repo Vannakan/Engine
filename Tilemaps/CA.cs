@@ -17,6 +17,7 @@ namespace ADS.Tilemaps
     {
         //Empty 2D map
         int[,] map;
+
         //Probability Factor 
         int fillPercent ;
 
@@ -36,6 +37,16 @@ namespace ADS.Tilemaps
             mapHeight = y;
             GenerateMap();
          
+        }
+
+        public void makeTunnels()
+        {
+            for (int x = 0; x < mapWidth; x++)
+            {
+                for (int y = 0; y < mapHeight; y++)
+                {
+                }
+            }
         }
 
       public  void GenerateMap()

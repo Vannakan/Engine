@@ -1,41 +1,61 @@
-﻿TO DO
+﻿To Do
 
-Change Tile Map so that it reEngine tiles from the resource loader instead.
+General
 
-Create a tile manager.
+Map Generation:
 
-Improve tiles
+Finish automata generation
 
-Start to add lighting.
+Add collisions to generation
 
-Clean tiles and general classes up of variables and contracts that arent required
+Improve the way tile collisions are managed
 
-decouple the engine a slight bit more, omptimize the engines functionality
+ScreenManager:
 
-finish lighting
+Clean the fade methods
+
+Physics:
+
+Grants stuff here
+
+Astar:
+
+Jacks stuff here
 
 
-improve collisions
-
-A* Pathfinding
 
 
-Physics
+Improving Coding Speed 
+Shortcuts
+
+CTOR tab tab = Constructor shortcut
+
+CW tab tab =  log shortcut
+
+prop tab tab = property shortcut (click type, add type, press tab and add name)
+
+propful tab tab = automatic getter and setter creator, creates variables also (creates both a private field and public property rather than using vs's property which creates variable upon firing)
+
+fuck the big one
+
+for tab tab = automatically creates a fucking for loop. fuck me sideways.
 
 
 
-Clean Engine
 
-Clean Tiles
 
-Clean Tile Manager
 
-Clean Tile Editor
 
-Refine Collisions
+highlight all code, Control K and then Control F = Auto format (FUCK)
 
-Refine Entities
 
-Improve Resource Loader
+Control + tab = shift through open windows (FUCK)
+
+Control + F6 = next tap (FUCK)
+
+control shift f6 = previous tab (FUCK)
+
+control f4 close tab (FUCK)
+
 
  

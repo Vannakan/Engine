@@ -38,6 +38,9 @@
     <ApplicationIcon>AceIcon1</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Astar%28Jack%29\INode.cs" />
+    <Compile Include="Astar%28Jack%29\Node.cs" />
+    <Compile Include="Astar%28Jack%29\Tile.cs" />
     <Compile Include="Camera2D\Camera.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Entities\Entity.cs" />
@@ -139,6 +142,7 @@
   <ItemGroup>
     <Content Include="AceIcon.ico" />
     <Content Include="ButtonPsuedo.txt" />
+    <Content Include="XmlLevels\CustomLevel.xml" />
     <Content Include="MenuButton.png" />
     <Content Include="player.png" />
     <Content Include="Spades.ico" />
@@ -158,8 +162,10 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Astar%28Jack%29\" />
     <Folder Include="Constant\" />
+    <Folder Include="Entities\Medication\Enemy\" />
+    <Folder Include="Entities\Medication\NPC\" />
+    <Folder Include="Entities\Medication\Player\" />
     <Folder Include="Managers\Low Tier\Physic\" />
     <Folder Include="Physics%28Grant%29\" />
   </ItemGroup>

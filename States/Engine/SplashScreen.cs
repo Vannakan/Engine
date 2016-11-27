@@ -32,7 +32,7 @@ namespace Engine
 
         public override void Draw(SpriteBatch sb)
         {
-            sb.Draw(ResourceLoader.Instance.GetTex("AcePic"), cam.getWorldPosition(new Vector2(275,50)), Color.White * alpha);
+            sb.Draw(ResourceLoader.Instance.GetTex("JGM"), cam.getWorldPosition(new Vector2(300,100)), Color.Green * alpha);
             base.Draw(sb);
         }
 

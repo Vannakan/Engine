@@ -41,7 +41,7 @@ namespace Engine
 
         private List<DrawTile> propsLayer = new List<DrawTile>();
 
-       // private List<SpawnTile> spawnLayer = new List<SpawnTile>();
+        // private List<SpawnTile> spawnLayer = new List<SpawnTile>();
 
         private List<Tiles> Tiles = new List<Tiles>();
         //List to hold all tiles that dont contain collision(Static Tiles maybe scenery)
@@ -93,28 +93,28 @@ namespace Engine
 
         #region Constructor & Map Generation method
         public TileMap() { }
-        
 
 
-       public void GenerateC(int fill, int x, int y)
+
+        public void GenerateC(int fill, int x, int y)
         {
             ca = new CA();
-            ca.Start(fill,x,y);
+            ca.Start(fill, x, y);
         }
 
-       public void regenC()
+        public void regenC()
         {
-            if(ca != null)
+            if (ca != null)
             {
                 ca.GenerateMap();
             }
         }
 
-        
+
 
         public void GenerateMap(int width, int height)
         {
-            Map = new int[width,height];
+            Map = new int[width, height];
 
         }
 
@@ -235,7 +235,7 @@ namespace Engine
         #region Draw
         public void Draw(SpriteBatch spriteBatch)
         {
-            if(ca != null)
+            if (ca != null)
             {
                 ca.Draw(spriteBatch);
             }
@@ -280,13 +280,13 @@ namespace Engine
 
                 }
             }
-                
-            
+
+
 
 
         }
         #endregion
 
 
-   }
+    }
 }

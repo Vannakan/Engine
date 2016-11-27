@@ -141,7 +141,7 @@ namespace Engine.States
                 dd.IntJagged = Utility.Utility.convertToJaggedArray(saveMap, dd.Colums, dd.Rows);
 
                 XmlSerializer x = new XmlSerializer(dd.GetType());
-                using (TextWriter writer = new StreamWriter(@"C:\Coding Stuff\CustomLevel.xml"))
+                using (TextWriter writer = new StreamWriter("CustomLevel.xml"))
                 {
                     x.Serialize(writer, dd);
                     Console.WriteLine("Map Saved");

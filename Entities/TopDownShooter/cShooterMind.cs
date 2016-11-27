@@ -21,7 +21,7 @@ namespace Engine.Entities.TopDownShooter
             KeyHandler.Instance.KeyHeld += OnKeyHeld;
         }
 
-      
+
 
         public override void Unload()
         {
@@ -35,17 +35,17 @@ namespace Engine.Entities.TopDownShooter
 
         public override void Initialize(Vector2 Position, string t)
         {
-           // base.Initialize(Position, t);
+            // base.Initialize(Position, t);
         }
 
 
         #region Input Related
         private void OnKeyHeld(object sender, KeyEventArgs kea)
         {
-            switch(kea.key)
+            switch (kea.key)
             {
                 case Keys.W:
-                    e.Position = new Vector2(e.Position.X , e.Position.Y - moveSpeed);
+                    e.Position = new Vector2(e.Position.X, e.Position.Y - moveSpeed);
                     break;
                 case Keys.S:
                     e.Position = new Vector2(e.Position.X, e.Position.Y + moveSpeed);
@@ -66,7 +66,7 @@ namespace Engine.Entities.TopDownShooter
 
         private void OnMouseDown(object sender, MouseEventArgs e)
         {
-           // throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
 
         #endregion

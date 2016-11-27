@@ -53,7 +53,7 @@ namespace Engine
             this.SoundTrack = "SoundTrack1";
 
             Map = new TileMap();
-            Map.GenerateC(48,64,64);
+            Map.GenerateC(46,64,64);
 
             
             //saveDataTest dd = new saveDataTest();
