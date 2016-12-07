@@ -50,6 +50,8 @@
     <Compile Include="Entities\Platformer\pEntity.cs" />
     <Compile Include="Entities\Platformer\PlayerMind.cs" />
     <Compile Include="Entities\Platformer\SpikeTrap.cs" />
+    <Compile Include="Entities\Test\tEntity.cs" />
+    <Compile Include="Entities\Test\tMind.cs" />
     <Compile Include="Entities\TopDownShooter\cShooterEntity.cs" />
     <Compile Include="Entities\TopDownShooter\cShooterMind.cs" />
     <Compile Include="Entities\Tower Defense\cEntity.cs" />
@@ -83,10 +85,13 @@
     <Compile Include="Managers\IEngineComponent.cs" />
     <Compile Include="Managers\IUpdateEngineComponent.cs" />
     <Compile Include="Managers\High Tier\Render\RenderManager.cs" />
+    <Compile Include="Managers\Low Tier\Sound\SoundEventArgs.cs" />
+    <Compile Include="Managers\Low Tier\Sound\SoundHandler.cs" />
     <Compile Include="Managers\Low Tier\Sound\SoundManager.cs" />
     <Compile Include="Managers\High Tier\State\Fader.cs" />
     <Compile Include="Managers\High Tier\State\sManagerArgs.cs" />
     <Compile Include="Serialization\saveDataTest.cs" />
+    <Compile Include="spawnerTest.cs" />
     <Compile Include="Textures\Service Locator\ClassA.cs" />
     <Compile Include="Textures\Service Locator\IServiceLocator.cs" />
     <Compile Include="Textures\Service Locator\IService.cs" />

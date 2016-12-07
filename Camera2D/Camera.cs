@@ -14,7 +14,7 @@ namespace Engine
     {
         //NOT IMPLEMENTED YET - used to determine the cameras behaviour
         public CameraType cType;
-        bool Follow, Locked = false;
+        bool Follow = false, Locked = false;
         bool isPossessed = false;
         protected IEntity p;            //Target Entity
         protected float          _zoom; // Camera Zoom

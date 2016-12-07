@@ -38,10 +38,39 @@ namespace Engine
         private List<IDrawEngineComponent> DrawList;
         public GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        Random random;
         public static Game1 Instance;
 
+        int radius = 200;
+        int cx = 1;
+        int cy = 1;
+        int i = 0;
+        Circle circle;
+        
+        Vector2[] test = new Vector2[7];
+        int[] IDSTOREMOVE = new int[7];
 
+        public Vector2 testMethod()
+        {
+            int x = cx + radius * (int)Math.Cos(random.Next());
+            int y = cy + radius * (int)Math.Sin(random.Next());
+
+            if (x > cx)
+                x = cx - (random.Next() % radius);
+            else
+                x = cx + (random.Next() % radius);
+
+            if (y > cy)
+                y = cy - (random.Next() % radius);
+            else
+                y = cy + (random.Next() % radius);
+
+            return new Vector2(x, y);
+            
+
+        }
+
+     
         saveDataTest dd;
         public Game1()
         {
@@ -51,14 +80,17 @@ namespace Engine
             this.Window.Title = "Medication";
 
 
-
         }
 
 
-        //Initialize
+        //Initialize;
         protected override void Initialize()
         {
-            
+            random = new Random();
+            Constants.r = random;
+
+            circle = new Circle(150, new Vector2(cx, cy));
+           
             UpdateList = new List<IUpdateEngineComponent>();
 
             CameraManager.Instance.Initialize();
@@ -97,6 +129,7 @@ namespace Engine
             UpdateList.Add(CameraManager.Instance);
             UpdateList.Add(SoundManager.Instance);
 
+            KeyHandler.Instance.KeyDown += OnKeyDown;
 
 
             base.Initialize();
@@ -140,7 +173,7 @@ namespace Engine
             InputManager.Instance.Update(gameTime);
             GraphicsDevice.Clear(Constants.colour);
 
-
+            
 
             foreach (IUpdateEngineComponent ee in UpdateList)
             {
@@ -160,14 +193,39 @@ base.Update(gameTime);
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-
-
             RenderManager.Instance.Draw();
+
+          
 
             base.Draw(gameTime);
         }
 
-   
+        public void OnKeyDown(object source, KeyEventArgs kae)
+
+        {
+            if (kae.key == Keys.N)
+            {
+
+                for (int i = 0; i < 7; i++)
+                {
+                   for(int j = 0; j < IDSTOREMOVE.GetLength(0);j++)
+                    {
+                        //Testing for player ID
+                        if (IDSTOREMOVE[i] == 0)
+                            continue;
+                        else
+                        EntityManager.Instance.removeCamEntity(IDSTOREMOVE[i]);
+                    }
+                    test[i] = testMethod();
+                    IDSTOREMOVE[i] = EntityManager.Instance.createEntityCamDrawable<tEntity>(testMethod(), "player").UniqueID;
+                    
+                }
+                }
+                
+
+            }
+        }
+
+
 
     }
-}

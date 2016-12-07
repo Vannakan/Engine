@@ -72,7 +72,7 @@ namespace ADS.Tilemaps
                     {
                         if (map[x, y] == 0 && entityAdded == false)
                         {
-                            EntityManager.Instance.createEntityCamDrawable<pEntity>(new Vector2(x * 64, y * 64), "player");
+                            EntityManager.Instance.createEntityCamDrawable<pEntity>(new Vector2(x * 64, y * 64), "Untitled");
                             entityAdded = true;
                             entitySpawned = true;
                             continue;
