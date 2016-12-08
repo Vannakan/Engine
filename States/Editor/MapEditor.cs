@@ -146,9 +146,12 @@ namespace Engine.States
                 {
                     cwd = cwd.Replace("\\bin\\Windows\\x86\\Debug", "");
                     Console.WriteLine(cwd);
+
                 }
+                string outpit = cwd + "\\XmlLevel\\test123.xml";
+
                 XmlSerializer x = new XmlSerializer(dd.GetType());
-                using (TextWriter writer = new StreamWriter(cwd+"\\XmlLevels"))
+                using (TextWriter writer = new StreamWriter(outpit))
                 {
                     x.Serialize(writer, dd);
                     Console.WriteLine("Map Saved");

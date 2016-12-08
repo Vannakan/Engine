@@ -45,9 +45,11 @@ namespace Engine
             if (cwd.EndsWith("\\bin\\Windows\\x86\\Debug"))
             {
                 cwd = cwd.Replace("\\bin\\Windows\\x86\\Debug", "");
-                Console.WriteLine(cwd+"\\XmlLevels");
+                Console.WriteLine(cwd);
+
             }
-            using (FileStream fileStream = new FileStream(cwd, FileMode.Open))
+            string outpit = cwd + "\\XmlLevel\\test123.xml";
+            using (FileStream fileStream = new FileStream(outpit, FileMode.Open))
             {
                 dd = (saveDataTest)x.Deserialize(fileStream);
 

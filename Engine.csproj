@@ -168,6 +168,7 @@
     <Content Include="Textures\Tile1.png" />
     <Content Include="Textures\Tile2.png" />
     <Content Include="Icon.ico" />
+    <Content Include="XmlLevel\test123.xml" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
@@ -176,6 +177,7 @@
     <Folder Include="Astar%28Jack%29\" />
     <Folder Include="Constant\" />
     <Folder Include="Managers\Low Tier\Physic\" />
+    <Folder Include="NewFolder1\" />
     <Folder Include="Physics%28Grant%29\" />
   </ItemGroup>
   <ItemGroup>
