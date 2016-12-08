@@ -71,7 +71,7 @@ namespace Engine.Managers.EntityRelated
         public void addCamEntity(IEntity e)
         {
             cdList.Add(e);
-            Console.WriteLine("Added CamDrawEntity -  ID " + e.UniqueID);
+            Console.WriteLine("Added CamDrawEntity -  ID " + e.UniqueID );
 
         }
 

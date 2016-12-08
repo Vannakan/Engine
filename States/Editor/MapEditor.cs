@@ -140,13 +140,20 @@ namespace Engine.States
                 dd.Rows = saveMap.GetLength(1);
                 dd.IntJagged = Utility.Utility.convertToJaggedArray(saveMap, dd.Colums, dd.Rows);
 
+                string cwd = System.IO.Directory.GetCurrentDirectory();
+
+                if (cwd.EndsWith("\\bin\\Windows\\x86\\Debug"))
+                {
+                    cwd = cwd.Replace("\\bin\\Windows\\x86\\Debug", "");
+                    Console.WriteLine(cwd);
+                }
                 XmlSerializer x = new XmlSerializer(dd.GetType());
-                using (TextWriter writer = new StreamWriter(@"C:\Coding Stuff\CustomLevel.xml"))
+                using (TextWriter writer = new StreamWriter(cwd+"\\XmlLevels"))
                 {
                     x.Serialize(writer, dd);
                     Console.WriteLine("Map Saved");
                     message = "Map Saved";
-                    Console.WriteLine(map.Map[0,0]);
+                    Console.WriteLine(map.Map[0, 0]);
 
                 }
             }

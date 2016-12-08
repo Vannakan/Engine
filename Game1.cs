@@ -130,7 +130,7 @@ namespace Engine
             UpdateList.Add(SoundManager.Instance);
 
             KeyHandler.Instance.KeyDown += OnKeyDown;
-
+         
 
             base.Initialize();
         }

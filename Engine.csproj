@@ -37,6 +37,15 @@
   <PropertyGroup>
     <ApplicationIcon>AceIcon1</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Camera2D\Camera.cs" />
     <Compile Include="Constants.cs" />
@@ -128,6 +137,7 @@
     <Compile Include="Tilemaps\DirectionTile.cs" />
     <Compile Include="Tilemaps\DrawTile.cs" />
     <Compile Include="Tilemaps\Node.cs" />
+    <Compile Include="Tilemaps\Spawner.cs" />
     <Compile Include="Tilemaps\Tile.cs" />
     <Compile Include="Tilemaps\TileMap.cs" />
     <Compile Include="Tilemaps\TileType.cs" />
@@ -170,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AceIcon1" />
+    <None Include="Properties\app.manifest" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

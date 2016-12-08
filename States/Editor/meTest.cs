@@ -40,7 +40,14 @@ namespace Engine
             saveDataTest dd = new saveDataTest();
             XmlSerializer x = new XmlSerializer(dd.GetType());
 
-            using (FileStream fileStream = new FileStream(@"C:\Coding Stuff\CustomLevel.xml", FileMode.Open))
+             string cwd = System.IO.Directory.GetCurrentDirectory();
+
+            if (cwd.EndsWith("\\bin\\Windows\\x86\\Debug"))
+            {
+                cwd = cwd.Replace("\\bin\\Windows\\x86\\Debug", "");
+                Console.WriteLine(cwd+"\\XmlLevels");
+            }
+            using (FileStream fileStream = new FileStream(cwd, FileMode.Open))
             {
                 dd = (saveDataTest)x.Deserialize(fileStream);
 
