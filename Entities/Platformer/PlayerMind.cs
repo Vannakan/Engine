@@ -20,6 +20,8 @@ namespace Engine.Entities
         int maxSpeed = 7;
         bool input = true;
         bool isColliding = false;
+
+        string currentDirection = "Up";
        public PlayerMind()
         {
             isCollidable = true;
@@ -57,9 +59,18 @@ namespace Engine.Entities
       
         public void OnKeyDown(object sender, KeyEventArgs m)
         {
-         
-        
+
+            if (m.key == Keys.F)
             
+                if(currentDirection == "LEFT")
+                { 
+                EntityManager.Instance.createEntityCamDrawable<bulletEntity>(Position, "bullet");
+            }
+
+            //pseudo
+           // EntityManager.Instance.createProjectileCamDrawable<bulletEntity>(Position, "bullet", this.DIRECTION);
+
+
         }
 
         public void OnKeyHeld(object sender, KeyEventArgs m)
@@ -68,6 +79,7 @@ namespace Engine.Entities
             {
                 if (m.key == Keys.D)
                 {
+                    currentDirection = "LEFT";
                     e.Position = new Vector2(e.Position.X + maxSpeed, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                   //  velocity.X += Acceleration.X *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }
@@ -92,9 +104,12 @@ namespace Engine.Entities
                   //  velocity.Y -= Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }
 
-                
+               
+
+
+
             }
-        
+
         }
 
         public void OnMouseDown(object sender, MouseEventArgs m)

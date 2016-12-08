@@ -19,10 +19,11 @@ namespace Engine.Entities
             isCollidable = false;
         }
 
+        //public override void Initialize(Vector2 Pos, string t, DIRECTION direction)
         public override void Initialize(Vector2 Position, string t)
         {
             target = EntityManager.Instance.getPlayer();
-            playerPos = target.Position;
+            playerPos = new Vector2(Position.X, Position.Y);// target.Position;
             distance2player = playerPos - _pos;
             distance2player.Normalize();
             base.Initialize(Position, t);

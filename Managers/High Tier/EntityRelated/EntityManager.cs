@@ -52,10 +52,10 @@ namespace Engine.Managers.EntityRelated
 
         public IEntity getPlayer()
         {
-            for(int i = 0; i < eList.Count; i++)
+            for(int i = 0; i < cdList.Count; i++)
             {
-                if (eList[i].GetType() == typeof(pEntity))
-                    return  eList[i];
+                if (cdList[i].GetType() == typeof(pEntity))
+                    return  cdList[i];
             }
             return null;
         }
@@ -99,7 +99,19 @@ namespace Engine.Managers.EntityRelated
          return a;
      }
 
-     public IEntity createEntityDrawable<T>(Vector2 Position, string Texture) where T : IEntity, new()
+        public IEntity createProjectile<T>(Vector2 Position, string t, Vector2 Target) where T : IEntity, new()
+        {
+            IEntity a = new T();
+
+            return a;
+            
+        }
+
+
+//Public IEntity createProjectileCamDrawable<T>(Vector2 Position, string tex, DIRECTION direction 
+   
+
+        public IEntity createEntityDrawable<T>(Vector2 Position, string Texture) where T : IEntity, new()
      {
          IEntity a = new T();
          a.Initialize(Position, Texture);

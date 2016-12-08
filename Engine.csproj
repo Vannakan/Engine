@@ -59,6 +59,7 @@
     <Compile Include="Entities\Platformer\pEntity.cs" />
     <Compile Include="Entities\Platformer\PlayerMind.cs" />
     <Compile Include="Entities\Platformer\SpikeTrap.cs" />
+    <Compile Include="Entities\Projectile.cs" />
     <Compile Include="Entities\Test\tEntity.cs" />
     <Compile Include="Entities\Test\tMind.cs" />
     <Compile Include="Entities\TopDownShooter\cShooterEntity.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Managers\Low Tier\Sound\SoundManager.cs" />
     <Compile Include="Managers\High Tier\State\Fader.cs" />
     <Compile Include="Managers\High Tier\State\sManagerArgs.cs" />
+    <Compile Include="SelectedTest.cs" />
     <Compile Include="Serialization\saveDataTest.cs" />
     <Compile Include="spawnerTest.cs" />
     <Compile Include="Textures\Service Locator\ClassA.cs" />
