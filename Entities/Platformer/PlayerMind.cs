@@ -17,10 +17,14 @@ namespace Engine.Entities
 {
     public class PlayerMind : Mind
     {
+        int bulletTimer = 0;
+        int bulletSpeed = 35;
         GameTime GameTime;
         int maxSpeed = 4;
         bool input = true;
         bool isColliding = false;
+
+        private List<Direction> directions = new List<Direction>();
 
         string currentDirection = "Up";
        public PlayerMind()
@@ -36,9 +40,17 @@ namespace Engine.Entities
 
         public override void Update(GameTime gameTime)
         {
+            if (bulletTimer > 0)
+                bulletTimer = bulletTimer-1;
             GameTime = gameTime;
             applyVelocityRules();
             Friction();
+
+            for(int i= 0; i < directions.Count; i ++)
+            {
+                Console.WriteLine(directions[i]);
+            }
+            directions.Clear();
             base.Update(gameTime);
         }
 
@@ -57,26 +69,12 @@ namespace Engine.Entities
         }
 
 
-      
+
         public void OnKeyDown(object sender, KeyEventArgs m)
         {
+        
 
-            if (m.key == Keys.F)
-            switch(currentDirection)
-                    {
-                    case "Left":
-                        EntityManager.Instance.createProjectile<Projectile>(_pos, "bullet", ADS.Entities.Direction.left);
-                        break;
-                    case"Right":
-                        EntityManager.Instance.createProjectile<Projectile>(_pos, "bullet", ADS.Entities.Direction.right);
-                        break;
-                    case"Up" :
-                        EntityManager.Instance.createProjectile<Projectile>(_pos, "bullet", ADS.Entities.Direction.up);
-                        break;
-                    case "Down" :
-                        EntityManager.Instance.createProjectile<Projectile>(_pos, "bullet", ADS.Entities.Direction.down);
-                        break;
-                }
+          
                 
               
 
@@ -92,35 +90,62 @@ namespace Engine.Entities
             {
                 if (m.key == Keys.D)
                 {
-                    currentDirection = "Right";
+                    directions.Add(Direction.right);
                     e.Position = new Vector2(e.Position.X + maxSpeed, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                   //  velocity.X += Acceleration.X *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }
                 if (m.key == Keys.A)
                 {
-                    currentDirection = "Left";
+                    directions.Add(Direction.left);
                     e.Position = new Vector2(e.Position.X - maxSpeed, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                  //   velocity.X -= Acceleration.X * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                 }
                 if (m.key == Keys.S)
                 {
-                    currentDirection = "Down";
+                    directions.Add(Direction.down);
                     e.Position = new Vector2(e.Position.X , e.Position.Y+maxSpeed);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
-
                   //  velocity.Y += Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                 }
 
                 if (m.key == Keys.W)
                 {
-                    currentDirection = "Up";
+                    directions.Add(Direction.up);
                     e.Position = new Vector2(e.Position.X , e.Position.Y - maxSpeed);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                   //  velocity.Y -= Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }
 
-               
+                Console.WriteLine(bulletTimer);
+                if (bulletTimer == 0)
+                {
+                    switch (m.key)
+                    {
+                        case Keys.Left:
+                            bulletTimer = bulletSpeed;
+                            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.left);
+                            break;
+                        case Keys.Right:
+                            bulletTimer = bulletSpeed;
+                            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.right);
+                            break;
+                        case Keys.Up:
+                            bulletTimer = bulletSpeed;
+                            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.up);
+                            break;
+                        case Keys.Down:
+                            bulletTimer = bulletSpeed;
+                            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.down);
+                            break;
+
+
+
+                    }
+
+                }
+
+
 
 
 

@@ -2,15 +2,15 @@
 <saveDataTest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <IntJagged>
     <ArrayOfInt>
-      <int>4</int>
-      <int>4</int>
-      <int>4</int>
-      <int>4</int>
-      <int>4</int>
-      <int>4</int>
-      <int>4</int>
-      <int>4</int>
-      <int>4</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
       <int>0</int>
       <int>0</int>
       <int>0</int>
@@ -68,15 +68,15 @@
       <int>0</int>
     </ArrayOfInt>
     <ArrayOfInt>
-      <int>4</int>
+      <int>0</int>
       <int>1</int>
       <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>4</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
       <int>0</int>
       <int>0</int>
       <int>0</int>
@@ -134,15 +134,15 @@
       <int>0</int>
     </ArrayOfInt>
     <ArrayOfInt>
-      <int>4</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>4</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
       <int>0</int>
       <int>0</int>
       <int>0</int>
@@ -200,15 +200,15 @@
       <int>0</int>
     </ArrayOfInt>
     <ArrayOfInt>
-      <int>4</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>4</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
       <int>0</int>
       <int>0</int>
       <int>0</int>
@@ -266,15 +266,15 @@
       <int>0</int>
     </ArrayOfInt>
     <ArrayOfInt>
-      <int>4</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>1</int>
-      <int>4</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
       <int>0</int>
       <int>0</int>
       <int>0</int>
@@ -332,15 +332,15 @@
       <int>0</int>
     </ArrayOfInt>
     <ArrayOfInt>
-      <int>4</int>
-      <int>4</int>
-      <int>4</int>
-      <int>4</int>
-      <int>4</int>
-      <int>1</int>
-      <int>4</int>
-      <int>4</int>
-      <int>4</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
       <int>0</int>
       <int>0</int>
       <int>0</int>
