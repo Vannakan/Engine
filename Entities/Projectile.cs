@@ -5,31 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Engine;
+using Engine.Entities;
+using Engine.Managers.Behaviour;
 
 namespace ADS.Entities
 {
-    public class Projectile : IEntity
+    public class Projectile : Entity, IProjectile
     {
-
-        //Projectiles Target
-        private Vector2 Target;
-        //Position variable for the entity
-        private Vector2 position;
-        //Accessor & Mutator
-        public Vector2 Position { get { return position; } set { position = value; } }
-        //Accessor & Mutator
-
-        //private direction = direction.none;
-
-        //boundingBoxVisible
-        private bool bbV = false;
+        Direction d;
         public Projectile()
             {
 
             }
 
-        public void Initialize(Vector2 Pos, string Tex)
+        public override void Initialize(Vector2 Pos, string Tex)
         {
+            mind = BehaviourManager.Instance.CreateProjectile<pjtMind>(this,d);
+            base.Initialize(Pos, Tex);
+
+        }
+
+        public void setDirection(Direction d)
+        {
+            this.d = d;
         }
     }
 }

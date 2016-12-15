@@ -1,4 +1,5 @@
 ﻿
+using ADS.Entities;
 using Engine.Entities;
 using Engine.Managers.Collision;
 using Engine.Managers.EntityRelated;
@@ -50,6 +51,19 @@ namespace Engine.Managers.Behaviour
             return e;
 
         }
+
+        public IMind CreateProjectile<T>(IEntity ie,Direction d) where T : IMind, new()
+        {
+            IMind e = new T();
+            e.Link(ie);
+            IProjectile a = e as IProjectile;
+            a.setDirection(d);
+            Console.WriteLine("NEW" + e.GetType() + " ADDED");
+            minds.Add(e);
+            return e;
+        }
+
+      
 
         /// <summary>
         /// Clears the current Mind List

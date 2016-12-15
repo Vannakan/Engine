@@ -1,4 +1,5 @@
-﻿using Engine.Events.CollisionEvent;
+﻿using ADS.Entities;
+using Engine.Events.CollisionEvent;
 using Engine.Events.KeyboardEvent;
 using Engine.Events.MouseEvent;
 using Engine.Managers.Collision;
@@ -11,10 +12,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Engine.Constants;
 
 namespace Engine.Entities
 {
-    public enum Direction { left,right,up,down}
     public class CreepMind : Mind
     {
         public Direction direction;

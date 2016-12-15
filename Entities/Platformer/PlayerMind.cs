@@ -1,4 +1,5 @@
-﻿using Engine.Events.CollisionEvent;
+﻿using ADS.Entities;
+using Engine.Events.CollisionEvent;
 using Engine.Events.KeyboardEvent;
 using Engine.Events.MouseEvent;
 using Engine.Managers.Collision;
@@ -17,7 +18,7 @@ namespace Engine.Entities
     public class PlayerMind : Mind
     {
         GameTime GameTime;
-        int maxSpeed = 7;
+        int maxSpeed = 4;
         bool input = true;
         bool isColliding = false;
 
@@ -61,11 +62,23 @@ namespace Engine.Entities
         {
 
             if (m.key == Keys.F)
-            
-                if(currentDirection == "LEFT")
-                { 
-                EntityManager.Instance.createEntityCamDrawable<bulletEntity>(Position, "bullet");
-            }
+            switch(currentDirection)
+                    {
+                    case "Left":
+                        EntityManager.Instance.createProjectile<Projectile>(_pos, "bullet", ADS.Entities.Direction.left);
+                        break;
+                    case"Right":
+                        EntityManager.Instance.createProjectile<Projectile>(_pos, "bullet", ADS.Entities.Direction.right);
+                        break;
+                    case"Up" :
+                        EntityManager.Instance.createProjectile<Projectile>(_pos, "bullet", ADS.Entities.Direction.up);
+                        break;
+                    case "Down" :
+                        EntityManager.Instance.createProjectile<Projectile>(_pos, "bullet", ADS.Entities.Direction.down);
+                        break;
+                }
+                
+              
 
             //pseudo
            // EntityManager.Instance.createProjectileCamDrawable<bulletEntity>(Position, "bullet", this.DIRECTION);
@@ -79,18 +92,20 @@ namespace Engine.Entities
             {
                 if (m.key == Keys.D)
                 {
-                    currentDirection = "LEFT";
+                    currentDirection = "Right";
                     e.Position = new Vector2(e.Position.X + maxSpeed, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                   //  velocity.X += Acceleration.X *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }
                 if (m.key == Keys.A)
                 {
+                    currentDirection = "Left";
                     e.Position = new Vector2(e.Position.X - maxSpeed, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                  //   velocity.X -= Acceleration.X * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                 }
                 if (m.key == Keys.S)
                 {
+                    currentDirection = "Down";
                     e.Position = new Vector2(e.Position.X , e.Position.Y+maxSpeed);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                   //  velocity.Y += Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
@@ -99,6 +114,7 @@ namespace Engine.Entities
 
                 if (m.key == Keys.W)
                 {
+                    currentDirection = "Up";
                     e.Position = new Vector2(e.Position.X , e.Position.Y - maxSpeed);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                   //  velocity.Y -= Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;

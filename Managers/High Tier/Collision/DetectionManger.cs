@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Engine.Managers;
+using ADS.Entities;
 
 namespace Engine.Managers.Collision
 {

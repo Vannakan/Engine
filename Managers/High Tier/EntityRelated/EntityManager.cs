@@ -1,4 +1,5 @@
-﻿using Engine.Entities;
+﻿using ADS.Entities;
+using Engine.Entities;
 using Engine.Entities.TopDownShooter;
 using Engine.Managers.Behaviour;
 using Engine.Managers.CamManage;
@@ -99,10 +100,13 @@ namespace Engine.Managers.EntityRelated
          return a;
      }
 
-        public IEntity createProjectile<T>(Vector2 Position, string t, Vector2 Target) where T : IEntity, new()
+        public IEntity createProjectile<T>(Vector2 Position, string t, Direction d) where T : IEntity, new()
         {
             IEntity a = new T();
-
+            IProjectile e = a as IProjectile;
+            e.setDirection(d);
+            a.Initialize(Position, t);
+            addCamEntity(a);
             return a;
             
         }

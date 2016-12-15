@@ -67,7 +67,7 @@ namespace Engine.Entities
             t = new Texture2D(Constants.g, 1, 1);
             t.SetData(new[] { Color.White });
         }
-
+        
 
         public void Initialize(Vector2 Pos, string Tex)
         {
