@@ -104,7 +104,10 @@
     <Compile Include="Managers\High Tier\State\Fader.cs" />
     <Compile Include="Managers\High Tier\State\sManagerArgs.cs" />
     <Compile Include="Medication\Modifiers\IModifier.cs" />
+    <Compile Include="Medication\Modifiers\IStats.cs" />
     <Compile Include="Medication\Modifiers\Modifier.cs" />
+    <Compile Include="Medication\Modifiers\Modifierr.cs" />
+    <Compile Include="Medication\Modifiers\Stats.cs" />
     <Compile Include="SelectedTest.cs" />
     <Compile Include="Serialization\saveDataTest.cs" />
     <Compile Include="spawnerTest.cs" />

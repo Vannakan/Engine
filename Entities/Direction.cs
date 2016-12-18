@@ -8,6 +8,6 @@ namespace ADS.Entities
 {
     public enum Direction
     {
-        left,right,up,down
+        left,right,up,down,upLeft,upRight,downLeft,downRight
     }
 }

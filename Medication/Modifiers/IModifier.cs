@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ADS.Medication.Modifiers
 {
-    public class IModifier
+    public interface IModifier
     {
     }
 }

@@ -194,7 +194,7 @@ base.Update(gameTime);
         protected override void Draw(GameTime gameTime)
         {
             RenderManager.Instance.Draw();
-
+         
           
 
             base.Draw(gameTime);
