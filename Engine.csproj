@@ -103,6 +103,7 @@
     <Compile Include="Managers\Low Tier\Sound\SoundManager.cs" />
     <Compile Include="Managers\High Tier\State\Fader.cs" />
     <Compile Include="Managers\High Tier\State\sManagerArgs.cs" />
+    <Compile Include="Medication\Modifiers\ImEntity.cs" />
     <Compile Include="Medication\Modifiers\IModifier.cs" />
     <Compile Include="Medication\Modifiers\IStats.cs" />
     <Compile Include="Medication\Modifiers\Modifier.cs" />

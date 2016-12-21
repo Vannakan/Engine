@@ -14,7 +14,7 @@ namespace ADS.Medication.Modifiers
 
         //MoveSpeed & Property
         int mspd;
-        public int mSPD { get { return mspd; } set { mSPD = value; } }
+        public int mSPD { get { return mspd; } set { mspd = value; } }
 
         //Attack SPEED & Property
         int atkSPD;
@@ -23,20 +23,27 @@ namespace ADS.Medication.Modifiers
         int hp;
         public int HP { get { return hp; } set { hp = value; } }
 
+        //Luck & Property
+        int luck;
+        public int Luck { get { return luck; } set { luck = value; } }
+
         public Stats()
         {
             DMG = 0;
             mSPD = 0;
             atkSPD = 0;
             hp = 1;
+            luck = 0;
         }
 
-        public Stats(int d, int m, int a, int hp)
+        public Stats(int d, int m, int a, int hp, int luck)
         {
             DMG = d;
             mSPD = m;
             atkSPD = a;
             this.hp = hp;
+            this.luck = luck;
+            Console.WriteLine("Stats created");
         }
 
       

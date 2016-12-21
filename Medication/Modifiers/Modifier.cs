@@ -17,7 +17,7 @@ namespace ADS.Medication.Modifiers
         
         public Modifier()
         {
-            strength.
+            //strength.
         }
       
         public virtual void Modify(ModifierType m, int value)

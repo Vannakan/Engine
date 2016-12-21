@@ -1,4 +1,5 @@
 ﻿using ADS.Entities;
+using ADS.Medication.Modifiers;
 using Engine.Events.CollisionEvent;
 using Engine.Events.KeyboardEvent;
 using Engine.Events.MouseEvent;
@@ -15,13 +16,18 @@ using System.Threading.Tasks;
 
 namespace Engine.Entities
 {
+    //This is the blueprint for medications player
     public class PlayerMind : Mind
     {
+        //Player Stats
+        Stats stats;
+        //Timer for bullets
         int bulletTimer = 0;
-        int bulletSpeed = 35;
+        //Dunno why this is here atm
         GameTime GameTime;
-        int maxSpeed = 4;
+        //Check for input
         bool input = true;
+        //Check for collision (useless)
         bool isColliding = false;
 
         private List<Direction> directions = new List<Direction>();
@@ -29,7 +35,10 @@ namespace Engine.Entities
         string currentDirection = "Up";
        public PlayerMind()
         {
+            //Create player stats
+            stats = new Stats(10, 4, 35, 3, 10) ;
             isCollidable = true;
+            //Sign up to handlers
             MouseHandler.Instance.MouseClick += OnMouseDown;
             KeyHandler.Instance.KeyDown += OnKeyDown;
             KeyHandler.Instance.KeyHeld += OnKeyHeld;
@@ -91,20 +100,20 @@ namespace Engine.Entities
                 if (m.key == Keys.D)
                 {
                     directions.Add(Direction.right);
-                    e.Position = new Vector2(e.Position.X + maxSpeed, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    e.Position = new Vector2(e.Position.X + stats.mSPD, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                   //  velocity.X += Acceleration.X *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }
                 if (m.key == Keys.A)
                 {
                     directions.Add(Direction.left);
-                    e.Position = new Vector2(e.Position.X - maxSpeed, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    e.Position = new Vector2(e.Position.X - stats.mSPD, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                  //   velocity.X -= Acceleration.X * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                 }
                 if (m.key == Keys.S)
                 {
                     directions.Add(Direction.down);
-                    e.Position = new Vector2(e.Position.X , e.Position.Y+maxSpeed);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    e.Position = new Vector2(e.Position.X , e.Position.Y+ stats.mSPD);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                   //  velocity.Y += Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                 }
@@ -112,7 +121,7 @@ namespace Engine.Entities
                 if (m.key == Keys.W)
                 {
                     directions.Add(Direction.up);
-                    e.Position = new Vector2(e.Position.X , e.Position.Y - maxSpeed);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    e.Position = new Vector2(e.Position.X , e.Position.Y - stats.mSPD);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                   //  velocity.Y -= Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }
@@ -123,19 +132,19 @@ namespace Engine.Entities
                     switch (m.key)
                     {
                         case Keys.Left:
-                            bulletTimer = bulletSpeed;
+                            bulletTimer = stats.aSPD;
                             EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.left);
                             break;
                         case Keys.Right:
-                            bulletTimer = bulletSpeed;
+                            bulletTimer = stats.aSPD;
                             EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.right);
                             break;
                         case Keys.Up:
-                            bulletTimer = bulletSpeed;
+                            bulletTimer = stats.aSPD;
                             EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.up);
                             break;
                         case Keys.Down:
-                            bulletTimer = bulletSpeed;
+                            bulletTimer = stats.aSPD;
                             EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.down);
                             break;
 
@@ -237,24 +246,24 @@ namespace Engine.Entities
 
         public void applyVelocityRules()
         {
-            if (velocity.X > maxSpeed)
+            if (velocity.X > stats.mSPD)
             {
-                velocity.X = maxSpeed;
+                velocity.X = stats.mSPD;
             }
 
-            if (velocity.X < -maxSpeed)
+            if (velocity.X < -stats.mSPD)
             {
-                velocity.X = -maxSpeed;
+                velocity.X = -stats.mSPD;
             }
 
-            if (velocity.Y > maxSpeed)
+            if (velocity.Y > stats.mSPD)
             {
-                velocity.Y = maxSpeed;
+                velocity.Y = stats.mSPD;
             }
 
-            if (velocity.Y < -maxSpeed)
+            if (velocity.Y < -stats.mSPD)
             {
-                velocity.Y = -maxSpeed;
+                velocity.Y = -stats.mSPD;
             }
         }
     }
