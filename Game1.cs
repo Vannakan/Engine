@@ -23,6 +23,7 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using ADS.Tilemaps;
+using ADS.GUI;
 
 namespace Engine
 {
@@ -130,7 +131,8 @@ namespace Engine
             UpdateList.Add(SoundManager.Instance);
 
             KeyHandler.Instance.KeyDown += OnKeyDown;
-         
+            GuiManager.Instance.Initialize();
+            
 
             base.Initialize();
         }
@@ -179,9 +181,10 @@ namespace Engine
             {
                 ee.Update(gameTime);
             }
+            GuiManager.Instance.Update();
 
 
-           
+
 base.Update(gameTime);
         }
 

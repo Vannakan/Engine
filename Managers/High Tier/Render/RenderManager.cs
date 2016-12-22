@@ -1,4 +1,5 @@
-﻿using Engine.Managers.CamManage;
+﻿using ADS.GUI;
+using Engine.Managers.CamManage;
 using Engine.Managers.EntityRelated;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -135,7 +136,15 @@ namespace Engine.Managers.Render
         {
             DrawCameraRelatedArtefacts();
             DrawNonCameraRelatedArtefacts();
+            GuiManager.Instance.DrawGUI();
 
+        }
+
+        public void Draw(Texture2D texture, Rectangle rect, Color col)
+        {
+            spriteBatch.Begin(SpriteSortMode.Immediate, null);
+            spriteBatch.Draw(texture, rect, col);
+            spriteBatch.End();
         }
 
         /// <summary>

@@ -1,12 +1,15 @@
 ﻿using ADS.Entities;
+using ADS.GUI;
 using ADS.Medication.Modifiers;
 using Engine.Events.CollisionEvent;
 using Engine.Events.KeyboardEvent;
 using Engine.Events.MouseEvent;
 using Engine.Managers.Collision;
 using Engine.Managers.EntityRelated;
+using Engine.Managers.Render; //take this out when testing is done
 using Engine.Tilemaps;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -20,7 +23,7 @@ namespace Engine.Entities
     public class PlayerMind : Mind
     {
         //Player Stats
-        Stats stats;
+        public Stats stats;
         //Timer for bullets
         int bulletTimer = 0;
         //Dunno why this is here atm
@@ -31,24 +34,29 @@ namespace Engine.Entities
         bool isColliding = false;
 
         private List<Direction> directions = new List<Direction>();
-
+        
+       
         string currentDirection = "Up";
        public PlayerMind()
         {
+            
             //Create player stats
-            stats = new Stats(10, 4, 35, 3, 10) ;
+            stats = new Stats(10, 4, 35, 200, 10) ;
             isCollidable = true;
             //Sign up to handlers
             MouseHandler.Instance.MouseClick += OnMouseDown;
             KeyHandler.Instance.KeyDown += OnKeyDown;
             KeyHandler.Instance.KeyHeld += OnKeyHeld;
             DetectionManger.Instance.OnCollision += OnCollision;
+            GuiManager.Instance.setPlayer(this);
+            
         }
 
 
 
         public override void Update(GameTime gameTime)
         {
+            
             if (bulletTimer > 0)
                 bulletTimer = bulletTimer-1;
             GameTime = gameTime;
@@ -57,10 +65,11 @@ namespace Engine.Entities
 
             for(int i= 0; i < directions.Count; i ++)
             {
-                Console.WriteLine(directions[i]);
+               // Console.WriteLine(directions[i]);
             }
             directions.Clear();
             base.Update(gameTime);
+
         }
 
 
@@ -81,7 +90,18 @@ namespace Engine.Entities
 
         public void OnKeyDown(object sender, KeyEventArgs m)
         {
-        
+        if(m.key == Keys.P)
+            {
+                stats.HP -= 10;
+                if (stats.HP < 0)
+                    stats.HP = 200;
+                Console.WriteLine("ye");
+            }
+
+        if(m.key == Keys.O)
+            {
+                stats.EXP += 5;
+            }
 
           
                 
@@ -126,7 +146,7 @@ namespace Engine.Entities
                   //  velocity.Y -= Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }
 
-                Console.WriteLine(bulletTimer);
+                //Console.WriteLine(bulletTimer);
                 if (bulletTimer == 0)
                 {
                     switch (m.key)

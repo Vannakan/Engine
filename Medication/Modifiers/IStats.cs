@@ -8,6 +8,8 @@ namespace ADS.Medication.Modifiers
 {
     public interface IStats
     {
+        //Experience Property
+        int EXP { get; set; }
         //Damage Property
         int DMG { get; set; }
        //Move Speed Property

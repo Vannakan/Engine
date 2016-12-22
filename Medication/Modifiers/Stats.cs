@@ -8,6 +8,10 @@ namespace ADS.Medication.Modifiers
 {
     public class Stats : IStats
     {
+        //EXP & Property
+        int exp;
+        public int EXP { get { return exp; } set { exp = value; } }
+
         //Damage & Property
         int dmg;
         public int DMG { get { return dmg;} set { dmg = value; } }
@@ -34,6 +38,7 @@ namespace ADS.Medication.Modifiers
             atkSPD = 0;
             hp = 1;
             luck = 0;
+            exp = 0;
         }
 
         public Stats(int d, int m, int a, int hp, int luck)
@@ -43,6 +48,7 @@ namespace ADS.Medication.Modifiers
             atkSPD = a;
             this.hp = hp;
             this.luck = luck;
+            exp = 0;
             Console.WriteLine("Stats created");
         }
 
