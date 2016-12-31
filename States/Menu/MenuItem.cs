@@ -84,7 +84,7 @@ namespace Engine
             Color color = Color.Black;
             if (IsSelected)
             {
-                color = Color.Red;
+                color = Color.DarkRed;
                 spriteBatch.DrawString(spriteFont, Name, screenCenter, color, 0, new Vector2(textureCenter.X / 7, textureCenter.Y / 2), scale + 0.25f, SpriteEffects.None, 0.5f);
             }
             else spriteBatch.DrawString(spriteFont, Name, screenCenter, color, 0, new Vector2(textureCenter.X / 7, textureCenter.Y / 2), scale, SpriteEffects.None, 0.5f);
