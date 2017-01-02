@@ -37,13 +37,22 @@
   <PropertyGroup>
     <ApplicationIcon>AceIcon1</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Astar%28Jack%29\INode.cs" />
-    <Compile Include="Astar%28Jack%29\Node.cs" />
-    <Compile Include="Astar%28Jack%29\Tile.cs" />
     <Compile Include="Camera2D\Camera.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Entities\Direction.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\IProjectile.cs" />
+    <Compile Include="Entities\pjtMind.cs" />
     <Compile Include="Entities\Platformer\Bullet.cs" />
     <Compile Include="Entities\Platformer\bulletEntity.cs" />
     <Compile Include="Entities\Primitives\Circle.cs" />
@@ -53,6 +62,9 @@
     <Compile Include="Entities\Platformer\pEntity.cs" />
     <Compile Include="Entities\Platformer\PlayerMind.cs" />
     <Compile Include="Entities\Platformer\SpikeTrap.cs" />
+    <Compile Include="Entities\Projectile.cs" />
+    <Compile Include="Entities\Test\tEntity.cs" />
+    <Compile Include="Entities\Test\tMind.cs" />
     <Compile Include="Entities\TopDownShooter\cShooterEntity.cs" />
     <Compile Include="Entities\TopDownShooter\cShooterMind.cs" />
     <Compile Include="Entities\Tower Defense\cEntity.cs" />
@@ -86,10 +98,20 @@
     <Compile Include="Managers\IEngineComponent.cs" />
     <Compile Include="Managers\IUpdateEngineComponent.cs" />
     <Compile Include="Managers\High Tier\Render\RenderManager.cs" />
+    <Compile Include="Managers\Low Tier\Sound\SoundEventArgs.cs" />
+    <Compile Include="Managers\Low Tier\Sound\SoundHandler.cs" />
     <Compile Include="Managers\Low Tier\Sound\SoundManager.cs" />
     <Compile Include="Managers\High Tier\State\Fader.cs" />
     <Compile Include="Managers\High Tier\State\sManagerArgs.cs" />
+    <Compile Include="Medication\Modifiers\ImEntity.cs" />
+    <Compile Include="Medication\Modifiers\IModifier.cs" />
+    <Compile Include="Medication\Modifiers\IStats.cs" />
+    <Compile Include="Medication\Modifiers\Modifier.cs" />
+    <Compile Include="Medication\Modifiers\Modifierr.cs" />
+    <Compile Include="Medication\Modifiers\Stats.cs" />
+    <Compile Include="SelectedTest.cs" />
     <Compile Include="Serialization\saveDataTest.cs" />
+    <Compile Include="spawnerTest.cs" />
     <Compile Include="Textures\Service Locator\ClassA.cs" />
     <Compile Include="Textures\Service Locator\IServiceLocator.cs" />
     <Compile Include="Textures\Service Locator\IService.cs" />
@@ -126,6 +148,7 @@
     <Compile Include="Tilemaps\DirectionTile.cs" />
     <Compile Include="Tilemaps\DrawTile.cs" />
     <Compile Include="Tilemaps\Node.cs" />
+    <Compile Include="Tilemaps\Spawner.cs" />
     <Compile Include="Tilemaps\Tile.cs" />
     <Compile Include="Tilemaps\TileMap.cs" />
     <Compile Include="Tilemaps\TileType.cs" />
@@ -142,7 +165,6 @@
   <ItemGroup>
     <Content Include="AceIcon.ico" />
     <Content Include="ButtonPsuedo.txt" />
-    <Content Include="XmlLevels\CustomLevel.xml" />
     <Content Include="MenuButton.png" />
     <Content Include="player.png" />
     <Content Include="Spades.ico" />
@@ -157,20 +179,19 @@
     <Content Include="Textures\Tile1.png" />
     <Content Include="Textures\Tile2.png" />
     <Content Include="Icon.ico" />
+    <Content Include="XmlLevel\test123.xml" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Constant\" />
-    <Folder Include="Entities\Medication\Enemy\" />
-    <Folder Include="Entities\Medication\NPC\" />
-    <Folder Include="Entities\Medication\Player\" />
+    <Folder Include="Astar%28Jack%29\" />
     <Folder Include="Managers\Low Tier\Physic\" />
     <Folder Include="Physics%28Grant%29\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AceIcon1" />
+    <None Include="Properties\app.manifest" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

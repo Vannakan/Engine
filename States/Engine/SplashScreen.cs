@@ -32,7 +32,7 @@ namespace Engine
 
         public override void Draw(SpriteBatch sb)
         {
-            sb.Draw(ResourceLoader.Instance.GetTex("JGM"), cam.getWorldPosition(new Vector2(300,100)), Color.Green * alpha);
+            sb.Draw(ResourceLoader.Instance.GetTex("MedicationLogo"), cam.getWorldPosition(new Vector2(275,50)), Color.White * alpha);
             base.Draw(sb);
         }
 
@@ -59,8 +59,8 @@ namespace Engine
 
         public void OnKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.key == Microsoft.Xna.Framework.Input.Keys.Space)
-                ScreenManager.Instance.ReplaceScreen("MainMenu");
+           // if (e.key == Microsoft.Xna.Framework.Input.Keys.Space)
+           //     ScreenManager.Instance.ReplaceScreen("MainMenu");
 
         }
 }

@@ -27,6 +27,7 @@ namespace Engine
        bool isVisible { get; set; }
        //Give the sprite a position and texture
        void Initialize(Vector2 Position, string Texture);
+
         
     }
 }

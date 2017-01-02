@@ -1,4 +1,5 @@
-﻿using Engine.Entities;
+﻿using ADS.Entities;
+using Engine.Entities;
 using Engine.Entities.TopDownShooter;
 using Engine.Managers.Behaviour;
 using Engine.Managers.CamManage;
@@ -18,6 +19,10 @@ namespace Engine.Managers.EntityRelated
         Camera cam = CameraManager.Instance.getCam();
         //List of entities that have been created
         private List<IEntity> eList = new List<IEntity>();
+
+        private List<IEntity> cdList = new List<IEntity>();
+
+
         //Singleton
         private static EntityManager instance;
 
@@ -43,12 +48,17 @@ namespace Engine.Managers.EntityRelated
             return eList;
         }
 
+        public List<IEntity> getCamList()
+        {
+            return cdList;
+        }
+
         public IEntity getPlayer()
         {
-            for(int i = 0; i < eList.Count; i++)
+            for(int i = 0; i < cdList.Count; i++)
             {
-                if (eList[i].GetType() == typeof(pEntity))
-                    return  eList[i];
+                if (cdList[i].GetType() == typeof(pEntity))
+                    return  cdList[i];
             }
             return null;
         }
@@ -61,8 +71,15 @@ namespace Engine.Managers.EntityRelated
            Console.WriteLine("Added Entity -  ID " + e.UniqueID);
        }
 
-       
-     public IEntity createEntity<T>(Vector2 Position, string Texture) where T : IEntity, new()
+        public void addCamEntity(IEntity e)
+        {
+            cdList.Add(e);
+            Console.WriteLine("Added CamDrawEntity -  ID " + e.UniqueID );
+
+        }
+
+
+        public IEntity createEntity<T>(Vector2 Position, string Texture) where T : IEntity, new()
        {
            IEntity a = new T();
            a.Initialize(Position, Texture);
@@ -77,15 +94,30 @@ namespace Engine.Managers.EntityRelated
      {
          IEntity a = new T();
          a.Initialize(Position, Texture);
+            addCamEntity(a);
          if (a.GetType() == typeof(pEntity))
          {
              cam.setEntity(a, "Follow");
          }
-         RenderManager.Instance.addCamDrawEntity(a as IDrawable);
          return a;
      }
 
-     public IEntity createEntityDrawable<T>(Vector2 Position, string Texture) where T : IEntity, new()
+        public IEntity createProjectile<T>(Vector2 Position, string t, Direction d) where T : IEntity, new()
+        {
+            IEntity a = new T();
+            IProjectile e = a as IProjectile;
+            e.setDirection(d);
+            a.Initialize(Position, t);
+            addCamEntity(a);
+            return a;
+            
+        }
+
+
+//Public IEntity createProjectileCamDrawable<T>(Vector2 Position, string tex, DIRECTION direction 
+   
+
+        public IEntity createEntityDrawable<T>(Vector2 Position, string Texture) where T : IEntity, new()
      {
          IEntity a = new T();
          a.Initialize(Position, Texture);
@@ -100,6 +132,8 @@ namespace Engine.Managers.EntityRelated
             BehaviourManager.Instance.clearList();
 
         }
+
+       
 
         public void clearList()
      {
@@ -123,6 +157,22 @@ namespace Engine.Managers.EntityRelated
             }
        }
 
+       
+
+public void removeCamEntity(int entityID)
+        {
+            for (int i = 0; i < cdList.Count; i++)
+            {
+                if (cdList[i].UniqueID == entityID)
+                {
+                    cdList.Remove(cdList[i]);
+                    BehaviourManager.Instance.removeMind(entityID);
+                    Console.WriteLine("Removed Entity - ID " + entityID);
+
+                }
+            }
+        }
+
         public void Update(GameTime gameTime)
         {
             for (int i = 0; i < eList.Count; i++)
@@ -131,6 +181,11 @@ namespace Engine.Managers.EntityRelated
                 {
                     removeEntity(eList[i].UniqueID);
                 }
+            }
+
+            for (int i = 0; i < cdList.Count; i++)
+            {
+                Console.WriteLine(cdList[i].UniqueID);
             }
         }
     }

@@ -24,6 +24,7 @@ namespace Engine.Entities
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            
             spriteBatch.Draw(texture, centre, Color.White);
         }
 

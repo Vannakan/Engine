@@ -1,10 +1,15 @@
-﻿using Engine.Events.CollisionEvent;
+﻿using ADS.Entities;
+using ADS.GUI;
+using ADS.Medication.Modifiers;
+using Engine.Events.CollisionEvent;
 using Engine.Events.KeyboardEvent;
 using Engine.Events.MouseEvent;
 using Engine.Managers.Collision;
 using Engine.Managers.EntityRelated;
+using Engine.Managers.Render; //take this out when testing is done
 using Engine.Tilemaps;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -14,29 +19,57 @@ using System.Threading.Tasks;
 
 namespace Engine.Entities
 {
+    //This is the blueprint for medications player
     public class PlayerMind : Mind
     {
+        //Player Stats
+        public Stats stats;
+        //Timer for bullets
+        int bulletTimer = 0;
+        //Dunno why this is here atm
         GameTime GameTime;
-        int maxSpeed = 7;
+        //Check for input
         bool input = true;
+        //Check for collision (useless)
         bool isColliding = false;
+
+        private List<Direction> directions = new List<Direction>();
+        
+       
+        string currentDirection = "Up";
        public PlayerMind()
         {
+            
+            //Create player stats
+            stats = new Stats(10, 4, 35, 200, 10) ;
             isCollidable = true;
+            //Sign up to handlers
             MouseHandler.Instance.MouseClick += OnMouseDown;
             KeyHandler.Instance.KeyDown += OnKeyDown;
             KeyHandler.Instance.KeyHeld += OnKeyHeld;
             DetectionManger.Instance.OnCollision += OnCollision;
+            GuiManager.Instance.setPlayer(this);
+            
         }
 
 
 
         public override void Update(GameTime gameTime)
         {
+            
+            if (bulletTimer > 0)
+                bulletTimer = bulletTimer-1;
             GameTime = gameTime;
             applyVelocityRules();
             Friction();
+
+            for(int i= 0; i < directions.Count; i ++)
+            {
+               // Console.WriteLine(directions[i]);
+            }
+            directions.Clear();
             base.Update(gameTime);
+
         }
 
 
@@ -54,12 +87,30 @@ namespace Engine.Entities
         }
 
 
-      
+
         public void OnKeyDown(object sender, KeyEventArgs m)
         {
-         
-        
-            
+        if(m.key == Keys.P)
+            {
+                stats.HP -= 10;
+                if (stats.HP < 0)
+                    stats.HP = 200;
+                Console.WriteLine("ye");
+            }
+
+        if(m.key == Keys.O)
+            {
+                stats.EXP += 5;
+            }
+
+          
+                
+              
+
+            //pseudo
+           // EntityManager.Instance.createProjectileCamDrawable<bulletEntity>(Position, "bullet", this.DIRECTION);
+
+
         }
 
         public void OnKeyHeld(object sender, KeyEventArgs m)
@@ -68,33 +119,67 @@ namespace Engine.Entities
             {
                 if (m.key == Keys.D)
                 {
-                    e.Position = new Vector2(e.Position.X + maxSpeed, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    directions.Add(Direction.right);
+                    e.Position = new Vector2(e.Position.X + stats.mSPD, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                   //  velocity.X += Acceleration.X *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }
                 if (m.key == Keys.A)
                 {
-                    e.Position = new Vector2(e.Position.X - maxSpeed, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    directions.Add(Direction.left);
+                    e.Position = new Vector2(e.Position.X - stats.mSPD, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                  //   velocity.X -= Acceleration.X * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                 }
                 if (m.key == Keys.S)
                 {
-                    e.Position = new Vector2(e.Position.X , e.Position.Y+maxSpeed);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
-
+                    directions.Add(Direction.down);
+                    e.Position = new Vector2(e.Position.X , e.Position.Y+ stats.mSPD);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                   //  velocity.Y += Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                 }
 
                 if (m.key == Keys.W)
                 {
-                    e.Position = new Vector2(e.Position.X , e.Position.Y - maxSpeed);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    directions.Add(Direction.up);
+                    e.Position = new Vector2(e.Position.X , e.Position.Y - stats.mSPD);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                   //  velocity.Y -= Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }
 
-                
+                //Console.WriteLine(bulletTimer);
+                if (bulletTimer == 0)
+                {
+                    switch (m.key)
+                    {
+                        case Keys.Left:
+                            bulletTimer = stats.aSPD;
+                            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.left);
+                            break;
+                        case Keys.Right:
+                            bulletTimer = stats.aSPD;
+                            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.right);
+                            break;
+                        case Keys.Up:
+                            bulletTimer = stats.aSPD;
+                            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.up);
+                            break;
+                        case Keys.Down:
+                            bulletTimer = stats.aSPD;
+                            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.down);
+                            break;
+
+
+
+                    }
+
+                }
+
+
+
+
+
             }
-        
+
         }
 
         public void OnMouseDown(object sender, MouseEventArgs m)
@@ -181,24 +266,24 @@ namespace Engine.Entities
 
         public void applyVelocityRules()
         {
-            if (velocity.X > maxSpeed)
+            if (velocity.X > stats.mSPD)
             {
-                velocity.X = maxSpeed;
+                velocity.X = stats.mSPD;
             }
 
-            if (velocity.X < -maxSpeed)
+            if (velocity.X < -stats.mSPD)
             {
-                velocity.X = -maxSpeed;
+                velocity.X = -stats.mSPD;
             }
 
-            if (velocity.Y > maxSpeed)
+            if (velocity.Y > stats.mSPD)
             {
-                velocity.Y = maxSpeed;
+                velocity.Y = stats.mSPD;
             }
 
-            if (velocity.Y < -maxSpeed)
+            if (velocity.Y < -stats.mSPD)
             {
-                velocity.Y = -maxSpeed;
+                velocity.Y = -stats.mSPD;
             }
         }
     }

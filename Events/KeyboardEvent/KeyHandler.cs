@@ -19,23 +19,19 @@ namespace Engine.Events.KeyboardEvent
        public event KeyEventHandler KeyDown;
        public event KeyEventHandler KeyHeld;
 
-        //Debug
-        bool debug = true;
 
        private static KeyHandler instance;
        public static KeyHandler Instance
        {
-           
            get
            {
                if (instance == null)
                    instance = new KeyHandler();
-             
                return instance;
            }
        }
        //An array of type Keys that the handler will run through
-       private Keys[] keys = { };
+       private Keys[] keys = {};
        private KeyboardState prev, current;
 
        private Keys[] heldKeys = { };
@@ -45,14 +41,10 @@ namespace Engine.Events.KeyboardEvent
            prev = current;
            current = Keyboard.GetState();
             keys = current.GetPressedKeys();
-
-            foreach (Keys key in keys)
+               foreach(Keys key in keys)
                {
             if(current.IsKeyDown(key) && prev.IsKeyUp(key))
             {
-                    if(debug)
-                    Console.WriteLine(key);
-
                 OnKeyPressed(current, key);
             }
 

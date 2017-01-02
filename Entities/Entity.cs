@@ -66,6 +66,7 @@ namespace Engine.Entities
             mind.Initialize(Pos, Tex);
         }
 
+
         public void Draw(SpriteBatch spriteBatch)
         {
 

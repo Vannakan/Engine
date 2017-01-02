@@ -1,4 +1,5 @@
-﻿using Engine.Managers.CamManage;
+﻿using ADS.GUI;
+using Engine.Managers.CamManage;
 using Engine.Managers.EntityRelated;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -26,7 +27,7 @@ namespace Engine.Managers.Render
         //List containing items/entities which will be drawn with cam perams
         private List<IDrawable> CamDrawables = new List<IDrawable>();
 
-        private List<IDrawable> CamDrawEntities = new List<IDrawable>();
+        private List<IEntity> CamDrawEntities = new List<IEntity>();
 
         //Singleton
         private static RenderManager instance;
@@ -58,12 +59,19 @@ namespace Engine.Managers.Render
             entities = EntityManager.Instance.getList();
         }
 
+        public void getCamEntityList()
+        {
+            CamDrawEntities = EntityManager.Instance.getCamList();
+        }
+
+        //For items which dont wish to be drawn in regards to the cameras matrix translations (such as GUI)
         public void addDrawable(IDrawable d)
         {
             Drawables.Add(d);
             Console.WriteLine("Added to Drawable List");
         }
 
+        //For Scenery/Entities which wish to be drawn in regards to the cameras matrix translations
         public void addCamDrawable(IDrawable d)
         {
             CamDrawables.Add(d);
@@ -71,10 +79,11 @@ namespace Engine.Managers.Render
 
         }
 
+        //For Entities which wish to be drawn in regards to the cameras matrix translations
         public void addCamDrawEntity(IDrawable d)
         {
-            CamDrawEntities.Add(d);
-            Console.WriteLine("Added to CamDrawable List");
+            CamDrawEntities.Add(d as IEntity);
+            Console.WriteLine("Added to CamDrawEntities List");
 
         }
 
@@ -120,13 +129,22 @@ namespace Engine.Managers.Render
         public void Update(GameTime gameTime)
   {
       getEntityList();
+            getCamEntityList();
   }
 
         public void Draw()
         {
             DrawCameraRelatedArtefacts();
             DrawNonCameraRelatedArtefacts();
+            GuiManager.Instance.DrawGUI();
 
+        }
+
+        public void Draw(Texture2D texture, Rectangle rect, Color col)
+        {
+            spriteBatch.Begin(SpriteSortMode.Immediate, null);
+            spriteBatch.Draw(texture, rect, col);
+            spriteBatch.End();
         }
 
         /// <summary>
