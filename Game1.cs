@@ -220,7 +220,7 @@ base.Update(gameTime);
                         EntityManager.Instance.removeCamEntity(IDSTOREMOVE[i]);
                     }
                     test[i] = testMethod();
-                    IDSTOREMOVE[i] = EntityManager.Instance.createEntityCamDrawable<tEntity>(testMethod(), "player").UniqueID;
+                    IDSTOREMOVE[i] = EntityManager.Instance.createEntityCamDrawable<tEntity>(testMethod(), "virus1").UniqueID;
                     
                 }
                 }
