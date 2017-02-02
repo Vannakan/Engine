@@ -17,13 +17,13 @@ namespace Engine.Entities
         //Reference to the mind which possess this Entity
         protected IMind mind;
 
-
-
         //Automatic property for the entities unique ID
         public int UniqueID { get; protected set; }
 
         //bool to check whether entity should be drawn or not
         public bool isVisible { get; set; }
+
+        public string Name { get; internal set; }
 
         //Position variable for the entity
         private Vector2 position;
@@ -32,7 +32,7 @@ namespace Engine.Entities
         //Accessor & Mutator
 
         //boundingBoxVisible
-        private bool bbV = false;
+        private bool bbV = true;
 
 
         public Texture2D Texture { get; set; }
@@ -66,6 +66,7 @@ namespace Engine.Entities
             mind.Initialize(Pos, Tex);
         }
 
+    
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -73,10 +74,10 @@ namespace Engine.Entities
             spriteBatch.Draw(Texture, Position, Color.White);
             if (bbV)
             {
-                spriteBatch.Draw(t, new Rectangle(Bounds.Left, Bounds.Top, 2, Bounds.Height), Color.Black); // Left
-                spriteBatch.Draw(t, new Rectangle(Bounds.Right, Bounds.Top, 2, Bounds.Height), Color.Black); // Right
-                spriteBatch.Draw(t, new Rectangle(Bounds.Left, Bounds.Top, Bounds.Width, 2), Color.Black); // Top
-                spriteBatch.Draw(t, new Rectangle(Bounds.Left, Bounds.Bottom, Bounds.Width, 2), Color.Black); // Bottom
+                spriteBatch.Draw(t, new Rectangle(Bounds.Left, Bounds.Top, 1, Bounds.Height), Color.Yellow); // Left
+                spriteBatch.Draw(t, new Rectangle(Bounds.Right, Bounds.Top, 1, Bounds.Height), Color.Yellow); // Right
+                spriteBatch.Draw(t, new Rectangle(Bounds.Left, Bounds.Top, Bounds.Width, 1), Color.Yellow); // Top
+                spriteBatch.Draw(t, new Rectangle(Bounds.Left, Bounds.Bottom, Bounds.Width, 1), Color.Yellow); // Bottom
             }
         }
     }

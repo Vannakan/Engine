@@ -33,10 +33,8 @@ namespace Engine.Entities
         //Check for collision (useless)
         bool isColliding = false;
 
-        private List<Direction> directions = new List<Direction>();
         
        
-        string currentDirection = "Up";
        public PlayerMind()
         {
             
@@ -63,11 +61,7 @@ namespace Engine.Entities
             applyVelocityRules();
             Friction();
 
-            for(int i= 0; i < directions.Count; i ++)
-            {
-               // Console.WriteLine(directions[i]);
-            }
-            directions.Clear();
+         
             base.Update(gameTime);
 
         }
@@ -104,11 +98,12 @@ namespace Engine.Entities
             }
 
           
-                
-              
+
+
+
 
             //pseudo
-           // EntityManager.Instance.createProjectileCamDrawable<bulletEntity>(Position, "bullet", this.DIRECTION);
+            // EntityManager.Instance.createProjectileCamDrawable<bulletEntity>(Position, "bullet", this.DIRECTION);
 
 
         }
@@ -117,22 +112,22 @@ namespace Engine.Entities
         {
             if (input)
             {
+
+                Keys[] keys = m.keyState.GetPressedKeys();
+
                 if (m.key == Keys.D)
                 {
-                    directions.Add(Direction.right);
                     e.Position = new Vector2(e.Position.X + stats.mSPD, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                   //  velocity.X += Acceleration.X *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }
                 if (m.key == Keys.A)
                 {
-                    directions.Add(Direction.left);
                     e.Position = new Vector2(e.Position.X - stats.mSPD, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                  //   velocity.X -= Acceleration.X * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                 }
                 if (m.key == Keys.S)
                 {
-                    directions.Add(Direction.down);
                     e.Position = new Vector2(e.Position.X , e.Position.Y+ stats.mSPD);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                   //  velocity.Y += Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
@@ -140,39 +135,75 @@ namespace Engine.Entities
 
                 if (m.key == Keys.W)
                 {
-                    directions.Add(Direction.up);
                     e.Position = new Vector2(e.Position.X , e.Position.Y - stats.mSPD);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                   //  velocity.Y -= Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }
 
-                //Console.WriteLine(bulletTimer);
-                if (bulletTimer == 0)
+                if ((m.keyState.IsKeyDown(Keys.Up) && m.keyState.IsKeyDown(Keys.Space)))
                 {
-                    switch (m.key)
-                    {
-                        case Keys.Left:
-                            bulletTimer = stats.aSPD;
-                            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.left);
-                            break;
-                        case Keys.Right:
-                            bulletTimer = stats.aSPD;
-                            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.right);
-                            break;
-                        case Keys.Up:
-                            bulletTimer = stats.aSPD;
-                            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.up);
-                            break;
-                        case Keys.Down:
-                            bulletTimer = stats.aSPD;
-                            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.down);
-                            break;
+
+                    
+
+                  
+
+                
+                }
+
+             
+
+                    if ((m.keyState.IsKeyDown(Keys.Down) && m.keyState.IsKeyDown(Keys.Space)))
+                {
+                    
+                }
 
 
-
-                    }
+                if ((m.keyState.IsKeyDown(Keys.Left) && m.keyState.IsKeyDown(Keys.Space)))
+                {
+                    
+                    
 
                 }
+
+
+                if ((m.keyState.IsKeyDown(Keys.Right) && m.keyState.IsKeyDown(Keys.Space)))
+                {
+                    
+                }
+
+
+
+                ////Console.WriteLine(bulletTimer);
+                //if (bulletTimer == 0)
+                //{
+                //    switch (m.key)
+                //    {
+                //        case Keys.Left:
+                //            bulletTimer = stats.aSPD;
+                //            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.left);
+                //            break;
+                //        case Keys.Right:
+                //            bulletTimer = stats.aSPD;
+                //            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.right);
+                //            break;
+                //        case Keys.Up:
+                //            bulletTimer = stats.aSPD;
+                //            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.up);
+                //            break;
+                //        case Keys.Down:
+                //            bulletTimer = stats.aSPD;
+                //            EntityManager.Instance.createProjectile<Projectile>(new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), "bullet1", ADS.Entities.Direction.down);
+                //            break;
+
+
+
+
+
+                //    }
+
+                //}
+
+
 
 
 

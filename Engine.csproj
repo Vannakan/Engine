@@ -49,40 +49,34 @@
   <ItemGroup>
     <Compile Include="Camera2D\Camera.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Entities\Direction.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\IProjectile.cs" />
-    <Compile Include="Entities\pjtMind.cs" />
     <Compile Include="Entities\Platformer\Bullet.cs" />
     <Compile Include="Entities\Platformer\bulletEntity.cs" />
+    <Compile Include="Entities\Platformer\steerEntity.cs" />
     <Compile Include="Entities\Primitives\Circle.cs" />
     <Compile Include="Entities\IMind.cs" />
     <Compile Include="Entities\ITalkable.cs" />
     <Compile Include="Entities\Mind.cs" />
     <Compile Include="Entities\Platformer\pEntity.cs" />
     <Compile Include="Entities\Platformer\PlayerMind.cs" />
-    <Compile Include="Entities\Platformer\SpikeTrap.cs" />
-    <Compile Include="Entities\Projectile.cs" />
+    <Compile Include="Entities\steermind.cs" />
     <Compile Include="Entities\Test\tEntity.cs" />
     <Compile Include="Entities\Test\tMind.cs" />
-    <Compile Include="Entities\TopDownShooter\cShooterEntity.cs" />
-    <Compile Include="Entities\TopDownShooter\cShooterMind.cs" />
-    <Compile Include="Entities\Tower Defense\cEntity.cs" />
-    <Compile Include="Entities\Tower Defense\CreepMind.cs" />
-    <Compile Include="Entities\Platformer\trapEntity.cs" />
     <Compile Include="Events\CollisionEvent\CollisionEventArgs.cs" />
     <Compile Include="Events\CollisionEvent\CollisionHandler.cs" />
-    <Compile Include="Events\ConvoEvent\ConvoEventArgs.cs" />
-    <Compile Include="Events\ConvoEvent\ConvoHandler.cs" />
     <Compile Include="Events\KeyboardEvent\KeyEventArgs.cs" />
     <Compile Include="Events\KeyboardEvent\KeyHandler.cs" />
     <Compile Include="Events\KeyboardEvent\KeyListener.cs" />
     <Compile Include="Events\MouseEvent\MouseEventArgs.cs" />
     <Compile Include="Events\MouseEvent\MouseListener.cs" />
     <Compile Include="Events\MouseEvent\MouseHandler.cs" />
+    <Compile Include="GUI\GuiElement.cs" />
     <Compile Include="GUI\GuiManager.cs" />
+    <Compile Include="GUI\IGuiElement.cs" />
     <Compile Include="GUI\InputText.cs" />
     <Compile Include="IDrawable.cs" />
+    <Compile Include="Managers\High Tier\Collision\AABB.cs" />
     <Compile Include="Managers\Low Tier\ASTAR\PathFinder.cs" />
     <Compile Include="Managers\Low Tier\ASTAR\SearchNode.cs" />
     <Compile Include="Managers\High Tier\Behaviour\BehaviourManager.cs" />
@@ -103,15 +97,22 @@
     <Compile Include="Managers\Low Tier\Sound\SoundManager.cs" />
     <Compile Include="Managers\High Tier\State\Fader.cs" />
     <Compile Include="Managers\High Tier\State\sManagerArgs.cs" />
+    <Compile Include="Medication\Behaviour\Steering\SteeringTest.cs" />
+    <Compile Include="Medication\Behaviour\Steering\SteerManager.cs" />
+    <Compile Include="Medication\Levels\LevelState.cs" />
     <Compile Include="Medication\Modifiers\ImEntity.cs" />
     <Compile Include="Medication\Modifiers\IModifier.cs" />
     <Compile Include="Medication\Modifiers\IStats.cs" />
     <Compile Include="Medication\Modifiers\Modifier.cs" />
     <Compile Include="Medication\Modifiers\Modifierr.cs" />
     <Compile Include="Medication\Modifiers\Stats.cs" />
+    <Compile Include="Medication\Spawner\Spawner.cs" />
     <Compile Include="SelectedTest.cs" />
     <Compile Include="Serialization\saveDataTest.cs" />
     <Compile Include="spawnerTest.cs" />
+    <Compile Include="States\Levels\SwarmTest.cs" />
+    <Compile Include="States\Menu\Menu.cs" />
+    <Compile Include="States\Menu\MenuOption.cs" />
     <Compile Include="Textures\Service Locator\ClassA.cs" />
     <Compile Include="Textures\Service Locator\IServiceLocator.cs" />
     <Compile Include="Textures\Service Locator\IService.cs" />
@@ -145,7 +146,6 @@
     <Compile Include="Tilemaps\BlankTile.cs" />
     <Compile Include="Tilemaps\CA.cs" />
     <Compile Include="Tilemaps\CollisionTile.cs" />
-    <Compile Include="Tilemaps\DirectionTile.cs" />
     <Compile Include="Tilemaps\DrawTile.cs" />
     <Compile Include="Tilemaps\Node.cs" />
     <Compile Include="Tilemaps\Spawner.cs" />
@@ -163,12 +163,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AceIcon.ico" />
     <Content Include="ButtonPsuedo.txt" />
-    <Content Include="MenuButton.png" />
-    <Content Include="player.png" />
-    <Content Include="Spades.ico" />
     <Content Include="Textures\UnTexturedTile.png" />
+    <Content Include="ThingsToDo.txt" />
     <Content Include="What2Do.txt" />
     <Content Include="Textures\terrainTile1.png" />
     <Content Include="Textures\terrainTile2.png" />
@@ -186,7 +183,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Astar%28Jack%29\" />
+    <Folder Include="Events\ConvoEvent\" />
+    <Folder Include="Grid\Generation\CellularAutomata\" />
+    <Folder Include="Grid\Pathfinding\AStar\" />
+    <Folder Include="Grid\Pathfinding\Dijksra\" />
     <Folder Include="Managers\Low Tier\Physic\" />
+    <Folder Include="Medication\Levels\Hub\" />
+    <Folder Include="Medication\Levels\Transition\" />
+    <Folder Include="Medication\Levels\Treatment\" />
     <Folder Include="Physics%28Grant%29\" />
   </ItemGroup>
   <ItemGroup>

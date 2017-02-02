@@ -12,7 +12,7 @@ namespace Engine.Tilemaps
 {
     public class BlankTile : Tiles, ICollidable
     {
-        public Direction Direction;
+      //  public Direction Direction;
         public Rectangle Bounds { get { return rectangle; } }
         Vector2 pos;
         public Vector2 Position { get { return new Vector2(rectangle.Center.X, rectangle.Center.Y); } set { pos = value; } }

@@ -214,8 +214,3 @@ namespace Engine.Managers.Render
 }
 
 
-class DrawAble
-{
-    public Texture2D tex { get; set; }
-    public Vector2 loc { get; set; }
-}

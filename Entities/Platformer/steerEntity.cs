@@ -1,4 +1,5 @@
-﻿using Engine.Managers.Behaviour;
+﻿using ADS.Entities;
+using Engine.Managers.Behaviour;
 using Engine.Managers.Collision;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,20 +13,19 @@ namespace Engine.Entities
 {
 
 
-    public class bulletEntity : Entity
+    public class steerEntity : Entity, IDrawable
     {
-
-
-
-
+        
+ 
 
         public override void Initialize(Vector2 Pos, string Tex)
         {
-            mind = BehaviourManager.Instance.Create<Bullet>(this);
+            mind = BehaviourManager.Instance.Create<steermind>(this);
             base.Initialize(Pos, Tex);
         }
+
+     
     }
-      
 }
 
 

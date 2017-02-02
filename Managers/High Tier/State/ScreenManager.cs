@@ -65,10 +65,7 @@ namespace Engine
         /// </summary>
         public void Initialize()
     {
-      //  EntityList = SpriteManager.Instance.Entities;
-
         Add("SplashScreen");
-       // Add("Level2");
     }
      
         /// <summary>
@@ -85,15 +82,10 @@ namespace Engine
         #region Update & Draw
 
         public void Update(GameTime gameTime)
-        {
-
-           
-            
-                CheckScreenManagerInput();
+        {         
+            CheckScreenManagerInput();
             UpdateTopScreen(gameTime);
             CheckScreens();
-
-
         }
 
 
@@ -122,14 +114,14 @@ namespace Engine
      /// <param name="screenName"></param>
         public void Add(string screenName)
         {
+            //Halt the sound manager
             SoundManager.Instance.Stop();
+            //Create the new requested screen and initialize it
                 BaseScreen myScreen = (BaseScreen)Activator.CreateInstance(Type.GetType("Engine." + screenName));
                 myScreen.Initialize();
+            //Push the initialized screen onto the screenstack
                 screenStack.Push(myScreen);
-        
-
-
-
+            //Call the screen change method for subscribers
             onScreenChange(myScreen);
 
                                  
@@ -143,9 +135,11 @@ namespace Engine
         /// <param name="screenName"></param>
         public void ReplaceScreen(string screenName)
         {
-          
+          //Take the top screen off the stack
             screenStack.Pop();
+            //Add the replacement screen
             Add(screenName);
+            //Call the screen change event to notify subscribers
             onScreenChange(screenStack.Peek());
         }
 
@@ -187,6 +181,7 @@ namespace Engine
 
             if (InputManager.Instance.CheckKeyPressed(Microsoft.Xna.Framework.Input.Keys.Back))
             {
+                //Make sure we don't delete the menu!
                 if (screenStack.Count > 1)
                 {
                    RemoveTopScreen();

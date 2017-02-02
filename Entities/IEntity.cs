@@ -21,13 +21,18 @@ namespace Engine
        int UniqueID { get; }
        //void Update(GameTime gameTime);
        Rectangle Bounds { get; }
-       //Does the sprite allow for collisions?
+       //Does the sprite allow for collisions? <<Change
        bool isCollidable { get; set; }
        //Should the sprite be drawn?
        bool isVisible { get; set; }
        //Give the sprite a position and texture
        void Initialize(Vector2 Position, string Texture);
 
-        
+       // string Name{get; set;}
+
+
+      
+
+
     }
 }

@@ -52,16 +52,16 @@ namespace Engine.Managers.Behaviour
 
         }
 
-        public IMind CreateProjectile<T>(IEntity ie,Direction d) where T : IMind, new()
-        {
-            IMind e = new T();
-            e.Link(ie);
-            IProjectile a = e as IProjectile;
-            a.setDirection(d);
-            Console.WriteLine("NEW" + e.GetType() + " ADDED");
-            minds.Add(e);
-            return e;
-        }
+        //public IMind CreateProjectile<T>(IEntity ie,Direction d) where T : IMind, new()
+        //{
+        //    IMind e = new T();
+        //    e.Link(ie);
+        //    IProjectile a = e as IProjectile;
+        //    a.setDirection(d);
+        //    Console.WriteLine("NEW" + e.GetType() + " ADDED");
+        //    minds.Add(e);
+        //    return e;
+        //}
 
       
 
@@ -100,6 +100,19 @@ namespace Engine.Managers.Behaviour
             }
         }
 
+        public IMind getMind (int id)
+        {
+            for (int i = 0; i < minds.Count; i++)
+            {
+                
+                if (minds[i].UniqueID == id)
+                {
+                    return minds[i];
+
+                }
+            }
+            return null;
+        }
 
         /// <summary>
         /// Iterate through the mind list and call the minds update

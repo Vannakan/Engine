@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Engine;
 
-
-namespace ADS.Entities
+namespace ADS.GUI
 {
-    public interface IProjectile
+    public interface IGuiElement
     {
-       // void setDirection(Direction d);
+
+       
     }
 }

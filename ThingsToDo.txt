@@ -1,0 +1,14 @@
+﻿         //Code for creating a file
+            //using(FileSteam fs = File.Create(path)
+            //{
+
+            //}
+            //Code for saving my entity list. from this list i can edit it to add more
+            //Dictionary<string, int> test = new Dictionary<string, int>();
+            //FileStream fs = new FileStream("", FileMode.Open, FileAccess.Read);
+            // StreamReader inFile = new StreamReader(fs);
+
+            //var binaryform = new BinaryFormatter();
+            //binaryform.Serialize(fs, test);
+
+            //using(XmlWriter)

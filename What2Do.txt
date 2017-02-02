@@ -1,26 +1,39 @@
-﻿To Do
+﻿Check List
 
-General
+Mikes Stuff - 
 
-Map Generation:
+Hub:
 
-Finish automata generation
+Apothecary :
 
-Add collisions to generation
+Wards:
 
-Improve the way tile collisions are managed
+Textures:
 
-ScreenManager:
 
-Clean the fade methods
+Grants Stuff - 
 
-Physics:
+Physics
 
-Grants stuff here
+Collision
 
-Astar:
+Audio
 
-Jacks stuff here
+Jacks Stuff - 
+
+Pathfinding
+
+Behaviours
+
+Engine Improvements
+
+
+Group stuff - 
+
+Level creation
+
+Content creation
+
 
 
 

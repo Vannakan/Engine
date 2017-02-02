@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Engine;
 
-
-namespace ADS.Entities
+namespace ADS.Managers.High_Tier.Collision
 {
-    public interface IProjectile
+    public class AABB
     {
-       // void setDirection(Direction d);
+
+
     }
 }

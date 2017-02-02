@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Engine;
 
-
-namespace ADS.Entities
+namespace ADS.States.Menu
 {
-    public interface IProjectile
+    public class Menu
     {
-       // void setDirection(Direction d);
     }
 }

@@ -33,6 +33,8 @@ namespace Engine.Entities
 
         public bool isColliding { get; set; }
 
+        public Vector2 tempsteerpos { get { return _pos; } set { _pos = value; } }
+
         protected Vector2 _pos = new Vector2();
         public Vector2 Position { get { return e.Position; } set { e.Position = value; } }
         protected Vector2 Acceleration = new Vector2(0.01f,0.01f);

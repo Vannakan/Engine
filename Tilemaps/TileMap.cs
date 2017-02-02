@@ -46,8 +46,7 @@ namespace Engine
         private List<Tiles> Tiles = new List<Tiles>();
         //List to hold all tiles that dont contain collision(Static Tiles maybe scenery)
         private List<DrawTile> drawTiles = new List<DrawTile>();
-        //List to hold all directional tiles
-        private List<DirectionTile> directionTiles = new List<DirectionTile>();
+   
         //Variables to hold the tiles width and height
         private int width, height;
 
@@ -73,11 +72,7 @@ namespace Engine
             get { return Tiles; }
         }
 
-        public List<DirectionTile> DirectionTiles
-        {
-            get { return directionTiles; }
-        }
-
+       
 
         public int Width
         {
@@ -96,10 +91,11 @@ namespace Engine
 
 
 
-        public void GenerateC(int fill, int x, int y)
+        public void GenerateCA(int fill, int x, int y)
         {
             ca = new CA();
             ca.Start(fill, x, y);
+            Map = ca.getMap();
         }
 
         public void regenC()
@@ -170,14 +166,7 @@ namespace Engine
                     {
                         EntityManager.Instance.createEntity<pEntity>(new Vector2(x * size, y * size), "player");
                     }
-                    if (number == 11)
-                    {
-                        EntityManager.Instance.createEntity<trapEntity>(new Vector2(x * size, y * size), "player");
-                    }
-                    if (number == 15)
-                    {
-                        EntityManager.Instance.createEntity<cEntity>(new Vector2(x * size, y * size), "player");
-                    }
+                 
 
 
 
@@ -257,10 +246,7 @@ namespace Engine
                     collisionTiles[i].Draw(spriteBatch);
                 }
 
-                for (int i = 0; i < directionTiles.Count; i++)
-                {
-                    directionTiles[i].Draw(spriteBatch);
-                }
+              
             }
 
             if (CA)

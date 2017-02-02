@@ -1,6 +1,5 @@
 ﻿using ADS.Entities;
 using Engine.Entities;
-using Engine.Entities.TopDownShooter;
 using Engine.Managers.Behaviour;
 using Engine.Managers.CamManage;
 using Engine.Managers.Render;
@@ -83,10 +82,7 @@ namespace Engine.Managers.EntityRelated
        {
            IEntity a = new T();
            a.Initialize(Position, Texture);
-           addEntity(a);
-           if(a.GetType() == typeof(cShooterEntity))
-               cam.setEntity(a, "Follow");
-           
+           addEntity(a);       
            return a;
        }
 
@@ -95,23 +91,22 @@ namespace Engine.Managers.EntityRelated
          IEntity a = new T();
          a.Initialize(Position, Texture);
             addCamEntity(a);
-         if (a.GetType() == typeof(pEntity))
-         {
-             cam.setEntity(a, "Follow");
-         }
+        
          return a;
      }
 
-        public IEntity createProjectile<T>(Vector2 Position, string t, Direction d) where T : IEntity, new()
-        {
-            IEntity a = new T();
-            IProjectile e = a as IProjectile;
-            e.setDirection(d);
-            a.Initialize(Position, t);
-            addCamEntity(a);
-            return a;
+      
+
+        //public IEntity createProjectile<T>(Vector2 Position, string t, Direction d) where T : IEntity, new()
+        //{
+        //    IEntity a = new T();
+        //    IProjectile e = a as IProjectile;
+        //    e.setDirection(d);
+        //    a.Initialize(Position, t);
+        //    addCamEntity(a);
+        //    return a;
             
-        }
+        //}
 
 
 //Public IEntity createProjectileCamDrawable<T>(Vector2 Position, string tex, DIRECTION direction 

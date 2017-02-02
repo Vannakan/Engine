@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Engine.Events.ConvoEvent
+namespace ADS.Medication.Behaviour.Steering
 {
-    public class ConvoEventArgs
+   public class SteeringTest
     {
-        IEntity player;
-        IEntity convoEntity;
+
+        public SteeringTest()
+        {
+
+        }
     }
 }

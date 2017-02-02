@@ -17,6 +17,6 @@ namespace Engine.Events.CollisionEvent
       public ICollidable B { get; set; }
 
        //Used for Direction tiles
-      public Direction D { get; set; }
+     // public Direction D { get; set; }
     }
 }

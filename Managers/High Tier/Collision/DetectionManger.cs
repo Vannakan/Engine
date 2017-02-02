@@ -59,6 +59,7 @@ namespace Engine.Managers.Collision
     public void setTileMap(TileMap t)
     {
         collTiles = t;
+        
     }
 
     //Check for collision between two circles
@@ -90,7 +91,6 @@ namespace Engine.Managers.Collision
 
             //doCollision();
             calcTerrainCollision();
-            calcDirectionCollision();
         }
 
         /// <summary>
@@ -140,6 +140,14 @@ namespace Engine.Managers.Collision
         /// This method is programmed to be used with a tilemap
         /// </summary>
         /// 
+
+            public void calcEntityTerrain()
+        {
+
+        }
+
+
+
         public void calcTerrainCollision()
         {
             if (collTiles != null)
@@ -167,32 +175,7 @@ namespace Engine.Managers.Collision
         }
 
         //Method needs to go
-        public void calcDirectionCollision()
-        {
-            if (collTiles != null)
-            {
 
-                for (int i = 0; i < collTiles.DirectionTiles.Count; i++)
-                {
-                    for (int k = 0; k < collision.Count; k++)
-                    {
-
-
-                        var A = collision[k];
-                        if (A.GetType().Equals(typeof(CreepMind)))
-                        {
-
-                            var B = collTiles.DirectionTiles[i];
-
-                            if (Collision(A, B))
-                            {
-                                OnADirectionSwitch(B.Direction, B);
-                            }
-                        }
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Iterates through the player collision list and the tile list
@@ -250,13 +233,13 @@ namespace Engine.Managers.Collision
                 }
         }
 
-        public void OnADirectionSwitch(Direction D, ICollidable B)
-            {
-            if(OnDirectionSwitch != null)
-            {
-                OnDirectionSwitch(this, new CollisionEventArgs() { D = D, B = B});
-            }
-            }
+        //public void OnADirectionSwitch(Direction D, ICollidable B)
+        //    {
+        //    if(OnDirectionSwitch != null)
+        //    {
+        //        OnDirectionSwitch(this, new CollisionEventArgs() { D = D, B = B});
+        //    }
+        //    }
 
         /// <summary>
         /// Tells any entities that care about terrain collisions that they have collided with terrain, and what terrain they have collided with.

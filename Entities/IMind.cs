@@ -18,11 +18,15 @@ namespace Engine.Entities
         Vector2 Velocity { get; set; }
 
         Vector2 Position { get; set; }
+        
+        Vector2 tempsteerpos { get; set; }
 
         int UniqueID { get; }
 
         //Initialize the entity in which the mind is controlling
         void Initialize(Vector2 Position, string t);
+        //
+        //void Initialize<T>(Vector2 Position, string t);
 
         void Unload();
 

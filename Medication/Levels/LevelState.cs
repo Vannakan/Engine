@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ADS.Entities
+namespace ADS.Medication.Levels
 {
-    public enum Direction
+    public enum LevelState
     {
-        left,right,up,down,upLeft,upRight,downLeft,downRight
+        HUB,TRANSITION, TREATMENT
     }
 }

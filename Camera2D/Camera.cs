@@ -139,6 +139,7 @@ namespace Engine
                 if (Zoom <= 0.5f)
                     _pos.Y += 14;
             }
+
         }
 
         public void setPos(Vector2 pos)
