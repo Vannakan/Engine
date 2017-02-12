@@ -38,6 +38,7 @@ namespace Engine
 
         public  void Draw(SpriteBatch spriteBatch)
         {
+            if(texture != null)
             spriteBatch.Draw(texture, rectangle, Color.White * alpha);
         }
         #endregion

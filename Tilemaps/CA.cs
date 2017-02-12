@@ -23,8 +23,8 @@ namespace ADS.Tilemaps
         //Probability Factor 
         int fillPercent ;
 
-        int mapWidth;
-        int mapHeight;
+        public int mapWidth;
+        public int mapHeight;
         //String to be converted to a hashcode
         string seed = "JamieVerner";
 

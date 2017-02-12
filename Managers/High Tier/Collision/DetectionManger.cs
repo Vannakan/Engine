@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Engine.Managers;
 using ADS.Entities;
+using ADS.Managers.High_Tier.Collision;
 
 namespace Engine.Managers.Collision
 {
@@ -19,7 +20,6 @@ namespace Engine.Managers.Collision
 
         public event CollisionEventHandler OnCollision;
 
-        public event CollisionEventHandler OnDirectionSwitch;
 
         //List of collidable entities
         private List<ICollidable> collision = new List<ICollidable>();
@@ -34,8 +34,8 @@ namespace Engine.Managers.Collision
             {
                 if (instance == null)
                     instance = new DetectionManger();
-                    
-                    return instance;
+
+                return instance;
             }
         }
 
@@ -43,45 +43,36 @@ namespace Engine.Managers.Collision
         /// Adds an ICollidable interface to the collision list ready to check for collisions
         /// </summary>
         /// <param name="obj"></param>
-    public void addCollidable(ICollidable obj)
+        public void addCollidable(ICollidable obj)
         {
             collision.Add(obj);
-           Console.WriteLine("Object Added to Collision list");
+            Console.WriteLine("Object Added to Collision list" + obj.GetType());
         }
 
-        public void clearManager()
-    {
-        collision.Clear();
-        collTiles = null;
-            
-    }
-
-    public void setTileMap(TileMap t)
-    {
-        collTiles = t;
-        
-    }
-
-    //Check for collision between two circles
-    public bool circleCollision(Circle a, Circle b)
-    {
-        float distance = Vector2.Distance(a.Centre, b.Centre);
-        if (a.Radius + b.Radius > distance)
+        public void removeCollidable(ICollidable obj)
         {
-            return true;
-        }
-        return false;
-    }
 
-        //Returns true if the bounds are intersecting
-        public bool Collision(ICollidable a, ICollidable b)
-    {
-        return !(b.Bounds.Left > a.Bounds.Right||
-                 b.Bounds.Right < a.Bounds.Left ||
-                 b.Bounds.Top > a.Bounds.Bottom ||
-                 b.Bounds.Bottom < a.Bounds.Top  );
-        
-    }
+        }
+
+        public void wipeList()
+        {
+            collision.Clear();
+            collTiles = null;
+        }
+        public void clearManager()
+        {
+            collision.Clear();
+            collTiles = null;
+
+        }
+
+
+        //need to go
+        public void setTileMap(TileMap t)
+        {
+            collTiles = t;
+
+        }
 
 
 
@@ -125,11 +116,11 @@ namespace Engine.Managers.Collision
         //            }
         //        }
         //    }
-            //If the two Entities are colliding,
-            //calculate the minimum translation distance
-            //then adjust the position by the minimum translation distance
-     
-      //  }
+        //If the two Entities are colliding,
+        //calculate the minimum translation distance
+        //then adjust the position by the minimum translation distance
+
+        //  }
 
 
         /// <summary>
@@ -140,13 +131,6 @@ namespace Engine.Managers.Collision
         /// This method is programmed to be used with a tilemap
         /// </summary>
         /// 
-
-            public void calcEntityTerrain()
-        {
-
-        }
-
-
 
         public void calcTerrainCollision()
         {
@@ -160,21 +144,20 @@ namespace Engine.Managers.Collision
 
 
                         var A = collision[k];
-                      
-                            
-                            var B = collTiles.CollisionTiles[i];
 
-                            if (Collision(A, B))
-                            {
-                                OnACollision(A, B);
-                            }
-                        
+
+                        var B = collTiles.CollisionTiles[i];
+
+                        if (AABB.Collision(A.Bounds, B.Bounds))
+                        {
+                            OnACollision(A, B);
+                        }
+
                     }
                 }
             }
         }
 
-        //Method needs to go
 
 
         /// <summary>
@@ -185,21 +168,21 @@ namespace Engine.Managers.Collision
 
         public void doCollisions()
         {
-        {
-            if (collTiles != null)
             {
-
-                for (int i = 0; i < collTiles.getTiles.Count; i++)
+                if (collTiles != null)
                 {
-                    for (int k = 0; k < collision.Count; k++)
+
+                    for (int i = 0; i < collTiles.getTiles.Count; i++)
                     {
-                        var A = collision[k];
-                        var B = collTiles.getTiles[i];
-                        //If !B.IsCollidable
-                        //continue;
-                        //else
-                    //    if (Collision(A, B))
-                      //  {
+                        for (int k = 0; k < collision.Count; k++)
+                        {
+                            var A = collision[k];
+                            var B = collTiles.getTiles[i];
+                            //If !B.IsCollidable
+                            //continue;
+                            //else
+                            //    if (Collision(A, B))
+                            //  {
 
                             var type = collTiles.getTiles[i].GetType().Name;
                             switch (type)
@@ -210,129 +193,28 @@ namespace Engine.Managers.Collision
                                 case "CollisionTile":
                                     //Throw in Corresponding Event
                                     break;
-                          //  }
-                                    
+                                    //  }
+
+                            }
                         }
-                      }
                     }
                 }
             }
         }
-        
-        
-            /// <summary>
-            /// Tells any entities that care about colliding with other entities that they have collided, and what entity they have collided with.
-            /// </summary>
-            /// <param name="A"></param>
-            /// <param name="B"></param>
-            public void OnACollision(ICollidable A, ICollidable B)
-        {
-                if(OnCollision != null)
-                {
-                    OnCollision(this, new CollisionEventArgs() { A = A, B = B });
-                }
-        }
 
-        //public void OnADirectionSwitch(Direction D, ICollidable B)
-        //    {
-        //    if(OnDirectionSwitch != null)
-        //    {
-        //        OnDirectionSwitch(this, new CollisionEventArgs() { D = D, B = B});
-        //    }
-        //    }
 
         /// <summary>
-        /// Tells any entities that care about terrain collisions that they have collided with terrain, and what terrain they have collided with.
+        /// Tells any entities that care about colliding with other entities that they have collided, and what entity they have collided with.
         /// </summary>
         /// <param name="A"></param>
         /// <param name="B"></param>
-      
-        
-
-
-        /// <summary>
-        /// Method is simply a template to use inside of classes and isn't used in this manager
-        /// </summary>
-        /// <param name="A1"></param>
-        /// <param name="B1"></param>
-        /// <returns></returns>
-
-        public Vector2 GetMinimumTranslation(ICollidable A1, ICollidable B1)
+        public void OnACollision(ICollidable A, ICollidable B)
         {
-            //Vector for the minimum translation distance
-            Vector2 mtd = new Vector2();
-           Rectangle A = A1.Bounds;
-           Rectangle B = B1.Bounds;
-            //Calculate corners of both Bounding Boxes
-           float xAMin = A.X;
-           float xAMax = A.X + A.Width;
-           float yAMin = A.Y;
-           float yAMax = A.Y + A.Height;
-
-           float xBMin = B.X;
-           float xBMax = B.X + B.Width;
-           float yBMin = B.Y;
-           float yBMax = B.Y + B.Height;
-
-
-            float left = (xBMin - xAMax);
-            float right = (xBMax - xAMin);
-            float top = (yBMin - yAMax);
-            float bottom = (yBMax - yAMin);
-
-
-         
-           //Select direction that we need to move the ICollidable back by
-            if (Math.Abs(left) < right)
+            if (OnCollision != null)
             {
-                mtd.X = left;
+                OnCollision(this, new CollisionEventArgs() { A = A, B = B });
             }
-            else
-            {
-                mtd.X = right;
-            }
-
-            if (Math.Abs(top) < bottom)
-            {
-                mtd.Y = top;
-            }
-            else
-                mtd.Y = bottom;
-
-            // 0 is the axis with the largest translation value/depth
-            if (Math.Abs(mtd.X) < Math.Abs(mtd.Y))
-            {
-                mtd.Y = 0;
-            }
-            else
-            {
-                mtd.X = 0;
-
-            }
-
-            if(mtd.X > 0)
-            {
-             //   Console.WriteLine("Left");
-            }
-
-            if (mtd.X < 0)
-            {
-              //  Console.WriteLine("Right");
-            }
-
-            if (mtd.Y > 0)
-            {
-               // Console.WriteLine("Up");
-            }
-            if (mtd.X > 0)
-            {
-               // Console.WriteLine("Down");
-            }
-
-
-
-
-            return mtd;
         }
+
     }
 }

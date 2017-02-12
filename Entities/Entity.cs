@@ -62,7 +62,7 @@ namespace Engine.Entities
 
         public virtual void Initialize(Vector2 Pos, string Tex)
         {
-           // mind = BehaviourManager.Instance.Create<PlayerMind>(this); Child class of Entity must contain method similar to this then call the base initialize method or shit wont work compadre
+            if(mind != null)
             mind.Initialize(Pos, Tex);
         }
 

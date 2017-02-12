@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Engine;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Engine.Managers.Collision
+namespace ADS.Medication.Levels.Hub
 {
-    interface IEnemyCollidable
+    class Hub : BaseScreen
     {
     }
 }

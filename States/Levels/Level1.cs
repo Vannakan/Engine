@@ -59,7 +59,8 @@ namespace Engine
             this.SoundTrack = "SoundTrack1";
 
             Map = new TileMap();
-            Map.GenerateCA(1, 64, 64);
+            Map.GenerateCA(41, 64, 64);
+            DetectionManger.Instance.setTileMap(Map);
 
 
             //saveDataTest dd = new saveDataTest();
@@ -108,7 +109,10 @@ namespace Engine
             }
 
             if (e.key == Microsoft.Xna.Framework.Input.Keys.Q)
-                Map.regenC();
+            {
+                Map.CollisionTiles.Clear();
+                Map.GenerateCA(41, 64, 64);
+            }
 
 
             if (e.key == Keys.N)

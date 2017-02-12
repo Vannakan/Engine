@@ -96,6 +96,16 @@ namespace Engine
             ca = new CA();
             ca.Start(fill, x, y);
             Map = ca.getMap();
+            for(int X = 0; X < Map.GetLength(0); X++)
+            {
+                for (int Y = 0; Y < Map.GetLength(1); Y++)
+                {
+                    if (Map[X, Y] == 1)
+                        collisionTiles.Add(new CollisionTile(30, new Rectangle(X * 64, Y * 64, 64, 64)));
+                    else
+                        continue;
+                }
+            }
         }
 
         public void regenC()

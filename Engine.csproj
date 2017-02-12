@@ -77,6 +77,8 @@
     <Compile Include="GUI\InputText.cs" />
     <Compile Include="IDrawable.cs" />
     <Compile Include="Managers\High Tier\Collision\AABB.cs" />
+    <Compile Include="Managers\High Tier\Collision\OOBB.cs" />
+    <Compile Include="Managers\High Tier\Collision\TranslationVector.cs" />
     <Compile Include="Managers\Low Tier\ASTAR\PathFinder.cs" />
     <Compile Include="Managers\Low Tier\ASTAR\SearchNode.cs" />
     <Compile Include="Managers\High Tier\Behaviour\BehaviourManager.cs" />
@@ -84,9 +86,6 @@
     <Compile Include="Managers\High Tier\Collision\DetectionManger.cs" />
     <Compile Include="Managers\High Tier\Collision\ICollidable.cs" />
     <Compile Include="Managers\High Tier\Collision\ICollisionManager.cs" />
-    <Compile Include="Managers\High Tier\Collision\IEnemyCollidable.cs" />
-    <Compile Include="Managers\High Tier\Collision\IPlayerCollidable.cs" />
-    <Compile Include="Managers\High Tier\Collision\ITileCollidable.cs" />
     <Compile Include="Managers\High Tier\EntityRelated\EntityManager.cs" />
     <Compile Include="Managers\IDrawEngineComponent.cs" />
     <Compile Include="Managers\IEngineComponent.cs" />
@@ -99,6 +98,7 @@
     <Compile Include="Managers\High Tier\State\sManagerArgs.cs" />
     <Compile Include="Medication\Behaviour\Steering\SteeringTest.cs" />
     <Compile Include="Medication\Behaviour\Steering\SteerManager.cs" />
+    <Compile Include="Medication\Levels\Hub\Hub.cs" />
     <Compile Include="Medication\Levels\LevelState.cs" />
     <Compile Include="Medication\Modifiers\ImEntity.cs" />
     <Compile Include="Medication\Modifiers\IModifier.cs" />
@@ -182,16 +182,12 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Astar%28Jack%29\" />
     <Folder Include="Events\ConvoEvent\" />
     <Folder Include="Grid\Generation\CellularAutomata\" />
     <Folder Include="Grid\Pathfinding\AStar\" />
     <Folder Include="Grid\Pathfinding\Dijksra\" />
-    <Folder Include="Managers\Low Tier\Physic\" />
-    <Folder Include="Medication\Levels\Hub\" />
     <Folder Include="Medication\Levels\Transition\" />
     <Folder Include="Medication\Levels\Treatment\" />
-    <Folder Include="Physics%28Grant%29\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AceIcon1" />
