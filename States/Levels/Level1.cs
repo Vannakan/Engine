@@ -19,6 +19,7 @@ using ADS.Tilemaps;
 using Engine.Managers.CamManage;
 using Engine.Events.KeyboardEvent;
 using Microsoft.Xna.Framework.Input;
+using ADS.Medication.Spawner;
 
 namespace Engine
 {
@@ -34,6 +35,9 @@ namespace Engine
         private int cy = 1;
         private Vector2[] test = new Vector2[7];
         private Random random;
+        private Circle c;
+
+        Spawner spawner;
 
         IEntity e;
         #endregion
@@ -61,7 +65,7 @@ namespace Engine
             Map = new TileMap();
             Map.GenerateCA(41, 64, 64);
             DetectionManger.Instance.setTileMap(Map);
-
+             c = new Circle(300, new Vector2(5, 5));
 
             //saveDataTest dd = new saveDataTest();
             //XmlSerializer x = new XmlSerializer(dd.GetType());
@@ -92,6 +96,9 @@ namespace Engine
 
             //DetectionManger.Instance.setTileMap(Map);
 
+                spawner = new Spawner(300, new Vector2(5, 5));
+                spawner.addType<steerEntity>();
+
             base.Initialize();
 
         }
@@ -111,56 +118,24 @@ namespace Engine
             if (e.key == Microsoft.Xna.Framework.Input.Keys.Q)
             {
                 Map.CollisionTiles.Clear();
-                Map.GenerateCA(41, 64, 64);
+                Map.GenerateCA(46, 64, 64);
             }
 
 
             if (e.key == Keys.N)
             {
-
-                for (int i = 0; i < 7; i++)
-                {
-                    for (int j = 0; j < IDSTOREMOVE.GetLength(0); j++)
-                    {
-                        //Testing for player ID
-                        if (IDSTOREMOVE[i] == 0)
-                            continue;
-                        else
-                            EntityManager.Instance.removeCamEntity(IDSTOREMOVE[i]);
-                    }
-                    test[i] = testMethod();
-                    IDSTOREMOVE[i] = EntityManager.Instance.createEntityCamDrawable<steerEntity>(testMethod(), "virus1").UniqueID;
-
-                }
+            
+                    spawner.sendWave(7);
+               
             }
-
-
         }
 
 
-        public Vector2 testMethod()
-        {
-            int x = cx + radius * (int)Math.Cos(random.Next());
-            int y = cy + radius * (int)Math.Sin(random.Next());
-
-            if (x > cx)
-                x = cx - (random.Next() % radius);
-            else
-                x = cx + (random.Next() % radius);
-
-            if (y > cy)
-                y = cy - (random.Next() % radius);
-            else
-                y = cy + (random.Next() % radius);
-
-            return new Vector2(x, y);
-
-
-        }
 
         public override void Unload()
         {
             EntityManager.Instance.tempCamClear();
+            EntityManager.Instance.clearList();
             Console.WriteLine("Unloading");
             Constants.colour = Color.DarkRed;
             KeyHandler.Instance.KeyDown -= OnKeyDown;

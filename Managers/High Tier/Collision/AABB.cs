@@ -10,7 +10,6 @@ namespace ADS.Managers.High_Tier.Collision
 {
     public static class AABB
     {
-
         //Returns true if the bounds are intersecting
         public static bool Collision(Rectangle a, Rectangle b)
         {

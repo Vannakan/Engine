@@ -51,6 +51,12 @@ namespace Engine.Entities
             
         }
 
+        public override void Initialize(Vector2 Position)
+        {
+            texPath = "AntiBody";
+            Console.WriteLine("Ini called" );
+            base.Initialize(Position);
+        }
 
 
         public override void Update(GameTime gameTime)

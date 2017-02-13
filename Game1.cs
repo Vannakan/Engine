@@ -66,6 +66,8 @@ namespace Engine
             //Set the mous to visible
             this.IsMouseVisible = true;
             Constants.g = GraphicsDevice;
+            Random random = new Random();
+            Constants.r = random;
             //Initialize Managers
             ResourceLoader.Instance.Content = this.Content;
             ResourceLoader.Instance.Initialize();

@@ -65,9 +65,9 @@ namespace Engine
                 {5,6,6,6,0,6,6,6,6,0,6,6,6,6,6,6,6,0,6,6,6,6,6,6,6,6,6,1},
                 {1,6,6,6,6,8,1,8,1,8,1,1,1,1,1,1,1,1,1,1,1,8,1,8,1,1,1,1},
             }, 64);
-            EntityManager.Instance.createEntityDrawable<pEntity>(new Vector2(200,100), "player");
-            EntityManager.Instance.createEntityCamDrawable<pEntity>(new Vector2(200, 100), "player");
-            EntityManager.Instance.createEntity<pEntity>(new Vector2(250, 100), "player");
+            EntityManager.Instance.createEntityDrawable<pEntity>(new Vector2(200,100));
+            EntityManager.Instance.createEntityCamDrawable<pEntity>(new Vector2(200, 100));
+            EntityManager.Instance.createEntity<pEntity>(new Vector2(250, 100));
 
 
             DetectionManger.Instance.setTileMap(Map);
@@ -125,17 +125,17 @@ namespace Engine
             }
             if (hi > 200 && !test4)
             {
-                EntityManager.Instance.createEntityDrawable<pEntity>(new Vector2(200, 100), "player");
+                EntityManager.Instance.createEntityDrawable<pEntity>(new Vector2(200, 100));
                 test4 = true;
             }
             if (hi > 250 && !test5)
             {
-                EntityManager.Instance.createEntityCamDrawable<pEntity>(new Vector2(200, 100), "player");
+                EntityManager.Instance.createEntityCamDrawable<pEntity>(new Vector2(200, 100));
                 test5 = true;
             }
             if (hi > 300 && !test6)
             {
-                EntityManager.Instance.createEntity<pEntity>(new Vector2(250, 100), "player");
+                EntityManager.Instance.createEntity<pEntity>(new Vector2(250, 100));
                 test6 = true;
             }
         }

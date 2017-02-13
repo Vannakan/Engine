@@ -78,18 +78,18 @@ namespace Engine.Managers.EntityRelated
         }
 
 
-        public IEntity createEntity<T>(Vector2 Position, string Texture) where T : IEntity, new()
+        public IEntity createEntity<T>(Vector2 Position) where T : IEntity, new()
        {
            IEntity a = new T();
-           a.Initialize(Position, Texture);
+           a.Initialize(Position);
            addEntity(a);       
            return a;
        }
 
-     public IEntity createEntityCamDrawable<T>(Vector2 Position, string Texture) where T : IEntity, new()
+     public IEntity createEntityCamDrawable<T>(Vector2 Position) where T : IEntity, new()
      {
          IEntity a = new T();
-         a.Initialize(Position, Texture);
+         a.Initialize(Position);
             addCamEntity(a);
         
          return a;
@@ -112,10 +112,10 @@ namespace Engine.Managers.EntityRelated
 //Public IEntity createProjectileCamDrawable<T>(Vector2 Position, string tex, DIRECTION direction 
    
 
-        public IEntity createEntityDrawable<T>(Vector2 Position, string Texture) where T : IEntity, new()
+        public IEntity createEntityDrawable<T>(Vector2 Position) where T : IEntity, new()
      {
          IEntity a = new T();
-         a.Initialize(Position, Texture);
+         a.Initialize(Position);
         
          RenderManager.Instance.addCamDrawEntity(a as IDrawable);
          return a;

@@ -18,10 +18,10 @@ namespace Engine.Entities
     {
         
 
-        public override void Initialize(Vector2 Pos, string Tex) 
+        public override void Initialize(Vector2 Pos) 
         {
             mind =BehaviourManager.Instance.Create<PlayerMind>(this);
-            base.Initialize(Pos, Tex);
+            base.Initialize(Pos);
             CameraManager.Instance.getCam().setEntity(this, "Follow");
         }
 

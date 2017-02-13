@@ -11,6 +11,7 @@ namespace Engine.Entities
 {
     public abstract class Mind : IMind, ICollidable
     {
+        //String to the texture 
 
         //Minds unique ID (Always set to be the same as the entity its possessing)
         public int UniqueID { get; set; }
@@ -38,6 +39,8 @@ namespace Engine.Entities
         protected Vector2 _pos = new Vector2();
         public Vector2 Position { get { return e.Position; } set { e.Position = value; } }
         protected Vector2 Acceleration = new Vector2(0.01f,0.01f);
+        protected string texPath = "";
+
         public Rectangle Bounds { get { return new Rectangle((int)e.Position.X, (int)e.Position.Y, e.Texture.Width, e.Texture.Height); } }
 
         public bool isCollidable { get; set; }
@@ -63,7 +66,7 @@ namespace Engine.Entities
         /// <returns></returns>
         public ICollidable getCollidable()
         {
-            return this as ICollidable;
+            return this;
         }
 
         public virtual void Initialize( Vector2 Position,string t)
@@ -77,7 +80,20 @@ namespace Engine.Entities
 
         }
 
-  
+        public virtual void Initialize(Vector2 Position)
+        {
+            //this.e = E;
+            UniqueID = e.UniqueID;
+            if(texPath != null)
+            {
+                setTexture(texPath);
+            }
+                e.Position = Position;
+            e.isVisible = true;
+            Active = true;
+
+        }
+
         public virtual void Unload()
         {
 

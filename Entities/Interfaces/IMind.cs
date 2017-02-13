@@ -25,6 +25,8 @@ namespace Engine.Entities
 
         //Initialize the entity in which the mind is controlling
         void Initialize(Vector2 Position, string t);
+
+        void Initialize(Vector2 Position);
         //
         //void Initialize<T>(Vector2 Position, string t);
 

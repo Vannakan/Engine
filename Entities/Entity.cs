@@ -48,36 +48,33 @@ namespace Engine.Entities
         public bool isCollidable { get; set; }
 
 
-        //To display Bounding Box
-        Texture2D t;
+     
 
         public Entity()
         {
             UniqueID = Constants.ID;
             Constants.ID++;
-            t = new Texture2D(Constants.g, 1, 1);
-            t.SetData(new[] { Color.White });
+            Name = this.GetType().ToString();
+          
         }
 
 
-        public virtual void Initialize(Vector2 Pos, string Tex)
+        public virtual void Initialize(Vector2 Pos)
         {
             if(mind != null)
-            mind.Initialize(Pos, Tex);
+            mind.Initialize(Pos);
         }
 
     
-
         public void Draw(SpriteBatch spriteBatch)
         {
 
             spriteBatch.Draw(Texture, Position, Color.White);
+
+            //If the option to draw the bounding box is open, call the draw primitives utility to draw the rectangle.
             if (bbV)
-            {
-                spriteBatch.Draw(t, new Rectangle(Bounds.Left, Bounds.Top, 1, Bounds.Height), Color.Yellow); // Left
-                spriteBatch.Draw(t, new Rectangle(Bounds.Right, Bounds.Top, 1, Bounds.Height), Color.Yellow); // Right
-                spriteBatch.Draw(t, new Rectangle(Bounds.Left, Bounds.Top, Bounds.Width, 1), Color.Yellow); // Top
-                spriteBatch.Draw(t, new Rectangle(Bounds.Left, Bounds.Bottom, Bounds.Width, 1), Color.Yellow); // Bottom
+            {    
+                ADS.Utility.DrawPrimitives.DrawRect(spriteBatch, Bounds, Color.Blue);
             }
         }
     }

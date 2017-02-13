@@ -50,19 +50,19 @@
     <Compile Include="Camera2D\Camera.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Entities\Entity.cs" />
-    <Compile Include="Entities\IProjectile.cs" />
+    <Compile Include="Entities\Interfaces\IProjectile.cs" />
     <Compile Include="Entities\Platformer\Bullet.cs" />
     <Compile Include="Entities\Platformer\bulletEntity.cs" />
     <Compile Include="Entities\Platformer\steerEntity.cs" />
     <Compile Include="Entities\Primitives\Circle.cs" />
-    <Compile Include="Entities\IMind.cs" />
-    <Compile Include="Entities\ITalkable.cs" />
+    <Compile Include="Entities\Interfaces\IMind.cs" />
     <Compile Include="Entities\Mind.cs" />
     <Compile Include="Entities\Platformer\pEntity.cs" />
     <Compile Include="Entities\Platformer\PlayerMind.cs" />
     <Compile Include="Entities\steermind.cs" />
     <Compile Include="Entities\Test\tEntity.cs" />
     <Compile Include="Entities\Test\tMind.cs" />
+    <Compile Include="Entities\Utilities\SteeringUtility.cs" />
     <Compile Include="Events\CollisionEvent\CollisionEventArgs.cs" />
     <Compile Include="Events\CollisionEvent\CollisionHandler.cs" />
     <Compile Include="Events\KeyboardEvent\KeyEventArgs.cs" />
@@ -71,6 +71,7 @@
     <Compile Include="Events\MouseEvent\MouseEventArgs.cs" />
     <Compile Include="Events\MouseEvent\MouseListener.cs" />
     <Compile Include="Events\MouseEvent\MouseHandler.cs" />
+    <Compile Include="Grid\Generation\CellularAutomata\CellularAutomata.cs" />
     <Compile Include="GUI\GuiElement.cs" />
     <Compile Include="GUI\GuiManager.cs" />
     <Compile Include="GUI\IGuiElement.cs" />
@@ -121,7 +122,7 @@
     <Compile Include="Textures\Service Locator\ServiceLocator.cs" />
     <Compile Include="States\Engine\BaseScreen.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="Entities\IEntity.cs" />
+    <Compile Include="Entities\Interfaces\IEntity.cs" />
     <Compile Include="Managers\Low Tier\Input\IInputManager.cs" />
     <Compile Include="Managers\Low Tier\Input\InputManager.cs" />
     <Compile Include="Managers\High Tier\Resource\IResourceLoader.cs" />
@@ -148,10 +149,10 @@
     <Compile Include="Tilemaps\CollisionTile.cs" />
     <Compile Include="Tilemaps\DrawTile.cs" />
     <Compile Include="Tilemaps\Node.cs" />
-    <Compile Include="Tilemaps\Spawner.cs" />
     <Compile Include="Tilemaps\Tile.cs" />
     <Compile Include="Tilemaps\TileMap.cs" />
     <Compile Include="Tilemaps\TileType.cs" />
+    <Compile Include="Utility\DrawPrimitives.cs" />
     <Compile Include="Utility\Panel.cs" />
     <Compile Include="Utility\Utility.cs" />
   </ItemGroup>
@@ -183,7 +184,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Events\ConvoEvent\" />
-    <Folder Include="Grid\Generation\CellularAutomata\" />
     <Folder Include="Grid\Pathfinding\AStar\" />
     <Folder Include="Grid\Pathfinding\Dijksra\" />
     <Folder Include="Medication\Levels\Transition\" />

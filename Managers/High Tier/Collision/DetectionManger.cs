@@ -80,57 +80,60 @@ namespace Engine.Managers.Collision
         public void Update(GameTime gameTime)
         {
 
-            //doCollision();
+           // doCollision();
             calcTerrainCollision();
         }
 
         /// <summary>
         /// Checks Collision between dynamic entities.
         /// </summary>
-        //public void doCollision()
-        //{
-        //    if (collision.Count >= 2 )
-        //    {
-        //        //Iterate through the list twice, counting one object above the first each time
-        //        for (int i = 0; i < collision.Count; i++)
-        //        {
-        //            for (int k = i + 1; k < collision.Count; k++)
-        //            {
-        //                //Check that they're not equal objects
-        //                if (collision[i] != collision[k])
-        //                {
-        //                    var A = collision[i];
-        //                    var B = collision[k];
+        public void doCollision()
+        {
+            if (collision.Count >= 2)
+            {
+                //Iterate through the list twice, counting one object above the first each time
+                for (int i = 0; i < collision.Count; i++)
+                {
+                    for (int k = i + 1; k < collision.Count; k++)
+                    {
+                        //Check that they're not equal objects
+                        if (collision[i] != collision[k])
+                        {
+                            var A = collision[i];
+                            var B = collision[k];
 
-        //                    //Checks if there's a collision, but also checks if A is a controller character, if so then it will move A around, otherwise tiles may have problems
-        //                    if (Collision(A, B) && A.isCollidable && B.isCollidable)
-        //                    {
-        //                        //Find minimum translation distance
-        //                        A.Velocity = new Vector2(A.Velocity.X, 0);
-        //                        Vector2 mtd = GetMinimumTranslation(A.Bounds, B.Bounds);
-        //                        Console.WriteLine(mtd);
-        //                        //Apply it to the source collidable
-        //                        A.Position += mtd;
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //If the two Entities are colliding,
-        //calculate the minimum translation distance
-        //then adjust the position by the minimum translation distance
+                            Vector2 distance = B.Position - A.Position;
+                            if (distance.Length() > 50)
+                                continue;
+                            else
+                            //Checks if there's a collision, but also checks if A is a controller character, if so then it will move A around, otherwise tiles may have problems
+                            if (AABB.Collision(A.Bounds, B.Bounds))
+                            {
+                                //Find minimum translation distance
+                                // A.Velocity = new Vector2(A.Velocity.X, 0);
+                                Vector2 mtd = TranslationVector.GetMinimumTranslation(A, B);
+                                Console.WriteLine(mtd);
+                                //Apply it to the source collidable
+                                A.Position += mtd;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+         
 
         //  }
 
 
-        /// <summary>
-        /// Checks collision between a list of dynamic entities and a list of static (Terrain/Tile) entities
-        /// Calculates the minimum translation distance and respondes by moving the 
-        /// dynamic entity accordingly
-        /// 
-        /// This method is programmed to be used with a tilemap
-        /// </summary>
-        /// 
+            /// <summary>
+            /// Checks collision between a list of dynamic entities and a list of static (Terrain/Tile) entities
+            /// Calculates the minimum translation distance and respondes by moving the 
+            /// dynamic entity accordingly
+            /// 
+            /// This method is programmed to be used with a tilemap
+            /// </summary>
+            /// 
 
         public void calcTerrainCollision()
         {

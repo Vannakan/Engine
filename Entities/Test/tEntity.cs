@@ -66,11 +66,11 @@ public class tEntity : IEntity, Engine.IDrawable
     }
 
 
-    public void Initialize(Vector2 Pos, string Tex)
+    public void Initialize(Vector2 Pos)
     {
         r = Constants.r;
         mind = BehaviourManager.Instance.Create<tMind>(this);
-        mind.Initialize(Pos, Tex);
+        mind.Initialize(Pos);
         c = new Color(
  (byte)r.Next(0, 255),
  (byte)r.Next(0, 255),

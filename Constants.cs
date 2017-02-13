@@ -16,7 +16,7 @@ namespace Engine
         public static Camera cam { get; set; }
         public static int TileSize = 64;
         public static Color colour = Color.Maroon;
-        public static Random r;
+        public static Random r { get ; set; }
        
     }
 }

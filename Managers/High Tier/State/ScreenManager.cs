@@ -227,8 +227,6 @@ namespace Engine
         }
 
         #endregion
-
-
         #region EventRelated
         protected virtual void onScreenChange(BaseScreen screen)
         {

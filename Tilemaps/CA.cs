@@ -23,8 +23,8 @@ namespace ADS.Tilemaps
         //Probability Factor 
         int fillPercent ;
 
-        public int mapWidth;
-        public int mapHeight;
+        int mapWidth;
+        int mapHeight;
         //String to be converted to a hashcode
         string seed = "JamieVerner";
 
@@ -81,16 +81,19 @@ namespace ADS.Tilemaps
 
         public void stupidTestMethod()
         {
-            
-                bool entityAdded = false;
+            Random random = new Random();
+            int xr = random.Next(0, mapWidth);
+            int yr = random.Next(0, mapHeight);
 
-                for (int x = 0; x < mapWidth; x++)
+            bool entityAdded = false;
+
+                for (int x = xr; x < mapWidth; x++)
                 {
-                    for (int y = 0; y < mapHeight; y++)
+                    for (int y = yr; y < mapHeight; y++)
                     {
                         if (map[x, y] == 0 && entityAdded == false)
                         {
-                            EntityManager.Instance.createEntityCamDrawable<pEntity>(new Vector2(x * 64, y * 64), "AntiBody");
+                            EntityManager.Instance.createEntityCamDrawable<pEntity>(new Vector2(x * 64, y * 64));
                             entityAdded = true;
                             entitySpawned = true;
                             continue;

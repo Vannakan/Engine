@@ -15,7 +15,10 @@ namespace ADS.Entities
 {
    public class steermind : Mind
     {
-        Vector2 target;
+        
+
+        private static List<steermind> neighbours = new List<steermind>();
+        IEntity target;
         
         IMind b;
 
@@ -24,11 +27,25 @@ namespace ADS.Entities
             MouseHandler.Instance.MouseMoved += onMouseMoved;
         }
 
+        public override void Initialize(Vector2 Position)
+        {
+            texPath = "virus1";
+            base.Initialize(Position);
+            target = EntityManager.Instance.getPlayer();
+            neighbours.Add(this);
+        }
+
         public void onMouseMoved(object Sender, MouseEventArgs m)
         {
             Vector2 world = new Vector2(m.X, m.Y);
           //  target = CameraManager.Instance.getWorldPosition(world);
 
+        }
+
+        public override void Unload()
+        {
+            neighbours.Remove(this);
+            base.Unload();
         }
 
         public override void Update(GameTime gameTime)

@@ -174,20 +174,20 @@ namespace Engine
                         CollisionTiles.Add(new CollisionTile(number, new Rectangle(x * size, y * size, size, size)));
                     if (number == 10)
                     {
-                        EntityManager.Instance.createEntity<pEntity>(new Vector2(x * size, y * size), "player");
+                        EntityManager.Instance.createEntity<pEntity>(new Vector2(x * size, y * size));
+
+
+
+
+                        width = y;// * size;// (x + 1) * size;
+                        height = x; //* size;//(y + 1) * size;
+
                     }
-                 
-
-
-
-                    width = y;// * size;// (x + 1) * size;
-                    height = x; //* size;//(y + 1) * size;
-
                 }
+
+
+
             }
-
-
-
         }
 
         public void GenerateCollisionLayer(int[,] map, int size)
