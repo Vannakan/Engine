@@ -190,7 +190,7 @@ namespace Engine
 
             for (int i = 0; i < filePaths.Length; i++)
             {
-                filePaths[i] = Path.GetFileNameWithoutExtension(filePaths[i]);
+                filePaths[i] = Path.GetFileNameWithoutExtension(filePaths[i]);             
                 LoadTexture("Entity\\", filePaths[i]);
             }
 

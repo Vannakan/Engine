@@ -15,6 +15,9 @@ using Engine.Managers.ASTAR;
 using Engine.Serialization;
 using System.Xml.Serialization;
 using System.IO;
+using Engine.Events.KeyboardEvent;
+using Microsoft.Xna.Framework.Input;
+using ADS.Serialization;
 
 namespace Engine
 {
@@ -22,7 +25,10 @@ namespace Engine
     {
         #region Variables
         private TileMap Map;
-        private PathFinder pathfinder;
+        private bool getName = true;
+        private bool nameSet = false;
+
+        string name = "";
         #endregion
         #region Constructor, Initialization & Unload
         public meTest()
@@ -37,46 +43,62 @@ namespace Engine
         /// /// </summary>
         public override void Initialize()
         {
-            saveDataTest dd = new saveDataTest();
+            KeyHandler.Instance.KeyDown += GetName;
+            base.Initialize();
+
+        }
+
+        public void generateShit(string name)
+        {
+            JaggedFile dd = new JaggedFile();
             XmlSerializer x = new XmlSerializer(dd.GetType());
 
-             string cwd = System.IO.Directory.GetCurrentDirectory();
+            string cwd = System.IO.Directory.GetCurrentDirectory();
 
             if (cwd.EndsWith("\\bin\\Windows\\x86\\Debug"))
             {
                 cwd = cwd.Replace("\\bin\\Windows\\x86\\Debug", "");
-                Console.WriteLine(cwd);
 
             }
-            string outpit = cwd + "\\XmlLevel\\test123.xml";
+            string outpit = cwd + "\\XmlLevel\\" + name + ".xml";
             using (FileStream fileStream = new FileStream(outpit, FileMode.Open))
             {
-                dd = (saveDataTest)x.Deserialize(fileStream);
+                dd = (JaggedFile)x.Deserialize(fileStream);
 
             }
-            int[,] return1 = Utility.Utility.convertTo2DArray(dd.IntJagged, dd.IntJagged.GetLength(0),dd.IntJagged[0].GetLength(0));
+            int[,] return1 = Utilities.Utility.convertTo2DArray(dd.IntJagged, dd.IntJagged.GetLength(0), dd.IntJagged[0].GetLength(0));
             //int[,] collisionLayer = Utility.Utility.convertTo2DArray(dd.IntJagged2, dd.IntJagged2.GetLength(0), dd.IntJagged2[0].GetLength(0));
             //Map.GenerateCollisionLayer(collisionLayer, 64);
             Map.Generate(return1, 64);
 
 
-            //Console.WriteLine(return1[0, 0]);
-
-
-            //  pathfinder = new PathFinder(Map);
-
-            //   List<Vector2> path = pathfinder.FindPath(new Point(0, 0), new Point(0,1));
-            //   foreach (Vector2 point in path)
-            //   {
-            //        System.Diagnostics.Debug.WriteLine(point);
-            //     }
-
+    
             DetectionManger.Instance.setTileMap(Map);
-
-            base.Initialize();
 
         }
 
+        public void GetName(object sender, KeyEventArgs kae)
+        {
+            if (getName && !nameSet)
+            {
+                if (kae.key == Keys.Enter)
+                {
+                    nameSet = true;
+
+                }
+                else
+                {
+                    string Name = name + kae.key.ToString();
+                    Console.WriteLine(Name);
+                    name = Name;
+                }
+                
+
+            }
+
+
+
+        }
 
         public override void UnloadContent()
         {
@@ -91,7 +113,7 @@ namespace Engine
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-
+            if(Map != null)
             Map.Draw(spriteBatch);
             base.Draw(spriteBatch);
         }
@@ -103,7 +125,8 @@ namespace Engine
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-
+            if(nameSet)
+                generateShit(name);
             base.Update(gameTime);
         }
         #endregion

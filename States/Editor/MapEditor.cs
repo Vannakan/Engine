@@ -1,4 +1,5 @@
-﻿using Engine.Entities;
+﻿using ADS.Serialization;
+using Engine.Entities;
 using Engine.Events.KeyboardEvent;
 using Engine.Events.MouseEvent;
 using Engine.Managers.CamManage;
@@ -22,7 +23,7 @@ namespace Engine.States
 {
     public class MapEditor
     {
-
+        string name = "";
         int layer = 1;
         TileMap map;
         Tiles currentTile;
@@ -33,7 +34,11 @@ namespace Engine.States
         Texture2D display;
         Texture2D changeTile;
         string message = "";
+        private bool getName = false;
+        private bool nameSet = false;
+        private int addcount = 0;
 
+        public object KeyboardHandler { get; private set; }
 
         public MapEditor()
         {
@@ -47,6 +52,7 @@ namespace Engine.States
             MouseHandler.Instance.MouseScrollDown += OnMouseScrollDown;
             MouseHandler.Instance.MouseScrollUp += OnMouseScrollUp;
             KeyHandler.Instance.KeyDown += OnKeyDown;
+            KeyHandler.Instance.KeyDown += GetName;
 
             map = new TileMap();
             map.GenerateEmpty(64);
@@ -68,7 +74,8 @@ namespace Engine.States
             MouseHandler.Instance.MouseMoved -= OnMouseMoved;
             MouseHandler.Instance.MouseScrollDown -= OnMouseScrollDown;
             MouseHandler.Instance.MouseScrollUp -= OnMouseScrollUp;
-            
+            KeyHandler.Instance.KeyDown -= OnKeyDown;
+
         }
 
         public void Update(GameTime gameTime)
@@ -130,15 +137,17 @@ namespace Engine.States
             return tile;
         }
 
+        
+
         public void saveMap()
         {
-            saveDataTest dd = new saveDataTest();
+            JaggedFile dd = new JaggedFile();
             int[,] saveMap = map.Map;
             if (saveMap != null)
             {
                 dd.Colums = saveMap.GetLength(0);
                 dd.Rows = saveMap.GetLength(1);
-                dd.IntJagged = Utility.Utility.convertToJaggedArray(saveMap, dd.Colums, dd.Rows);
+                dd.IntJagged = Utilities.Utility.convertToJaggedArray(saveMap, dd.Colums, dd.Rows);
 
                 string cwd = System.IO.Directory.GetCurrentDirectory();
 
@@ -148,7 +157,7 @@ namespace Engine.States
                     Console.WriteLine(cwd);
 
                 }
-                string outpit = cwd + "\\XmlLevel\\test123.xml";
+                string outpit = cwd + "\\XmlLevel\\" + name + ".xml";
 
                 XmlSerializer x = new XmlSerializer(dd.GetType());
                 using (TextWriter writer = new StreamWriter(outpit))
@@ -177,12 +186,18 @@ namespace Engine.States
             }
             spriteBatch.Draw(display, new Rectangle((int)CameraManager.Instance.getCam().Pos.X - 550, (int)CameraManager.Instance.getCam().Pos.Y + 200, 64,64), Color.White);
 
-          //  RenderManager.Instance.AddToDrawAble(display, new Vector2(0, 0));
-                spriteBatch.DrawString(ResourceLoader.Instance.GetFont("mFont"), currentTileString, new Vector2((int)CameraManager.Instance.getCam().Pos.X - 550, (int)CameraManager.Instance.getCam().Pos.Y + 280), Color.Black);
-           
-                spriteBatch.DrawString(ResourceLoader.Instance.GetFont("mFont"), message, new Vector2((int)CameraManager.Instance.getCam().Pos.X - 300, (int)CameraManager.Instance.getCam().Pos.Y ), Color.Black);
+            //  RenderManager.Instance.AddToDrawAble(display, new Vector2(0, 0));
+            //RenderManager.Instance.WriteString(message, new Vector2((int)CameraManager.Instance.getCam().Pos.X , (int)CameraManager.Instance.getCam().Pos.Y), Color.Black,3f);
+            //RenderManager.Instance.WriteString(currentTileString, new Vector2((int)CameraManager.Instance.getCam().Pos.X - 550, (int)CameraManager.Instance.getCam().Pos.Y + 280), Color.Black, 1f);
+            //RenderManager.Instance.WriteString(name, new Vector2((int)CameraManager.Instance.getCam().Pos.X - 470, (int)CameraManager.Instance.getCam().Pos.Y + 310), Color.Black, 2F) ;
+            //RenderManager.Instance.WriteString("Map Name -", new Vector2((int)CameraManager.Instance.getCam().Pos.X - 550, (int)CameraManager.Instance.getCam().Pos.Y + 310), Color.Black, 1f);
 
-       
+            //spriteBatch.DrawString(ResourceLoader.Instance.GetFont("mFont"), currentTileString, new Vector2((int)CameraManager.Instance.getCam().Pos.X - 550, (int)CameraManager.Instance.getCam().Pos.Y + 280), Color.Black);
+
+            //    spriteBatch.DrawString(ResourceLoader.Instance.GetFont("mFont"), message, new Vector2((int)CameraManager.Instance.getCam().Pos.X - 300, (int)CameraManager.Instance.getCam().Pos.Y ), Color.Black);
+
+            //spriteBatch.DrawString(ResourceLoader.Instance.GetFont("mFont"), name, new Vector2((int)CameraManager.Instance.getCam().Pos.X - 300, (int)CameraManager.Instance.getCam().Pos.Y), Color.Black);
+
         }
 
         #region Events
@@ -242,9 +257,11 @@ namespace Engine.States
 
         public void OnKeyDown(object sender, KeyEventArgs kae)
         {
-            if(kae.key == Keys.F)
+         
+            if (kae.key == Keys.E)
             {
-                saveMap();
+                getName = true;
+                
             }
 
             if (kae.key == Keys.Up)
@@ -261,13 +278,45 @@ namespace Engine.States
 
                 }
 
-          
+
+
+
         }
 
+
     
-        #endregion
+
+        public void GetName(object sender, KeyEventArgs kae)
+        {
+            if (getName && !nameSet)
+            {
+                addcount++;
+                if (kae.key == Keys.Enter )
+                {
+                    nameSet = true;
+                    saveMap();
+
+                }
+                else if (kae.key == Keys.Back)
+                {
+                    name = name.Remove(name.Length - 1);
+                }
+                else if (addcount > 1)
+                {
+                    string Name = name + kae.key.ToString();
+                    Console.WriteLine(Name);
+                    name = Name;
+                }
+            
+              
+            }
+            
+            
+           
+        }
+            #endregion
 
 
-    }
+        }
 }
 

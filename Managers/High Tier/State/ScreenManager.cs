@@ -65,8 +65,15 @@ namespace Engine
         /// </summary>
         public void Initialize()
     {
-        Add("SplashScreen");
-    }
+            if (Constants.Debug == true)
+                Add("GrantsPlayground");
+            else
+            {
+                Add("MainMenu");
+               Add("SplashScreen");
+
+            }
+        }
      
         /// <summary>
         /// Unload any screens which need to be unloaded
@@ -179,7 +186,7 @@ namespace Engine
         public void CheckScreenManagerInput()
         {
 
-            if (InputManager.Instance.CheckKeyPressed(Microsoft.Xna.Framework.Input.Keys.Back))
+            if (InputManager.Instance.CheckKeyPressed(Microsoft.Xna.Framework.Input.Keys.Escape))
             {
                 //Make sure we don't delete the menu!
                 if (screenStack.Count > 1)

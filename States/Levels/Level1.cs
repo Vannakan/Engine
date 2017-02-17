@@ -20,6 +20,9 @@ using Engine.Managers.CamManage;
 using Engine.Events.KeyboardEvent;
 using Microsoft.Xna.Framework.Input;
 using ADS.Medication.Spawner;
+using ADS.Entities.Platformer;
+using ADS.States.Levels;
+using ADS.Entities.SATTEST;
 
 namespace Engine
 {
@@ -27,19 +30,22 @@ namespace Engine
     {
         #region Variables
         private TileMap Map;
-        private PathFinder pathfinder;
-        private CA ca;
-        private int[] IDSTOREMOVE = new int[7];
-        private int radius = 200;
-        private int cx = 1;
-        private int cy = 1;
+
+        private int counter = 0;
+        private bool spawnerset = false;
+   
         private Vector2[] test = new Vector2[7];
         private Random random;
-        private Circle c;
 
         Spawner spawner;
 
-        IEntity e;
+        RECTANGLE r;
+
+
+
+        CollisionTest ct;
+
+
         #endregion
         #region Constructor, Initialization & Unload
         public Level1()
@@ -58,47 +64,40 @@ namespace Engine
             CameraManager.Instance.getCam().Zoom = 1f;
 
             KeyHandler.Instance.KeyDown += OnKeyDown;
-            ca = new CA();
-            // ca.Start();
+    
             this.SoundTrack = "SoundTrack1";
 
-            Map = new TileMap();
-            Map.GenerateCA(41, 64, 64);
-            DetectionManger.Instance.setTileMap(Map);
-             c = new Circle(300, new Vector2(5, 5));
-
-            //saveDataTest dd = new saveDataTest();
-            //XmlSerializer x = new XmlSerializer(dd.GetType());
-
-            //            using (FileStream fileStream = new FileStream(@"C:\Coding Stuff\Level1.xml", FileMode.Open))
-            //            {
-            //                dd = (saveDataTest)x.Deserialize(fileStream);
-
-            //            }
-            //            int[,] return1 = new int[dd.Colums, dd.Rows];
-
-            //            for (int i = 0; i < dd.Colums; i++ )
-            //            {
-            //                for(int j = 0; j<dd.Rows; j++)
-            //                {
-            //                    return1[i,j] = dd.IntJagged[i][j];
-            //                }
-            //            }
+            // Map = new TileMap();
+            //Map.GenerateCA(41, 32, 32);
+            // DetectionManger.Instance.setTileMap(Map);
 
 
-            //  pathfinder = new PathFinder(Map);
+            //EntityManager.Instance.getCamEntity("Player");
 
-            //   List<Vector2> path = pathfinder.FindPath(new Point(0, 0), new Point(0,1));
-            //   foreach (Vector2 point in path)
-            //   {
-            //        System.Diagnostics.Debug.WriteLine(point);
-            //     }
 
-            //DetectionManger.Instance.setTileMap(Map);
+            //EntityManager.Instance.createEntity<PhysicsEntity>(new Vector2);
 
-                spawner = new Spawner(300, new Vector2(5, 5));
-                spawner.addType<steerEntity>();
+            ct = new CollisionTest();
 
+
+            // EntityManager.Instance.createEntityCamDrawable<pEntity>(Vector2.Zero);
+            //for(int x = Constants.r.Next(0, Map.Map.GetLength(0)); x < Map.Map.GetLength(0); x++)
+            //{
+            //    for(int y = Constants.r.Next(0, Map.Map.GetLength(1)); y < Map.Map.GetLength(1);y++)
+            //    {
+            //        if (!spawnerset)
+            //        {
+            //            spawner = new Spawner(300, new Vector2(x * 64, y * 64));
+            //            Console.WriteLine(x + " " + y);
+            //            spawnerset = true;
+            //        }
+            //    }
+            //}
+            //spawner.assignGroup(new Test()); 
+            //
+            //    Vector2 p1 = Projection(a.
+
+            r = new RECTANGLE(400,200,100,100 );
             base.Initialize();
 
         }
@@ -107,27 +106,27 @@ namespace Engine
         {
 
 
-            if (e.key == Microsoft.Xna.Framework.Input.Keys.E)
-            {
-                if (CameraManager.Instance.getCam().Zoom == 1f)
-                    CameraManager.Instance.getCam().Zoom = 0.1f;
-                else if (CameraManager.Instance.getCam().Zoom == 0.1f)
-                    CameraManager.Instance.getCam().Zoom = 1f;
-            }
+            //if (e.key == Microsoft.Xna.Framework.Input.Keys.E)
+            //{
+            //    if (CameraManager.Instance.getCam().Zoom == 1f)
+            //        CameraManager.Instance.getCam().Zoom = 0.1f;
+            //    else if (CameraManager.Instance.getCam().Zoom == 0.1f)
+            //        CameraManager.Instance.getCam().Zoom = 1f;
+            //}
 
-            if (e.key == Microsoft.Xna.Framework.Input.Keys.Q)
-            {
-                Map.CollisionTiles.Clear();
-                Map.GenerateCA(46, 64, 64);
-            }
+            //if (e.key == Microsoft.Xna.Framework.Input.Keys.Q)
+            //{
+            //    EntityManager.Instance.clearList();
+            //    Map.CollisionTiles.Clear();
+            //    Map.GenerateCA(46, 64, 64);
+            //}
 
 
-            if (e.key == Keys.N)
-            {
-            
-                    spawner.sendWave(7);
+            //if (e.key == Keys.N)
+            //{
+            //        spawner.sendWave(2);
                
-            }
+            //}
         }
 
 
@@ -142,7 +141,10 @@ namespace Engine
 
 
         }
+
         #endregion
+
+
         #region Update & Draw
         /// <summary>
         /// Draw the map
@@ -150,8 +152,8 @@ namespace Engine
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-
-            Map.Draw(spriteBatch);
+            //  Map.Draw(spriteBatch);
+            r.Draw(spriteBatch);
             base.Draw(spriteBatch);
         }
 
@@ -167,18 +169,39 @@ namespace Engine
         {
 
 
+            ct.Update();
 
+            counter += 1;
 
+            if(counter <=200)
 
+            {
+                RenderManager.Instance.addString(new ADS.Utilities.GameText(this.GetType().ToString().Split('.').Last(), "SnapTitle", new Vector2(300,0), Color.Yellow, 0.5f));
+            }
 
+            
+           
 
+            /*
+             * 
+             * if(A.Distance(to B) is less than X)
+             * 
+             */
+            //float dot = DotProduct(a.Position, b.Position);
+            // Vector2 proa = Projection(new Vector2(a.Bounds.X - a.Bounds.Width, a.Bounds.Y - a.Bounds.Height), new Vector2,dot );
             base.Update(gameTime);
         }
         #endregion
 
 
+        #region TemporaryCollision
 
+
+       
     }
+    #endregion
+
+
 }
 
  

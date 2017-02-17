@@ -95,13 +95,22 @@ namespace Engine
             {
                 if (Follow)
                 {
-                    if (p.Position.X > _pos.X -200)
+                    if (p.Position.X > _pos.X +200)
                     {
-                        _pos.X += 0.5f;
+                        _pos.X += 1f;
                     }
                     if (p.Position.X < _pos.X - 200)
                     {
-                        _pos.X -= 5;
+                        _pos.X -= 1f;
+                    }
+
+                    if (p.Position.Y > _pos.Y + 200)
+                    {
+                        _pos.Y += 1f;
+                    }
+                    if (p.Position.X < _pos.Y - 200)
+                    {
+                        _pos.Y -= 1f;
                     }
                 }
                 if(Locked)

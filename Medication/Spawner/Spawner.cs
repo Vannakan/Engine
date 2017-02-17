@@ -12,10 +12,12 @@ namespace ADS.Medication.Spawner
 {
     public class Spawner
     {
+        //Radius for spawning
         Circle radius;
+        //Position of the spawner
         Vector2 position;
-        List<Entity> spawnTypes = new List<Entity>();
-      
+        //Entity Group for spawner
+        MedGroup spawns;
 
         public Spawner(int Radius, Vector2 Position)
         {
@@ -23,27 +25,25 @@ namespace ADS.Medication.Spawner
             radius = new Circle(Radius, Position);
         }
 
-        public void addType<T>() where T : Entity, new()
+       
+        /// <summary>
+        /// Assigns a group of types to be spawned by the spawner
+        /// </summary>
+        /// <param name="m"></param>
+        public void assignGroup(MedGroup m)
         {
-            Entity a = new T();
-            spawnTypes.Add(a);
+            spawns = m;
         }
 
-        public void Update()
-        {
 
-        }
-
+        //Send a wave of a predefined amount of Entities in a random radius
         public void sendWave(int amount)
         {
-            Console.WriteLine(spawnTypes[0].GetType().ToString());
             for (int i = 0; i < amount; i++)
             {
-                foreach (Entity e in spawnTypes)
+                foreach (Entity e in spawns.getList)
                 {
                   
-
-
                     switch (e.ToString().Split('.').Last())
                     {
                         case "steerEntity":
@@ -57,9 +57,10 @@ namespace ADS.Medication.Spawner
                     }
                 }
 
-
         }
 
         }
+
+      
     }
 }

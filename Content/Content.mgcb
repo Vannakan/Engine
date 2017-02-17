@@ -451,3 +451,15 @@
 /processorParam:TextureFormat=Color
 /build:Entity/AntiBody.png
 
+#begin Fonts/SnapTitle.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Fonts/SnapTitle.spritefont
+
+#begin Fonts/Snap.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Snap.spritefont
+

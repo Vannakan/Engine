@@ -20,28 +20,22 @@ namespace Engine.Entities
         //Instance variable for the entity
         protected IEntity e;
 
-        //Velocity for moving the mind
+        //Rate of change of position
         protected Vector2 velocity = new Vector2(0,0);
 
-        public Vector2 Velocity
-        {
-            get
-                { return velocity; }
-
-            set { velocity = value; }
-        }
-
-
+        public Vector2 Velocity {get{ return velocity; } set { velocity = value; } }
         public bool isColliding { get; set; }
 
         public Vector2 tempsteerpos { get { return _pos; } set { _pos = value; } }
 
         protected Vector2 _pos = new Vector2();
-        public Vector2 Position { get { return e.Position; } set { e.Position = value; } }
-        protected Vector2 Acceleration = new Vector2(0.01f,0.01f);
+        public Vector2 Position { get { return _pos; } set { _pos = value; } }
+
+        //Rate of change of velocity
+      
         protected string texPath = "";
 
-        public Rectangle Bounds { get { return new Rectangle((int)e.Position.X, (int)e.Position.Y, e.Texture.Width, e.Texture.Height); } }
+        public Rectangle Bounds { get { return new Rectangle((int)Position.X, (int)Position.Y, e.Texture.Width, e.Texture.Height); } }
 
         public bool isCollidable { get; set; }
 
@@ -89,6 +83,7 @@ namespace Engine.Entities
                 setTexture(texPath);
             }
                 e.Position = Position;
+            _pos = Position;
             e.isVisible = true;
             Active = true;
 
@@ -106,8 +101,6 @@ namespace Engine.Entities
 
         public virtual void Update(GameTime gameTime)
         {
-            _pos = e.Position;
-            _pos += Velocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
            e.Position = _pos;
             if(!Active)
             {

@@ -58,7 +58,8 @@ namespace Engine
 
         //Initialize;
         protected override void Initialize()
-        { 
+        {
+            Constants.Debug = true;
             UpdateList = new List<IUpdateEngineComponent>();
 
             CameraManager.Instance.Initialize();

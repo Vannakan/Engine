@@ -67,6 +67,7 @@ namespace Engine.Managers.EntityRelated
        {
           
            eList.Add(e);
+            RenderManager.Instance.addDrawable(e as IDrawable);
            Console.WriteLine("Added Entity -  ID " + e.UniqueID);
        }
 
@@ -91,8 +92,9 @@ namespace Engine.Managers.EntityRelated
          IEntity a = new T();
          a.Initialize(Position);
             addCamEntity(a);
-        
-         return a;
+            Console.WriteLine("Created Entity Cam Drawable " + a. Name);
+
+            return a;
      }
 
       
@@ -128,11 +130,56 @@ namespace Engine.Managers.EntityRelated
 
         }
 
-       
+        public void getEntity(string name)
+        {
+            IEntity e;
+            for (int i = 0; i < eList.Count; i++)
+            {
+
+
+                string naem = eList[i].Name;
+                Console.WriteLine(naem + " AAAAAAAAAAAAAA" );
+                if (naem == name)
+                {
+                    Console.WriteLine(naem);
+                    e = eList[i];
+                }
+            }
+        
+
+            
+          
+
+          
+        }
+
+        public IEntity getCamEntity(string name)
+        {
+            IEntity e = null;
+            for (int i = 0; i < cdList.Count; i++)
+            {
+
+
+                string naem = cdList[i].Name;
+                if (naem == name)
+                {
+                    Console.WriteLine(naem);
+                    e = cdList[i];
+                }
+            }
+            return e;
+       }
+
+        public void getEntity(int entityID)
+        {
+
+        }
 
         public void clearList()
      {
-         eList.Clear();
+            Console.WriteLine("LIST CLEARED" );
+            eList.Clear();
+            cdList.Clear();
          BehaviourManager.Instance.clearList();
      }
 

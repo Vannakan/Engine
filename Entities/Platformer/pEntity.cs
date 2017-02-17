@@ -23,6 +23,7 @@ namespace Engine.Entities
             mind =BehaviourManager.Instance.Create<PlayerMind>(this);
             base.Initialize(Pos);
             CameraManager.Instance.getCam().setEntity(this, "Follow");
+            this.Name = "Player";
         }
 
 

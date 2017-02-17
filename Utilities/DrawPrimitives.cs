@@ -10,6 +10,7 @@ namespace ADS.Utility
 {
     static class DrawPrimitives
     {
+        //Temporary
         public static void DrawRect(SpriteBatch spriteBatch, Rectangle Bounds, Color color)
         {
             var t  = new Texture2D(Engine.Constants.g, 1, 1);

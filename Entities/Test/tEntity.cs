@@ -10,7 +10,9 @@ public class tEntity : IEntity, Engine.IDrawable
     //Reference to the mind which possess this Entity
     private IMind mind;
 
-
+    
+    public string Name { get; set; }
+   
 
     //Automatic property for the entities unique ID
     public int UniqueID { get; protected set; }

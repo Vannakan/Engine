@@ -13,7 +13,7 @@ namespace ADS.States.Menu
     public class MenuOption
     {
 
-        private Vector2 _pos;
+        private Vector2 position;
         private Vector2 _texCenter;
         private Vector2 _screenCenter = CameraManager.Instance.getWorldPosition(new Vector2(Game1.Instance.graphics.PreferredBackBufferWidth / 2, Game1.Instance.graphics.PreferredBackBufferHeight / 2));
 

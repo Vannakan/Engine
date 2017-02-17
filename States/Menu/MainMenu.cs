@@ -162,8 +162,9 @@ namespace Engine
                         case 4:
                             ScreenManager.Instance.Add("GameOptions");
                             break;
-                        
-                        case 5:
+
+                   
+                        case 6:
                             Program.Game.Exit();
 
 

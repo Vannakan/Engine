@@ -51,18 +51,26 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Interfaces\IProjectile.cs" />
+    <Compile Include="Entities\IPhysicsEntity.cs" />
     <Compile Include="Entities\Platformer\Bullet.cs" />
     <Compile Include="Entities\Platformer\bulletEntity.cs" />
+    <Compile Include="Entities\Platformer\Physics\PhysicsEntity.cs" />
+    <Compile Include="Entities\Platformer\Physics\PhysicsMind.cs" />
     <Compile Include="Entities\Platformer\steerEntity.cs" />
     <Compile Include="Entities\Primitives\Circle.cs" />
     <Compile Include="Entities\Interfaces\IMind.cs" />
     <Compile Include="Entities\Mind.cs" />
     <Compile Include="Entities\Platformer\pEntity.cs" />
     <Compile Include="Entities\Platformer\PlayerMind.cs" />
+    <Compile Include="Entities\SATTEST\RECTANGLE.cs" />
+    <Compile Include="Entities\SATTEST\satEntity.cs" />
+    <Compile Include="Entities\SATTEST\Triangle.cs" />
     <Compile Include="Entities\steermind.cs" />
     <Compile Include="Entities\Test\tEntity.cs" />
     <Compile Include="Entities\Test\tMind.cs" />
     <Compile Include="Entities\Utilities\SteeringUtility.cs" />
+    <Compile Include="Entities\Utilities\Vector2Util.cs" />
+    <Compile Include="Events\ButtonEvent.cs" />
     <Compile Include="Events\CollisionEvent\CollisionEventArgs.cs" />
     <Compile Include="Events\CollisionEvent\CollisionHandler.cs" />
     <Compile Include="Events\KeyboardEvent\KeyEventArgs.cs" />
@@ -77,6 +85,7 @@
     <Compile Include="GUI\IGuiElement.cs" />
     <Compile Include="GUI\InputText.cs" />
     <Compile Include="IDrawable.cs" />
+    <Compile Include="Managers\High Tier\Behaviour\SteeringManager.cs" />
     <Compile Include="Managers\High Tier\Collision\AABB.cs" />
     <Compile Include="Managers\High Tier\Collision\OOBB.cs" />
     <Compile Include="Managers\High Tier\Collision\TranslationVector.cs" />
@@ -97,6 +106,7 @@
     <Compile Include="Managers\Low Tier\Sound\SoundManager.cs" />
     <Compile Include="Managers\High Tier\State\Fader.cs" />
     <Compile Include="Managers\High Tier\State\sManagerArgs.cs" />
+    <Compile Include="Medication\Behaviour\DuplicatingEntity.cs" />
     <Compile Include="Medication\Behaviour\Steering\SteeringTest.cs" />
     <Compile Include="Medication\Behaviour\Steering\SteerManager.cs" />
     <Compile Include="Medication\Levels\Hub\Hub.cs" />
@@ -107,10 +117,18 @@
     <Compile Include="Medication\Modifiers\Modifier.cs" />
     <Compile Include="Medication\Modifiers\Modifierr.cs" />
     <Compile Include="Medication\Modifiers\Stats.cs" />
+    <Compile Include="Medication\Spawner\MedGroup.cs" />
     <Compile Include="Medication\Spawner\Spawner.cs" />
+    <Compile Include="Medication\Spawner\Test.cs" />
     <Compile Include="SelectedTest.cs" />
+    <Compile Include="Serialization\JaggedFile.cs" />
     <Compile Include="Serialization\saveDataTest.cs" />
+    <Compile Include="Serialization\SerializeArray.cs" />
     <Compile Include="spawnerTest.cs" />
+    <Compile Include="States\Editor\EditorUtility.cs" />
+    <Compile Include="States\Editor\StringHelper.cs" />
+    <Compile Include="States\GrantsPlayground\GrantsPlayground.cs" />
+    <Compile Include="States\Levels\CollisionTest.cs" />
     <Compile Include="States\Levels\SwarmTest.cs" />
     <Compile Include="States\Menu\Menu.cs" />
     <Compile Include="States\Menu\MenuOption.cs" />
@@ -152,9 +170,14 @@
     <Compile Include="Tilemaps\Tile.cs" />
     <Compile Include="Tilemaps\TileMap.cs" />
     <Compile Include="Tilemaps\TileType.cs" />
-    <Compile Include="Utility\DrawPrimitives.cs" />
-    <Compile Include="Utility\Panel.cs" />
-    <Compile Include="Utility\Utility.cs" />
+    <Compile Include="Utilities\DrawLine.cs" />
+    <Compile Include="Utilities\DrawPrimitives.cs" />
+    <Compile Include="Utilities\DrawShape.cs" />
+    <Compile Include="Utilities\DrawString.cs" />
+    <Compile Include="Utilities\GameText.cs" />
+    <Compile Include="Utilities\Panel.cs" />
+    <Compile Include="Utilities\Shapes\Line.cs" />
+    <Compile Include="Utilities\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -186,6 +209,7 @@
     <Folder Include="Events\ConvoEvent\" />
     <Folder Include="Grid\Pathfinding\AStar\" />
     <Folder Include="Grid\Pathfinding\Dijksra\" />
+    <Folder Include="Medication\Entities\" />
     <Folder Include="Medication\Levels\Transition\" />
     <Folder Include="Medication\Levels\Treatment\" />
   </ItemGroup>

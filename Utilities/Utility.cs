@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Engine.Utility
+namespace Engine.Utilities
 {
    public static class Utility
     {

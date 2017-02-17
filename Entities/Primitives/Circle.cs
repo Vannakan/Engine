@@ -8,26 +8,64 @@ using System.Threading.Tasks;
 
 namespace Engine.Entities
 {
-    public class Circle
+    public class Circle : IDrawable
     {
+
+        BasicEffect basicEffect;
+        VertexPositionColor[] vertices;
+
         private Random random = Constants.r;
 
         public float Radius { get; set; }
         private Vector2 centre;
         public Vector2 Centre { get { return centre; } set { centre = value; } }
         private Texture2D texture;
+
+
         public Circle(int radius, Vector2 Centre)
         {
             this.Radius = radius;
             this.Centre = Centre;
             texture = createCircleText(radius);
+
+            basicEffect = new BasicEffect(Constants.g);
+            basicEffect.VertexColorEnabled = true;
+            basicEffect.Projection = Matrix.CreateOrthographicOffCenter(0, Constants.g.Viewport.Width, Constants.g.Viewport.Height, 0, 0, 1);
+
+
+
+            vertices = new VertexPositionColor[100];
+            for (int i = 0; i < 99; i++)
+            {
+                float angle = (float)(i / 100.0f * Math.PI * 2);
+                vertices[i].Position = new Vector3(Centre.X + (float)Math.Cos(angle) * 100, Centre.Y + (float)Math.Sin(angle) * 100, 0);
+                vertices[i].Color = Color.Green;
+            }
+
+            vertices[99] = vertices[0];
         }
 
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            
-            spriteBatch.Draw(texture, centre, Color.White);
+
+
+            for (int i = 0; i < 99; i++)
+            {
+                float angle = (float)(i / 100.0f * Math.PI * 2);
+                vertices[i].Position = new Vector3(Centre.X + (float)Math.Cos(angle) * Radius, Centre.Y + (float)Math.Sin(angle) * Radius, 0);
+                vertices[i].Color = Color.Green;
+            }
+            vertices[99] = vertices[0];
+     
+
+            basicEffect.CurrentTechnique.Passes[0].Apply();
+           // Constants.g.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.LineList, vertices, 0, 2);
+
+            Constants.g.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.LineStrip, vertices, 0, 99);
+
+
+            //   spriteBatch.Draw(texture, centre , Color.White);
         }
 
 

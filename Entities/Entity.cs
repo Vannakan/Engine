@@ -17,18 +17,19 @@ namespace Engine.Entities
         //Reference to the mind which possess this Entity
         protected IMind mind;
 
+
         //Automatic property for the entities unique ID
         public int UniqueID { get; protected set; }
 
         //bool to check whether entity should be drawn or not
         public bool isVisible { get; set; }
 
-        public string Name { get; internal set; }
+        public string Name { get { return name; }  set { name = value; } }
 
+        private string name = "";
         //Position variable for the entity
-        private Vector2 position;
         //Accessor & Mutator
-        public Vector2 Position { get { return position; } set { position = value; } }
+        public Vector2 Position { get { return mind.Position; } set { mind.Position = value; } }
         //Accessor & Mutator
 
         //boundingBoxVisible
@@ -40,7 +41,7 @@ namespace Engine.Entities
         //Accessor & Mutator
         public Rectangle Bounds
         {
-            get { return new Rectangle((int)position.X, (int)position.Y, Texture.Width, Texture.Height); }
+            get { return new Rectangle((int)mind.Position.X, (int)mind.Position.Y, Texture.Width, Texture.Height); }
         }
 
       
@@ -63,13 +64,15 @@ namespace Engine.Entities
         {
             if(mind != null)
             mind.Initialize(Pos);
+
+            
         }
 
     
         public void Draw(SpriteBatch spriteBatch)
         {
 
-            spriteBatch.Draw(Texture, Position, Color.White);
+            spriteBatch.Draw(Texture, mind.Position, Color.White);
 
             //If the option to draw the bounding box is open, call the draw primitives utility to draw the rectangle.
             if (bbV)

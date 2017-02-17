@@ -8,6 +8,9 @@ namespace ADS.Medication.Modifiers
 {
     public class Stats : IStats
     {
+
+        int level = 1;
+        public int LEVEL { get { return level; } set { level = value;    } }
         //EXP & Property
         int exp;
         public int EXP { get { return exp; } set { exp = value; } }
@@ -50,6 +53,57 @@ namespace ADS.Medication.Modifiers
             this.luck = luck;
             exp = 0;
             Console.WriteLine("Stats created");
+        }
+
+        public void IncreaseStat(string Stat, int value)
+        {
+            switch(Stat)
+            {
+                case "HP":
+                    hp += value;
+                    break;
+                case "LUCK":
+                    luck += value;
+                    break;
+                case "aPSD":
+                    atkSPD += value;
+                    break;
+                case "mSPD":
+                    mspd += value;
+                    break;
+                case "EXP":
+                    exp += value;
+                    if (exp >= 200 * level)
+                    {
+                        level += 1;
+                        exp = 0;
+                    }
+                    break;
+            }
+        }
+
+        public void DecreaseStat(string Stat, int value)
+        {
+            switch (Stat)
+            {
+                case "HP":
+                    hp -= value;
+                    break;
+                case "LUCK":
+                    luck -= value;
+                    break;
+                case "aPSD":
+                    atkSPD -= value;
+                    break;
+                case "mSPD":
+                    mspd -= value;
+                    break;
+                case "EXP":
+                    exp -= value;
+                  
+                    
+                    break;
+            }
         }
 
       

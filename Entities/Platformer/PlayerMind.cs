@@ -34,9 +34,13 @@ namespace Engine.Entities
         //Check for collision (useless)
         bool isColliding = false;
 
-        
-       
-       public PlayerMind()
+        int moveSpeed = 10;
+
+        private Vector2 friction = new Vector2(0.1f, 0.1f);
+
+        bool left = true, right = true, up = true, down = true;
+
+        public PlayerMind()
         {
             
             //Create player stats
@@ -54,21 +58,30 @@ namespace Engine.Entities
         public override void Initialize(Vector2 Position)
         {
             texPath = "AntiBody";
-            Console.WriteLine("Ini called" );
             base.Initialize(Position);
         }
 
 
         public override void Update(GameTime gameTime)
         {
-            
+
             if (bulletTimer > 0)
                 bulletTimer = bulletTimer-1;
             GameTime = gameTime;
             applyVelocityRules();
             Friction();
 
-         
+            RenderManager.Instance.addString(new ADS.Utilities.GameText("EXP = " + stats.EXP.ToString(), "Snap", new Vector2(0, 75), Color.Green, 1.1f));
+            RenderManager.Instance.addString(new ADS.Utilities.GameText("Level = " + stats.LEVEL.ToString(), "Snap", new Vector2(0, 100), Color.Green, 1.1f));
+
+            RenderManager.Instance.addString(new ADS.Utilities.GameText("HP = " + stats.HP.ToString(), "Snap", new Vector2(0, 0), Color.Green, 1.1f));
+            RenderManager.Instance.addString(new ADS.Utilities.GameText("DMG = " + stats.DMG.ToString(), "Snap", new Vector2(0, 250), Color.Green, 1.1f));
+            RenderManager.Instance.addString(new ADS.Utilities.GameText("aSPD = " + stats.aSPD.ToString(), "Snap", new Vector2(0, 300), Color.Green, 1.1f));
+            RenderManager.Instance.addString(new ADS.Utilities.GameText("mSPD = " + stats.mSPD.ToString(), "Snap", new Vector2(0, 350), Color.Green, 1.1f));
+            RenderManager.Instance.addString(new ADS.Utilities.GameText("LUCK = " + stats.Luck.ToString(), "Snap", new Vector2(0, 400), Color.Green, 1.1f));
+
+
+            _pos += velocity;
             base.Update(gameTime);
 
         }
@@ -93,7 +106,7 @@ namespace Engine.Entities
         {
         if(m.key == Keys.P)
             {
-                stats.HP -= 10;
+                stats.DecreaseStat("HP", 5);
                 if (stats.HP < 0)
                     stats.HP = 200;
                 Console.WriteLine("ye");
@@ -101,7 +114,7 @@ namespace Engine.Entities
 
         if(m.key == Keys.O)
             {
-                stats.EXP += 5;
+                stats.IncreaseStat("EXP", 35);
             }
 
           
@@ -122,29 +135,36 @@ namespace Engine.Entities
 
                 Keys[] keys = m.keyState.GetPressedKeys();
 
-                if (m.key == Keys.D)
+                if (m.key == Keys.D && right)
                 {
-                    e.Position = new Vector2(e.Position.X + stats.mSPD, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
-                  //  velocity.X += Acceleration.X *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    velocity.X += moveSpeed;
+
+                    //  e.Position = new Vector2(e.Position.X + stats.mSPD, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    //  velocity.X += Acceleration.X *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }
-                if (m.key == Keys.A)
+                if (m.key == Keys.A && left)
                 {
-                    e.Position = new Vector2(e.Position.X - stats.mSPD, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
-                 //   velocity.X -= Acceleration.X * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    velocity.X -= moveSpeed;
+
+                    // e.Position = new Vector2(e.Position.X - stats.mSPD, e.Position.Y);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    //   velocity.X -= Acceleration.X * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                 }
                 if (m.key == Keys.S)
                 {
-                    e.Position = new Vector2(e.Position.X , e.Position.Y+ stats.mSPD);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
-                  //  velocity.Y += Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    velocity.Y += moveSpeed;
+
+                    //  e.Position = new Vector2(e.Position.X , e.Position.Y+ stats.mSPD);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    //  velocity.Y += Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
                 }
 
                 if (m.key == Keys.W)
                 {
-                    e.Position = new Vector2(e.Position.X , e.Position.Y - stats.mSPD);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                      velocity.Y -= moveSpeed;
+                   // e.Position = new Vector2(e.Position.X, e.Position.Y - stats.mSPD);// *(float)GameTime.ElapsedGameTime.TotalMilliseconds;
 
-                  //  velocity.Y -= Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
+                    //  velocity.Y -= Acceleration.Y * (float)GameTime.ElapsedGameTime.TotalMilliseconds;
                 }
 
                 if ((m.keyState.IsKeyDown(Keys.Up) && m.keyState.IsKeyDown(Keys.Space)))
@@ -177,7 +197,8 @@ namespace Engine.Entities
                 {
                     
                 }
-
+            //    velocity *= friction;
+             //   _pos.Y += velocity.Y;
 
 
                 ////Console.WriteLine(bulletTimer);
@@ -226,14 +247,21 @@ namespace Engine.Entities
 
         public void OnCollision(object sender, CollisionEventArgs cae )
         {
-           //Position
+           
+            //Position
             if (cae.A == this)
             {
+
                 isColliding = true;
-                Position += TranslationVector.GetMinimumTranslation(cae.A,cae.B);
+                _pos += TranslationVector.GetMinimumTranslation(cae.A, cae.B);
+                
+                
+
             }
 
-          
+            
+
+
         }
 
         

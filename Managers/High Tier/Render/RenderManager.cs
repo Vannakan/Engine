@@ -1,4 +1,6 @@
 ﻿using ADS.GUI;
+using ADS.Utilities;
+using ADS.Utility;
 using Engine.Managers.CamManage;
 using Engine.Managers.EntityRelated;
 using Microsoft.Xna.Framework;
@@ -13,6 +15,8 @@ namespace Engine.Managers.Render
 {
     public class RenderManager :  IUpdateEngineComponent
     {
+        private Queue<string> LinesToBeDrawn = new Queue<string>();
+        private Queue<GameText> TextToBeDrawn = new Queue<GameText>();
 
         private List<IEntity> entities = new List<IEntity>();
        //Reference to the kernels spritebatch in which all entities will be drawn
@@ -101,7 +105,6 @@ namespace Engine.Managers.Render
                         null,
                         CameraManager.Instance.getCam().get_transformation(Game1.Instance.GraphicsDevice));
             DrawComponents();
-            DrawEntities();
             DrawCamDrawables();
             DrawCamDrawEntities();
 
@@ -121,11 +124,19 @@ namespace Engine.Managers.Render
   {
       spriteBatch.Begin();
       DrawDrawables();
+            DrawEntities();
 
-      spriteBatch.End();
+            spriteBatch.End();
 
   }
+
+        public void addString(GameText gameText)
+        {
+            TextToBeDrawn.Enqueue(gameText);
+        }
+
      
+
         public void Update(GameTime gameTime)
   {
       getEntityList();
@@ -187,6 +198,12 @@ namespace Engine.Managers.Render
             for(int i = 0; i < Drawables.Count; i++)
             {
                 Drawables[i].Draw(spriteBatch);
+            }
+
+            for(int i = 0; i < TextToBeDrawn.Count; i++)
+            {
+                GameText a = TextToBeDrawn.Dequeue();
+                a.Draw(spriteBatch);
             }
         }
 
